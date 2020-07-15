@@ -19,6 +19,7 @@ import {RouterModule} from '@angular/router'
 import {ROUTES} from './app-routes';
 import { HomeComponent } from './home/home.component';
 import { CriarContaComponent } from './account/criar-conta/criar-conta.component';
+import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CriarContaComponent } from './account/criar-conta/criar-conta.component
     LoginComponent,
     TelaPrincipalComponent,
     HomeComponent,
-    CriarContaComponent
+    CriarContaComponent,
+    CadastroProdutoComponent
   ],
   imports: [
     BrowserModule,

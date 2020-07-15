@@ -2,16 +2,16 @@ import {Routes} from '@angular/router'
 
 
 import {LoginComponent} from '../app/login/login.component'
-import {TelaPrincipalComponent} from '../app/tela-principal/tela-principal.component'
-//import {AuthenticationComponent} from './layout/authentication/authentication.component'
-//import {CreateAccountComponent} from './account/create-account/create-account.component'
 import {CriarContaComponent} from './account/criar-conta/criar-conta.component'
+import {HomeComponent} from '././home/home.component'
 import { AuthGuard } from './account/shared/auth.guard'
+import {CadastroProdutoComponent} from './cadastro-produto/cadastro-produto.component'
 
 export const ROUTES : Routes = [
 
     // verifica se a rota vazia esta autorizada
-    {path : "" , component : TelaPrincipalComponent, canActivate:[AuthGuard] },
+    {path : "" , component : HomeComponent, canActivate:[AuthGuard] },
+    {path : "cadastro-produto" , component : CadastroProdutoComponent, canActivate:[AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [

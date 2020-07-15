@@ -31,18 +31,18 @@
     }
 
 
-    .conta-form input {
-        width: 100%;
-        position: relative;
-        border-bottom: 1px solid #a39e9e;
-        padding: 0;
-        border-top: 0px;
-        border-left: 0px;
-        border-right: 0px;
-        box-shadow: none;
-        height: 63px;
-        border-radius: 0px;
-        }
+.conta-form input {
+    width: 100%;
+    position: relative;
+    border-bottom: 1px solid #a39e9e;
+    padding: 0;
+    border-top: 0px;
+    border-left: 0px;
+    border-right: 0px;
+    box-shadow: none;
+    height: 63px;
+    border-radius: 0px;
+}
 
 
         
@@ -57,25 +57,24 @@ button.btn {
     }
 
 
+h2{
+    color: cornsilk;
+    text-align: justify;
+}
 
-    h2{
-        text-align: justify;
-        }
 
-
-
-        input.ng-invalid.ng-touched{
-            border: 1px solid red;
-        }
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
         
-        select.ng-invalid.ng-touched{
-            border: 1px solid red;
-        }
+select.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
         
-        input.ng-valid.ng-touched{
-            border: 1px solid green;
-        }
+input.ng-valid.ng-touched{
+    border: 1px solid green;
+}
         
-        select.ng-valid.ng-touched{
-            border: 1px solid green;
-        }
+select.ng-valid.ng-touched{
+    border: 1px solid green;
+}

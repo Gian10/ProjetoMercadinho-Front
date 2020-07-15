@@ -1,7 +1,7 @@
 <div class="conta">
     <div class="conta-user">
-    	<h2 class="text-center">Criar minha conta</h2>
-
+    	<h2 class="text-center">CRIAR MINHA CONTA</h2>
+        <br>
         <form novalidate class="conta-form"  #criarConta="ngForm" (ngSubmit)="onSubmit()" >            
             <div class="form-group">
                 <input type="text"  
@@ -14,9 +14,7 @@
                 #inputNome="ngModel"      
                 >	  
                 <small *ngIf="inputNome.valid && inputNome.touched" class="form-text text-success">Ok</small>
-
                 <small *ngIf="!inputNome.valid && inputNome.touched" class="form-text text-danger">Nome inválido</small>
-       
             </div>
                 
             <div class="form-group">
@@ -30,15 +28,13 @@
                 #inputSenha="ngModel"
                 >    
                 <small *ngIf="inputSenha.valid && inputSenha.touched" class="form-text text-success">Ok</small>
-
                 <small *ngIf="!inputSenha.valid && inputSenha.touched" class="form-text text-danger">Senha inválido</small>                            
             </div>
             <br />
             <button 
             type="submit" 
             class="btn btn-primary btn-lg"
-            >Criar Usuario</button>
-           
+            >Criar Usuario</button>          
             <button type="button" class="btn btn-link btn-block" [routerLink]="['']">Voltar</button> 
         </form>         
     </div>
