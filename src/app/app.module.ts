@@ -1,6 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
+
+
 import {FormsModule} from '@angular/forms'
+import {ReactiveFormsModule} from '@angular/forms'
+
 
 // injetar "," no valor
 import { registerLocaleData } from '@angular/common';
@@ -35,6 +39,7 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
     AppRoutingModule,
     FontAwesomeModule,
     FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
   ],

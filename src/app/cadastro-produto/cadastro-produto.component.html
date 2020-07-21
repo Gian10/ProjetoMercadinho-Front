@@ -1,10 +1,13 @@
 <app-tela-principal></app-tela-principal>
 
 <div class="container">
+    <div class="cadastroProduto">
+
+    
     <h5>DADOS DE CADASTRO DE PRODUTO</h5>
     <hr />
     <div class="row  justify-content-center">      
-        <form class="needs-validation" novalidate #cadProduto ="ngForm" (ngSubmit)="cadastrarProduto()">      
+        <form [formGroup]="cadProduto" novalidate (ngSubmit)="cadastrarProduto()">      
             <div class="form-row">
                 <div class="form-group col-md-6">
                     <strong><label> Nome de Produto:</label></strong>
@@ -13,19 +16,10 @@
                     class="form-control"  
                     placeholder="Ex: Arroz"        
                     autocomplete="off" 
-                    required
-                    minlength="3"
-                    maxlength="40"
-                    name="nomeProduto"
-                    ngModel
-                    #inputNomeProduto
-                    >
-                    <div class="invalid-feedback">
-                        Please provide a valid city.
-                      </div>
-                  
-                  <small *ngIf="inputNomeProduto.valid && inputNomeProduto.touched" class="form-text text-success">Ok</small>
-                  <small *ngIf="!inputNomeProduto.valid && inputNomeProduto.touched" class="form-text text-danger">Inválido</small>              
+                    formControlName=nomeProduto              
+                    >                 
+                  <small *ngIf="cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-success">OK</small>
+                  <small *ngIf="!cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
                 </div>
         
                 <div class="form-group col-md-6">
@@ -35,34 +29,20 @@
                     class="form-control" 
                     placeholder="Ex: 111000"
                     autocomplete="off" 
-                    required
-                    minlength="1"
-                    maxlength="40"
-                    name="codigo"
-                    ngModel
-                    #inputCodigo
+                    formControlName = codigo
                   >  
-                  <small *ngIf="inputCodigo.valid && inputCodigo.touched" class="form-text text-success">Ok</small>
-                  <small *ngIf="!inputCodigo.valid && inputCodigo.touched" class="form-text text-danger">Inválido</small>           
+                  <small *ngIf="cadProduto.get('codigo').valid && cadProduto.get('codigo').touched" class="form-text text-success">OK</small>
+                  <small *ngIf="!cadProduto.get('codigo').valid && cadProduto.get('codigo').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>           
                 </div>
         
                 <div class="form-group col-md-4">
-                   <div class="input-group-prepend">
-                        <span class="input-group-text">$</span>
-                        <span class="input-group-text">,00</span>
-                    </div>
                     <input type="text"
                      class="form-control" 
                      placeholder="Ex: 10" 
                      autocomplete="off" 
-                     required
-                     minlength="1"
-                     maxlength="40"
-                     name = "preco"
-                     ngModel
-                     #inputPreco
+                     formControlName="preco"           
                      >
-                     
+                     <!-- <span>{{preco : mask 'separator,'}}</span> -->
                 </div>
             </div>
 
@@ -75,24 +55,28 @@
                     class="form-control" 
                     placeholder="Ex: 1"
                     autocomplete="off" 
-                    required
-                    minlength="1"
-                    maxlength="40"
-                    name="estoque"
-                    ngModel
-                    #inputEstoque
+                    formControlName="estoque"
                     >  
-                    <small *ngIf="inputEstoque.valid && inputEstoque.touched" class="form-text text-success">Ok</small>
-                    <small *ngIf="!inputEstoque.valid && inputEstoque.touched" class="form-text text-danger">Inválido</small>                     
-                </div>
-                <div class="align-self-end ml-auto"> 
-                    <button 
-                    type="submit" 
-                    class="btn btn-primary btn-lg"
-                    >Cofirmar Cadastro de Produto</button> 
-                </div>        
-            </div>   
+                    <small *ngIf="cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-success">OK</small>
+                    <small *ngIf="!cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>                     
+                </div>               
+            </div>  
+            <hr />
+             <div > 
+                <button 
+                type="submit" 
+                class="btn btn-primary btn-lg"
+                >CONFIRMAR PRODUTO</button> 
+            </div>  
+             
+            <div style="position:relative; top:-42px; left: 50%;"> 
+                <button 
+                type="submit" 
+                class="btn btn-danger"
+                >VOLTAR</button> 
+            </div>           
         </form>
     </div>
+</div>
 </div>
 

@@ -5,5 +5,61 @@
       "nome": "gian",
       "senha": "123456"
     }
+  ],
+  "produto": [
+    {
+      "id": 1
+    },
+    {
+      "id": 2
+    },
+    {
+      "id": 3
+    },
+    {
+      "id": 4
+    },
+    {
+      "nome": "aaaa",
+      "codigo": "1111111",
+      "preco": "111",
+      "estoque": "111",
+      "id": 5
+    },
+    {
+      "nome": "teste",
+      "codigo": "1111",
+      "preco": "99",
+      "estoque": "9",
+      "id": 6
+    },
+    {
+      "nome": "sdgsg",
+      "codigo": "1111",
+      "preco": "55",
+      "estoque": "77",
+      "id": 7
+    },
+    {
+      "nome": "aaaa",
+      "codigo": "5355",
+      "preco": "55",
+      "estoque": "55",
+      "id": 8
+    },
+    {
+      "nome": "yyyy",
+      "codigo": "777",
+      "preco": "99",
+      "estoque": "99",
+      "id": 9
+    },
+    {
+      "nome": "oooo",
+      "codigo": "777",
+      "preco": "345",
+      "estoque": "77",
+      "id": 10
+    }
   ]
 }

@@ -18,3 +18,11 @@ select.ng-valid.ng-touched{
     border: 1px solid green;
 }
 
+.cadastroProduto{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+button{
+   
+    width:250px;
+}

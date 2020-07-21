@@ -1,3 +1,3 @@
 export class Produto{
-    constructor(nome : string, codigo : string, preco : number, estoque : number){}
+    constructor(public nome : string, public codigo : string, public preco : number, public estoque : number){}
 }
