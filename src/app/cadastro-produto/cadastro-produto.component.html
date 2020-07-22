@@ -2,8 +2,6 @@
 
 <div class="container">
     <div class="cadastroProduto">
-
-    
     <h5>DADOS DE CADASTRO DE PRODUTO</h5>
     <hr />
     <div class="row  justify-content-center">      
@@ -68,13 +66,10 @@
                 class="btn btn-primary btn-lg"
                 >CONFIRMAR PRODUTO</button> 
             </div>  
-             
+
             <div style="position:relative; top:-42px; left: 50%;"> 
-                <button 
-                type="submit" 
-                class="btn btn-danger"
-                >VOLTAR</button> 
-            </div>           
+                <a [routerLink]="['/']" class="btn btn-danger">VOLTAR</a>
+            </div>            
         </form>
     </div>
 </div>

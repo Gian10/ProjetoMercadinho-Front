@@ -6,12 +6,14 @@ import {CriarContaComponent} from './account/criar-conta/criar-conta.component'
 import {HomeComponent} from '././home/home.component'
 import { AuthGuard } from './account/shared/auth.guard'
 import {CadastroProdutoComponent} from './cadastro-produto/cadastro-produto.component'
+import {EditarProdutoComponent} from './editar-produto/editar-produto.component'
 
 export const ROUTES : Routes = [
 
     // verifica se a rota vazia esta autorizada
     {path : "" , component : HomeComponent, canActivate:[AuthGuard] },
     {path : "cadastro-produto" , component : CadastroProdutoComponent, canActivate:[AuthGuard]},
+    {path: "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [

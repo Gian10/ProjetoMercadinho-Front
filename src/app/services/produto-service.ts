@@ -13,7 +13,7 @@ const httpOption ={
 }
 
 @Injectable()
-export class CadastrarProdutoService{
+export class ProdutoService{
 
     constructor(private http : HttpClient){}
 
@@ -21,9 +21,15 @@ export class CadastrarProdutoService{
         return await this.http.post<Produto>(`${apiProduto}`, produto).toPromise()
         .then((prod : Produto)=>{
             return prod
+        })      
+        
+    }
+
+    async GetProduto(){
+        return await this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
+        .then((listaProduto : Produto)=>{
+            return listaProduto
         })
-        
-        
     }
 
 }

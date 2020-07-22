@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForm} from '@angular/forms'
 import {Produto} from '../model/produto-model'
-import {CadastrarProdutoService} from '../services/cadastrar-produto-service'
+import {ProdutoService} from '../services/produto-service'
 
 import {FormControl, FormGroup, Validators} from '@angular/forms'
 import { Router } from '@angular/router';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   selector: 'app-cadastro-produto',
   templateUrl: './cadastro-produto.component.html',
   styleUrls: ['./cadastro-produto.component.css'],
-  providers: [CadastrarProdutoService]
+  providers: [ProdutoService]
 })
 export class CadastroProdutoComponent implements OnInit {
 
@@ -27,7 +27,7 @@ export class CadastroProdutoComponent implements OnInit {
   public produto : Produto
 
 
-  constructor(private serviceProduto : CadastrarProdutoService, private router : Router) { }
+  constructor(private serviceProduto : ProdutoService, private router : Router) { }
 
   ngOnInit(): void {
   }
