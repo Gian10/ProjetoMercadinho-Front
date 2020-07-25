@@ -4,7 +4,6 @@ import {Produto} from '../model/produto-model'
 import {ProdutoService} from '../services/produto-service'
 
 import {FormControl, FormGroup, Validators} from '@angular/forms'
-import { Router } from '@angular/router';
 
 
 @Component({
@@ -27,7 +26,7 @@ export class CadastroProdutoComponent implements OnInit {
   public produto : Produto
 
 
-  constructor(private serviceProduto : ProdutoService, private router : Router) { }
+  constructor(private serviceProduto : ProdutoService) { }
 
   ngOnInit(): void {
   }

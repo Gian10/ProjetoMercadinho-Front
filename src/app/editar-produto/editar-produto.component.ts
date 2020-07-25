@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from '../services/produto-service'
 import { Produto } from '../model/produto-model';
+import { Router, NavigationEnd } from '@angular/router';
 
 @Component({
   selector: 'app-editar-produto',
@@ -12,7 +13,7 @@ export class EditarProdutoComponent implements OnInit {
 
   public produto : Produto
 
-  constructor(private serviceProduto : ProdutoService) { }
+  constructor(private serviceProduto : ProdutoService, private router : Router) { }
 
   ngOnInit(): void {
     this.listarProduto()
@@ -25,4 +26,17 @@ export class EditarProdutoComponent implements OnInit {
     })
   }
 
+  deletePost(id : number){
+    this.serviceProduto.DeleleProduto(id)
+    .then((response : boolean)=>{
+      if(response){
+        this.refreshPage()      
+      }
+    })
+
+  }
+
+  refreshPage() {
+    location.reload()
+  }
 }

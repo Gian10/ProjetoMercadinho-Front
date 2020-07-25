@@ -19,8 +19,8 @@
         <td>{{listaProduto.preco}}</td>
         <td>{{listaProduto.estoque}}</td>
         <td>       
-          <a href="#"  class="btn btn-primary">Editar</a>
-          <button type="button" class="btn btn-danger">Deletar</button>
+          <a  [routerLink]="['/editar-produto', listaProduto.id]"  class="btn btn-primary">Editar</a>
+          <button type="button" (click)="deletePost(listaProduto.id)" class="btn btn-danger">Deletar</button>
         </td>
       </tr>
     </table>
