@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
+import {CurrencyMaskModule} from 'ng2-currency-mask'
+
 
 import {FormsModule} from '@angular/forms'
 import {ReactiveFormsModule} from '@angular/forms'
@@ -46,6 +48,7 @@ import { EditarProdutoIdComponent } from './editar-produto-id/editar-produto-id.
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
+    CurrencyMaskModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
   bootstrap: [AppComponent]

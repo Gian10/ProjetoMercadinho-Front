@@ -25,6 +25,11 @@
     background-color: #4CAF50;
     color: white;
 }
+
+#produtoTable td {
+    text-align: center;
+}
+
 h5{
     text-align: center;
 }

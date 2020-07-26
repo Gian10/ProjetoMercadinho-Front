@@ -37,9 +37,12 @@
                         <input type="text"
                          class="form-control"          
                          autocomplete="off" 
-                         formControlName="preco"           
+                         formControlName="preco"   
+                         currencyMask
+                         [options]="{ prefix: 'R$ ', decimal: ',' }"           
                          >
-                         <!-- <span>{{preco : mask 'separator,'}}</span> -->
+                         <small *ngIf="cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-success">OK</small>
+                         <small *ngIf="!cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
                     </div>
 
                 </div>

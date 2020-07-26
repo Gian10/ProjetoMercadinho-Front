@@ -17,7 +17,7 @@ export class EditarProdutoIdComponent implements OnInit {
         "nomeProduto" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
         "codigo" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
         "preco" : new FormControl(null, [Validators.required]),
-        "estoque" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)])
+        "estoque" : new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)])
       });
 
   public produtoId : Produto
