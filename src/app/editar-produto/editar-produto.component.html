@@ -13,7 +13,7 @@
        
         <th width="170px">Ação</th>
       </tr>
-      <tr *ngFor="let listaProduto of produto" >  
+      <tr *ngFor="let listaProduto of produto | paginate: produtoPaginacao"  >  
         <td>{{listaProduto.codigo}}</td>
         <td>{{listaProduto.nome}}</td>    
         <td>{{listaProduto.preco | currency: 'R$'}}</td>
@@ -24,4 +24,15 @@
         </td>
       </tr>
     </table>
+    <!--  Personalizar vários elementos na paginação -->
+    <pagination-controls 
+                         [maxSize]="maxSize"
+                         [directionLinks]="directionLinks"
+                         [autoHide]="autoHide"
+                         [responsive]="responsive"
+                         [previousLabel]="labels.previousLabel"
+                         [nextLabel]="labels.nextLabel"
+                         (pageChange)="onPageChange($event)">
+    </pagination-controls>
+
  </div>

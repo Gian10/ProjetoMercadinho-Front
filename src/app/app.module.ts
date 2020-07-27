@@ -1,7 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, LOCALE_ID } from '@angular/core';
 
+// injetar pipe de dinheiro em campo preço
 import {CurrencyMaskModule} from 'ng2-currency-mask'
+
+// injetar paginação
+import {NgxPaginationModule} from 'ngx-pagination'
+
 
 
 import {FormsModule} from '@angular/forms'
@@ -49,6 +54,7 @@ import { EditarProdutoIdComponent } from './editar-produto-id/editar-produto-id.
     HttpClientModule,
     RouterModule.forRoot(ROUTES),
     CurrencyMaskModule,
+    NgxPaginationModule,
   ],
   providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
   bootstrap: [AppComponent]

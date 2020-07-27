@@ -27,8 +27,8 @@ export class ProdutoService{
     }
 
     async GetProduto(){
-        return await this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
-        .then((listaProduto : Produto)=>{
+        return await this.http.get<Array<Produto>>(`${apiProduto}`, httpOption).toPromise()
+        .then((listaProduto : Array<Produto>)=>{
             return listaProduto
         })
     }
