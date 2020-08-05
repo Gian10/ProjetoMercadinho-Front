@@ -4,6 +4,22 @@
 <div class="container">
     <h5>LISTA DE PRODUTOS</h5>
     <hr />
+      <div class="pesquisar">
+        <div class="input-group">
+          <input type="text" 
+          id="pesquisar"
+          class="form-control"  
+          placeholder="Pesquisar Produto"
+          #variavelPesquisa  
+          (input)="pesquisar(variavelPesquisa.value)" 
+          >
+          <span class="input-group-addon">
+            <button class="fa fa-search" style="background:transparent;border:none"></button>
+          </span>
+        </div>
+      </div>
+    <br>
+
     <table  id="produtoTable">
       <tr>
         <th>Código</th>

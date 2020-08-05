@@ -5,7 +5,7 @@ import {apiProduto} from '../../app-api'
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 import {Injectable} from '@angular/core'
-import { Observable } from 'rxjs'
+import { Observable, pipe } from 'rxjs'
 
 const httpOption ={
     headers : new HttpHeaders({
@@ -58,7 +58,15 @@ export class ProdutoService{
         .catch((erro : any)=>{
             return false
         })
+    }
 
+    async pesquisa(texto : string) : Promise<Array<Produto>>{
+        return await this.http.get<Array<Produto>>(`${apiProduto}?nome_like=${texto}`).toPromise()
+        .then((pesquisaProdutos : Array<Produto>)=>{
+            //console.log(pesquisaProdutos)
+            return pesquisaProdutos
+        })
+        
     }
     
     

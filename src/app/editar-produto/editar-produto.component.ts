@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from '../services/produto-service'
 import { Produto } from '../model/produto-model';
+import { Subject, Observable, of } from 'rxjs';
+import { switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editar-produto',
@@ -11,6 +13,9 @@ import { Produto } from '../model/produto-model';
 export class EditarProdutoComponent implements OnInit  {
 
   public produto : Array<Produto>
+  public produtoPesquisa : string = ''
+
+  public subjectPesquisa : Subject<string> = new Subject<string>()
 
   public tamanhoProduto : number
 
@@ -34,31 +39,38 @@ export class EditarProdutoComponent implements OnInit  {
 
   constructor(private serviceProduto : ProdutoService) { }
 
-  ngOnInit(): void {
-    this.listarProduto()
+  ngOnInit() {
+    this.listarProduto(this.produtoPesquisa) 
   }
 
 
 
-  public listarProduto(): void{
-     this.serviceProduto.GetProduto()
-    .then((produto : Array<Produto>)=>{
-      this.produto = produto
-      this.tamanhoProduto = this.produto.length
-      //console.log(this.tamanhoProduto)
-      
-    })
+  public listarProduto(pesquisa : string): void{
+    if(pesquisa !== ''){
+      this.serviceProduto.pesquisa(pesquisa)
+      .then((pesquisaProduto: Array<Produto>)=>{
+        this.produto = pesquisaProduto
+        //console.log(pesquisaProduto)
+      })
+    }else{
+      this.serviceProduto.GetProduto()
+      .then((produto : Array<Produto>)=>{
+        this.produto = produto
+        this.tamanhoProduto = this.produto.length
+      //console.log(this.tamanhoProduto)    
+      })
+    } 
   }
 
   // método de evento ao clique da pagina
-  onPageChange(event){
+  public onPageChange(event){
     //console.log(event)
     this.produtoPaginacao.currentPage = event;
   }
 
 
-
-  deletePost(id : number){
+// método deletar
+  public deletePost(id : number){
     this.serviceProduto.DeleleProduto(id)
     .then((response : boolean)=>{
       if(response){
@@ -69,7 +81,13 @@ export class EditarProdutoComponent implements OnInit  {
   }
 
 // método de atualização da pagina
-  refreshPage() {
+  public refreshPage() {
     location.reload()
+  }
+
+// pesquisa
+  public pesquisar(pesquisa : string) : void{
+    this.produtoPesquisa = pesquisa
+    this.listarProduto(this.produtoPesquisa.trim())
   }
 }
