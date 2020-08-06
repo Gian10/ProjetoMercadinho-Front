@@ -14,7 +14,8 @@
                     class="form-control"  
                     placeholder="Ex: Arroz"        
                     autocomplete="off" 
-                    formControlName=nomeProduto              
+                    formControlName=nomeProduto 
+                    oninput="this.value = this.value.toUpperCase()"             
                     >                 
                   <small *ngIf="cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-success">OK</small>
                   <small *ngIf="!cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
@@ -35,13 +36,11 @@
         
                 <div class="form-group col-md-4">
                     <strong><label> Preço:</label></strong>
-                    <input type="text"
+                    <input 
                      class="form-control" 
-                     placeholder="R$ 0,00" 
-                     autocomplete="off" 
+                     placeholder="R$ 0,00"          
                      formControlName="preco" 
-                     currencyMask                  
-                     [options]="{ prefix: 'R$ ', decimal: ',' }"          
+                     currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"      
                      >
                      <small *ngIf="cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-success">OK</small>
                      <small *ngIf="!cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
@@ -53,7 +52,7 @@
                 
                    <strong><label> Estoque de Produto:</label></strong>
                     <input 
-                    type="text" 
+                    type="number" 
                     class="form-control" 
                     placeholder="Ex: 1"
                     autocomplete="off" 

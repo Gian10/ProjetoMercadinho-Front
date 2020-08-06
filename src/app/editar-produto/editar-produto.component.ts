@@ -21,7 +21,7 @@ export class EditarProdutoComponent implements OnInit  {
 
   // objeto de paginação
   produtoPaginacao : any = {
-    itemsPerPage: 3,
+    itemsPerPage: 10,
     currentPage: 1,
     totalItems: this.produto
   };
