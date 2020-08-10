@@ -8,6 +8,7 @@ import { AuthGuard } from './account/shared/auth.guard'
 import {CadastroProdutoComponent} from './cadastro-produto/cadastro-produto.component'
 import {EditarProdutoComponent} from './editar-produto/editar-produto.component'
 import {EditarProdutoIdComponent} from './editar-produto-id/editar-produto-id.component'
+import {EntradaProdutoComponent} from './entrada-produto/entrada-produto.component'
 
 export const ROUTES : Routes = [
 
@@ -16,6 +17,7 @@ export const ROUTES : Routes = [
     {path : "cadastro-produto" , component : CadastroProdutoComponent, canActivate:[AuthGuard]},
     {path: "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
     {path : "editar-produto/:id", component: EditarProdutoIdComponent, canActivate: [AuthGuard]},
+    {path : "entrada-produto/:id", component: EntradaProdutoComponent, canActivate: [AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [
