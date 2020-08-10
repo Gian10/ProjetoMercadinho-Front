@@ -1,0 +1,61 @@
+<app-tela-principal></app-tela-principal>
+
+<div class="container">
+    <h5>CONFIRMAR ENTRADA DE PRODUTO</h5>
+    <hr />
+    <form>
+        <div class="form-row">
+          <div class="col-md-2 mb-3">
+            <label>Data</label>
+            <input class="form-control"
+            value="{{dataHoje | date: 'short'}}"
+            
+            >
+            
+          </div>
+          <div class="col-md-3 mb-3">
+            <label>Código Produto</label>
+            <input type="text" 
+            class="form-control"
+            
+            >
+            
+          </div>
+          <div class="col-md-6 mb-3">
+            <label>Nome Produto</label>
+            <input type="text" 
+            class="form-control"
+            
+            >     
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="col-md-2 mb-3">
+            <label>Valor Produto R$</label>
+            <input type="text" 
+            class="form-control" 
+            
+            >
+          </div>
+
+          <div class="col-md-2 mb-3">
+            <label for="validationServer05">Quantidade</label>
+            <input type="number" 
+            class="form-control" 
+            value="1"
+            
+            >       
+          </div>
+          
+        </div>
+        <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+            <div class="card-body">
+              <h5 class="card-title">Entrada Produto:</h5>
+              <p class="card-text">15</p>           
+            </div>
+          </div>
+        
+        <button class="btn btn-primary" type="submit">CONFIRMAR ENTRADA</button>
+      </form>
+
+</div>
