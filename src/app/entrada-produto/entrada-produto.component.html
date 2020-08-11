@@ -1,14 +1,17 @@
 <app-tela-principal></app-tela-principal>
 
 <div class="container">
-    <h5>CONFIRMAR ENTRADA DE PRODUTO</h5>
+    <h5>CONFIRMAR VENDA DE PRODUTO</h5>
     <hr />
-    <form>
+    <form [formGroup]="entradaProduto" novalidate >
         <div class="form-row">
-          <div class="col-md-2 mb-3">
+          
+            <div class="col-md-2 mb-3">
             <label>Data</label>
             <input class="form-control"
-            value="{{dataHoje | date: 'short'}}"
+            [value]="entradaProduto.get('data').value | date: 'short'"
+            formControlName="data"    
+           
             
             >
             
@@ -17,6 +20,7 @@
             <label>Código Produto</label>
             <input type="text" 
             class="form-control"
+            formControlName=codigo
             
             >
             
@@ -25,15 +29,17 @@
             <label>Nome Produto</label>
             <input type="text" 
             class="form-control"
-            
+            formControlName=nomeProduto
             >     
           </div>
         </div>
         <div class="form-row">
           <div class="col-md-2 mb-3">
-            <label>Valor Produto R$</label>
+            <label>Valor Produto</label>
             <input type="text" 
             class="form-control" 
+            formControlName=preco
+            currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
             
             >
           </div>
@@ -42,20 +48,30 @@
             <label for="validationServer05">Quantidade</label>
             <input type="number" 
             class="form-control" 
-            value="1"
+            formControlName=quantidade
+            (change)="onChange($event)"
             
             >       
           </div>
           
         </div>
-        <div class="card text-white bg-primary mb-3" style="max-width: 15rem;">
+        <div class="card text-white bg-primary mb-3" style="max-width: 13rem;" >
             <div class="card-body">
-              <h5 class="card-title">Entrada Produto:</h5>
-              <p class="card-text">15</p>           
+              <h5 class="card-title">TOTAL:</h5>
+              <p class="card-text" 
+              name="total" 
+              ngDefaultControl
+              formControlName=total            
+              >{{totalProduto |  currency : 'BRL'}}</p>           
             </div>
-          </div>
-        
-        <button class="btn btn-primary" type="submit">CONFIRMAR ENTRADA</button>
+          </div> 
+          <hr />
+          <div class="col text-center" > 
+              <button 
+              type="submit" 
+              class="btn btn-primary btn-lg"
+              >CONFIRMAR VENDA</button> 
+              <a [routerLink]="['/editar-produto']" class="btn btn-danger">VOLTAR</a>
+          </div>  
       </form>
-
 </div>

@@ -5,7 +5,7 @@ export class EntradaProduto{
         public produtoId : number,
         public produtoCodigo : string,
         public produtoNome : string,
-        public valorEntrada : number,
-        public valorProduto : number
+        public valorProduto : number,
+        public total : number
         ){}
 }
