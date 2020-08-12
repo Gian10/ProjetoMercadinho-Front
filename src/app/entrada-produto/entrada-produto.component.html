@@ -3,49 +3,50 @@
 <div class="container">
     <h5>CONFIRMAR VENDA DE PRODUTO</h5>
     <hr />
-    <form [formGroup]="entradaProduto" novalidate >
-        <div class="form-row">
-          
+    <form [formGroup]="entradaProduto" novalidate (ngSubmit)="cadastrarEntrada()" >
+
+        <div class="form-row">     
             <div class="col-md-2 mb-3">
-            <label>Data</label>
-            <input class="form-control"
-            [value]="entradaProduto.get('data').value | date: 'short'"
-            formControlName="data"    
-           
+                <strong><label>Data</label></strong>
+                <input class="form-control"
+                [value]="entradaProduto.get('data').value | date: 'short'"
+                formControlName="data"     
+                [attr.disabled]="true"
+                >   
+            </div>
+            <div class="col-md-3 mb-3">
+                <strong><label>Código Produto</label></strong>
+                <input type="text" 
+                class="form-control"
+                formControlName=codigo
+                [attr.disabled]="true"
+                >
             
-            >
-            
-          </div>
-          <div class="col-md-3 mb-3">
-            <label>Código Produto</label>
-            <input type="text" 
-            class="form-control"
-            formControlName=codigo
-            
-            >
-            
-          </div>
-          <div class="col-md-6 mb-3">
-            <label>Nome Produto</label>
-            <input type="text" 
-            class="form-control"
-            formControlName=nomeProduto
-            >     
-          </div>
+            </div>
+            <div class="col-md-6 mb-3">
+                <strong><label>Nome Produto</label></strong>
+                <input type="text" 
+                class="form-control"
+                formControlName=nomeProduto
+                [attr.disabled]="true"
+                >     
+            </div>
         </div>
+
         <div class="form-row">
           <div class="col-md-2 mb-3">
-            <label>Valor Produto</label>
+            <strong><label>Valor Produto</label></strong>
             <input type="text" 
             class="form-control" 
             formControlName=preco
             currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+            [attr.disabled]="true"
             
             >
           </div>
 
           <div class="col-md-2 mb-3">
-            <label for="validationServer05">Quantidade</label>
+            <strong><label>Quantidade</label></strong>
             <input type="number" 
             class="form-control" 
             formControlName=quantidade
@@ -64,14 +65,18 @@
               formControlName=total            
               >{{totalProduto |  currency : 'BRL'}}</p>           
             </div>
-          </div> 
-          <hr />
-          <div class="col text-center" > 
-              <button 
-              type="submit" 
-              class="btn btn-primary btn-lg"
-              >CONFIRMAR VENDA</button> 
-              <a [routerLink]="['/editar-produto']" class="btn btn-danger">VOLTAR</a>
-          </div>  
-      </form>
+        </div> 
+        <hr />
+        <div class="col text-center"> 
+            <button 
+            type="submit" 
+            class="btn btn-primary btn-lg"
+            >CONFIRMAR VENDA</button> 
+
+            <button style="margin:20px;" 
+            (click)="voltar()" 
+            class="btn btn-danger" 
+            >VOLTAR</button>
+        </div>  
+    </form>
 </div>
