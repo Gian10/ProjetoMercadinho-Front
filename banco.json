@@ -15,5 +15,15 @@
       "id": 1
     }
   ],
-  "entradaProduto": []
+  "entradaProduto": [
+    {
+      "dataVenda": "12/08/2020 15:16",
+      "produtoCodigo": "0000001",
+      "produtoNome": "FEIJAO",
+      "valorProduto": 7,
+      "quantidade": 2,
+      "total": 14,
+      "id": 1
+    }
+  ]
 }

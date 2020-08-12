@@ -63,16 +63,17 @@
                 </div>               
             </div>  
             <hr />
-             <div > 
+             <div class="col text-center" > 
                 <button 
                 type="submit" 
                 class="btn btn-primary btn-lg"
                 >CONFIRMAR PRODUTO</button> 
-            </div>  
-
-            <div style="position:relative; top:-42px; left: 50%;"> 
-                <a [routerLink]="['/']" class="btn btn-danger">VOLTAR</a>
-            </div>            
+          
+                <button style="margin:20px;" 
+                (click)="voltar()" 
+                class="btn btn-danger" 
+                >VOLTAR</button>      
+            </div>    
         </form>
     </div>
 </div>

@@ -72,4 +72,8 @@ export class EditarProdutoIdComponent implements OnInit {
     }
 
   }
+
+  public voltar() : void{
+    this.router.navigate(["/editar-produto"])
+  }
 }

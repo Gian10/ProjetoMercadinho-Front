@@ -4,6 +4,7 @@ import {Produto} from '../model/produto-model'
 import {ProdutoService} from '../services/produto-service'
 
 import {FormControl, FormGroup, Validators} from '@angular/forms'
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -26,7 +27,7 @@ export class CadastroProdutoComponent implements OnInit {
   public produto : Produto
 
 
-  constructor(private serviceProduto : ProdutoService) { }
+  constructor(private serviceProduto : ProdutoService, private redirect : Router) { }
 
   ngOnInit(): void {
   }
@@ -60,6 +61,10 @@ export class CadastroProdutoComponent implements OnInit {
 
   public limparCampos(): void{
     this.cadProduto.reset()
+  }
+
+  public voltar() : void{
+    this.redirect.navigate(["/"])
   }
 
 }

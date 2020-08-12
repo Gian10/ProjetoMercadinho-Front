@@ -22,7 +22,7 @@
 
                     <div class="form-group col-md-6">
                         <strong><label> Código de Produto:</label></strong>
-                      <input 
+                        <input 
                         type="text" 
                         class="form-control"          
                         autocomplete="off" 
@@ -33,6 +33,7 @@
                     </div>
 
                     <div class="form-group col-md-4">
+                        <strong><label> Preço:</label></strong>
                         <input
                          class="form-control"          
                          autocomplete="off" 
@@ -56,19 +57,19 @@
                         <small *ngIf="cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-success">OK</small>
                         <small *ngIf="!cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>                     
                     </div>               
-                </div>                       
+                </div>            
             <hr />
-            <div > 
+            <div class="col text-center"> 
                 <button 
                 type="submit" 
                 class="btn btn-primary btn-lg"
                 >ATUALIZAR PRODUTO</button> 
-            </div>  
-
-            <div style="position:relative; top:-42px; left: 50%;"> 
-                <a [routerLink]="['/editar-produto']" class="btn btn-danger">VOLTAR</a>
-            </div>        
             
+                <button style="margin:20px;" 
+                (click)="voltar()" 
+                class="btn btn-danger" 
+                >VOLTAR</button>
+            </div>       
         </form>
     </div>
 </div>
