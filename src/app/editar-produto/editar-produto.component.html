@@ -26,8 +26,8 @@
         <th>Nome do Produto</th>
         <th>Preço do Produto</th>
         <th>Quantidade</th>    
-        <th width="170px">Ação</th>
-        <th width="170px">Entrada e Saída</th>
+        <th width="200px">Ação</th>
+        <th width="200px">Entrada e Saída</th>
       </tr>
       <tr *ngFor="let listaProduto of produto | paginate: produtoPaginacao"  >  
         <td>{{listaProduto.codigo}}</td>
@@ -36,11 +36,11 @@
         <td>{{listaProduto.estoque}}</td>
         <td>       
           <a [routerLink]="['/editar-produto', listaProduto.id]"  class="btn btn-primary">Editar</a>
-          <button type="button" (click)="deletePost(listaProduto.id)" class="btn btn-danger">Deletar</button>
+          <button style="margin:10px;" type="button" (click)="deletePost(listaProduto.id)" class="btn btn-danger">Deletar</button>
         </td>
         <td>       
           <a [routerLink]="['/entrada-produto', listaProduto.id]" class="btn btn-primary">Entrada</a> 
-          <button type="button" class="btn btn-danger">Saída</button>
+          <button style="margin:10px;" type="button" class="btn btn-success">Saída</button>
         </td>
       </tr>
     </table>
