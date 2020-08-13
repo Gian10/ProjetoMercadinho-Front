@@ -1,15 +1,18 @@
 <app-tela-principal></app-tela-principal>
 
 <div class="container">
-    <h5>CONFIRMAR VENDA DE PRODUTO</h5>
+    <h5>CONFIRMAR COMPRA DE PRODUTO</h5>
     <hr />
     <form [formGroup]="entradaProduto" novalidate (ngSubmit)="cadastrarEntrada()" >
+
+      
+        <!-- pegar data e inserir pipe [value]="entradaProduto.get('data').value | date: 'short'" -->
 
         <div class="form-row">     
             <div class="col-md-2 mb-3">
                 <strong><label>Data</label></strong>
                 <input class="form-control"
-                [value]="entradaProduto.get('data').value | date: 'short'"
+              
                 formControlName="data"     
                 [attr.disabled]="true"
                 >   
@@ -71,7 +74,7 @@
             <button 
             type="submit" 
             class="btn btn-primary btn-lg"
-            >CONFIRMAR VENDA</button> 
+            >CONFIRMAR COMPRA</button> 
 
             <button style="margin:20px;" 
             (click)="voltar()" 

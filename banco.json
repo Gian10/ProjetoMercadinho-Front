@@ -8,22 +8,122 @@
   ],
   "produto": [
     {
-      "nome": "FEIJAO",
-      "codigo": "0000001",
-      "preco": 7,
-      "estoque": 60,
-      "id": 1
+      "nome": "MACARRÃO",
+      "codigo": "0023434",
+      "preco": 2.99,
+      "estoque": 20,
+      "id": 2
     }
   ],
   "entradaProduto": [
     {
-      "dataVenda": "12/08/2020 15:16",
-      "produtoCodigo": "0000001",
-      "produtoNome": "FEIJAO",
-      "valorProduto": 7,
-      "quantidade": 2,
-      "total": 14,
+      "dataVenda": "13/08/2020 16:22",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
       "id": 1
+    },
+    {
+      "dataVenda": "13/08/2020 16:23",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 2
+    },
+    {
+      "dataVenda": "13/08/2020 16:23",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 3
+    },
+    {
+      "dataVenda": "13/08/2020 16:23",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 4
+    },
+    {
+      "dataVenda": "13/08/2020 16:25",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 5
+    },
+    {
+      "dataVenda": "13/08/2020 16:26",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 6
+    },
+    {
+      "dataVenda": "13/08/2020 16:27",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 7
+    },
+    {
+      "dataVenda": "13/08/2020 16:29",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 8
+    },
+    {
+      "dataVenda": "13/08/2020 16:29",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 9
+    },
+    {
+      "dataVenda": "13/08/2020 16:30",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 10
+    },
+    {
+      "dataVenda": "13/08/2020 16:30",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 11
+    },
+    {
+      "dataVenda": "13/08/2020 16:31",
+      "produtoCodigo": "0023434",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 2.99,
+      "quantidade": 1,
+      "total": 2.99,
+      "id": 12
     }
-  ]
+  ],
+  "entradaSaidaTotal": []
 }
