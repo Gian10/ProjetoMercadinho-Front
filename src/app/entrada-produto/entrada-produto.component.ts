@@ -39,6 +39,7 @@ export class EntradaProdutoComponent implements OnInit {
   ngOnInit(): void {
 
     let dataHoje = this.dataAtual.toLocaleDateString()+ " "+ this.dataAtual.getHours()+":"+ this.dataAtual.getMinutes()
+   
 
     this.router.params.subscribe((parametro : Params)=>{
       this.produtoService.GetProdutoId(parametro.id)
@@ -55,11 +56,11 @@ export class EntradaProdutoComponent implements OnInit {
     })
   }
 
+
   // método de cadastro
   public cadastrarEntrada(): void{
 
     let entrada : EntradaProduto = new EntradaProduto(
-
       this.entradaProduto.value.data,
       this.entradaProduto.value.codigo,
       this.entradaProduto.value.nomeProduto,
@@ -69,11 +70,13 @@ export class EntradaProdutoComponent implements OnInit {
     )
 
     this.entradaService.PostEntrada(entrada)
-
-
-
-
+    .then((entrada : EntradaProduto)=>{
+      setTimeout(()=>{
+        this.redirect.navigate(["/editar-produto"])
+      },50)
+    }) 
   }
+
 
   // método de clique no campo quantidade para calcular o valor total da entrada
   public onChange($event){
@@ -85,9 +88,9 @@ export class EntradaProdutoComponent implements OnInit {
    this.totalProduto = this.valorProduto * this.qtd
   }
 
+
   // método para voltar para pagina anterior
   public voltar(): void{
     this.redirect.navigate(["/editar-produto"])
   }
-
 }

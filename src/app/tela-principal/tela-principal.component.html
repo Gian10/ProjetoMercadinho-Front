@@ -1,17 +1,23 @@
 <div class="topoPrincipal">
-    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-primary">
+    <nav class="navbar navbar-expand-lg navbar navbar-dark bg-dark">
         <div class="container">
             <div class="row">        
                 <div class="mx-auto order-0" id="navbarSupportedContent">
-                    <ul class="navbar-nav">
+                    <ul class="navbar-nav navbar-center">
                         <li class="nav-item active">
-                            <a class="nav-link" href="#">Inicio <span class="sr-only">(current)</span></a>
+                            <a class="nav-link" routerLinkActive="active" routerLink="">Início</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" routerLink="/cadastro-produto">Cadastrar Produto</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" routerLinkActive="active" routerLink="/editar-produto">Editar Produto</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" routerLink="/entrada-listar">Histórico de Entradas</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" routerLinkActive="active" routerLink="">Histórico de Saídas</a>
                         </li>
                         <!-- <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -26,16 +32,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-        <div class="col-md-3" >
-            <input type="text"
-              class="form-control" 
-              placeholder="Pesquisar Produto"
-              #variavelPesquisa         
-            />
-            <!-- passando paramentros no pipe -->
-            
-          </div>
+        </div> 
     </nav>
 </div>
 

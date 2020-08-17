@@ -12,6 +12,7 @@ import {FormGroup, FormControl, Validators} from '@angular/forms'
   styleUrls: ['./editar-produto-id.component.css'],
   providers: [ProdutoService]
 })
+
 export class EditarProdutoIdComponent implements OnInit {
    public cadProduto : FormGroup = new FormGroup({
         "nomeProduto" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
@@ -41,17 +42,14 @@ export class EditarProdutoIdComponent implements OnInit {
     })
   }
 
+
   public AtualizarProduto() : void{
-
     if(this.cadProduto.status === "INVALID"){
-
       this.cadProduto.get('nomeProduto').markAsTouched()
       this.cadProduto.get('codigo').markAsTouched()
       this.cadProduto.get('preco').markAsTouched()
       this.cadProduto.get('estoque').markAsTouched()
-
     }else{
-
       let cadastroProduto : Produto = new Produto(
         this.cadProduto.value.nomeProduto,
         this.cadProduto.value.codigo,
@@ -59,7 +57,6 @@ export class EditarProdutoIdComponent implements OnInit {
         this.cadProduto.value.estoque)
         cadastroProduto.id = this.proId
         
-
       this.produtoServiceId.PutProdutoId(cadastroProduto)
         .then((produto : boolean)=>{
          if(produto){
@@ -67,12 +64,11 @@ export class EditarProdutoIdComponent implements OnInit {
          }else{
           this.router.navigate(["/editar-produto-id"])
          }
-        })
-      
+        }) 
     }
-
   }
 
+  
   public voltar() : void{
     this.router.navigate(["/editar-produto"])
   }

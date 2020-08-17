@@ -9,6 +9,7 @@ import {CadastroProdutoComponent} from './cadastro-produto/cadastro-produto.comp
 import {EditarProdutoComponent} from './editar-produto/editar-produto.component'
 import {EditarProdutoIdComponent} from './editar-produto-id/editar-produto-id.component'
 import {EntradaProdutoComponent} from './entrada-produto/entrada-produto.component'
+import {EntradaListarComponent} from './entrada-listar/entrada-listar.component'
 
 export const ROUTES : Routes = [
 
@@ -18,6 +19,7 @@ export const ROUTES : Routes = [
     {path: "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
     {path : "editar-produto/:id", component: EditarProdutoIdComponent, canActivate: [AuthGuard]},
     {path : "entrada-produto/:id", component: EntradaProdutoComponent, canActivate: [AuthGuard]},
+    {path : "entrada-listar", component: EntradaListarComponent, canActivate: [AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [

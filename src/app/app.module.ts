@@ -34,6 +34,7 @@ import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.co
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarProdutoIdComponent } from './editar-produto-id/editar-produto-id.component';
 import { EntradaProdutoComponent } from './entrada-produto/entrada-produto.component';
+import { EntradaListarComponent } from './entrada-listar/entrada-listar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +46,8 @@ import { EntradaProdutoComponent } from './entrada-produto/entrada-produto.compo
     CadastroProdutoComponent,
     EditarProdutoComponent,
     EditarProdutoIdComponent,
-    EntradaProdutoComponent
+    EntradaProdutoComponent,
+    EntradaListarComponent
   ],
   imports: [
     BrowserModule,

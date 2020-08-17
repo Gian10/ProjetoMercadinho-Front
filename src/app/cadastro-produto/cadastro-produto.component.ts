@@ -22,10 +22,7 @@ export class CadastroProdutoComponent implements OnInit {
     "estoque" : new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)])
   })
 
-  
-
   public produto : Produto
-
 
   constructor(private serviceProduto : ProdutoService, private redirect : Router) { }
 
@@ -33,16 +30,13 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   public cadastrarProduto() : void{
-
     if(this.cadProduto.status === "INVALID"){
 
       this.cadProduto.get('nomeProduto').markAsTouched()
       this.cadProduto.get('codigo').markAsTouched()
       this.cadProduto.get('preco').markAsTouched()
       this.cadProduto.get('estoque').markAsTouched()
-
     }else{
-
       let cadastroProduto : Produto = new Produto(
         this.cadProduto.value.nomeProduto,
         this.cadProduto.value.codigo,
@@ -53,18 +47,17 @@ export class CadastroProdutoComponent implements OnInit {
         .then((produto : Produto)=>{
          console.log(produto)
         })
-
       this.limparCampos()        
     }
-
   }
+
 
   public limparCampos(): void{
     this.cadProduto.reset()
   }
 
+
   public voltar() : void{
     this.redirect.navigate(["/"])
   }
-
 }

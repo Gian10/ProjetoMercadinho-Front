@@ -17,7 +17,6 @@
                     formControlName=nomeProduto 
                     oninput="this.value = this.value.toUpperCase()"             
                     >                 
-                  <small *ngIf="cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-success">OK</small>
                   <small *ngIf="!cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
                 </div>
         
@@ -30,7 +29,6 @@
                     autocomplete="off" 
                     formControlName = codigo
                   >  
-                  <small *ngIf="cadProduto.get('codigo').valid && cadProduto.get('codigo').touched" class="form-text text-success">OK</small>
                   <small *ngIf="!cadProduto.get('codigo').valid && cadProduto.get('codigo').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>           
                 </div>
         
@@ -42,14 +40,12 @@
                      formControlName="preco" 
                      currencyMask [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"      
                      >
-                     <small *ngIf="cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-success">OK</small>
                      <small *ngIf="!cadProduto.get('preco').valid && cadProduto.get('preco').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
                 </div>
             </div>
 
             <div class="form-row">
-                <div class="form-group col-md-4">
-                
+                <div class="form-group col-md-4">       
                    <strong><label> Estoque de Produto:</label></strong>
                     <input 
                     type="number" 
@@ -58,7 +54,6 @@
                     autocomplete="off" 
                     formControlName="estoque"
                     >  
-                    <small *ngIf="cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-success">OK</small>
                     <small *ngIf="!cadProduto.get('estoque').valid && cadProduto.get('estoque').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>                     
                 </div>               
             </div>  

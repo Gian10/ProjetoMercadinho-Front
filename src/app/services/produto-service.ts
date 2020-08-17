@@ -61,9 +61,9 @@ export class ProdutoService{
     }
 
     async pesquisa(texto : string) : Promise<Array<Produto>>{
-        return await this.http.get<Array<Produto>>(`${apiProduto}?nome_like=${texto}`).toPromise()
+        return await this.http.get<Array<Produto>>(`${apiProduto}/?nome_like=${texto}`).toPromise()
         .then((pesquisaProdutos : Array<Produto>)=>{
-            //console.log(pesquisaProdutos)
+            console.log(pesquisaProdutos)
             return pesquisaProdutos
         })
         
