@@ -1,6 +1,5 @@
 <app-tela-principal></app-tela-principal>
 
-
 <div class="container">
     <h5>LISTA DE PRODUTOS</h5>
     <hr />
@@ -11,6 +10,7 @@
           class="form-control"  
           placeholder="Pesquisar Produto"
           #variavelPesquisa  
+          oninput="this.value = this.value.toUpperCase()" 
           (input)="pesquisar(variavelPesquisa.value)" 
           >
           <span class="input-group-addon">
@@ -19,7 +19,6 @@
         </div>
       </div>
     <br>
-
     <table  id="produtoTable">
       <tr>
         <th>Código</th>
@@ -54,5 +53,4 @@
                          [nextLabel]="labels.nextLabel"
                          (pageChange)="onPageChange($event)">
     </pagination-controls>
-
  </div>

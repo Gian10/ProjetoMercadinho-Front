@@ -29,17 +29,16 @@ export class EntradaService{
     async PostEntrada(entrada : EntradaProduto){
         return await this.http.post<EntradaProduto>(`${apiEntrada}`, entrada).toPromise()
         .then((entrada : EntradaProduto)=>{
-
             this.entradaTotal = entrada.total
-
             this.qtd = entrada.quantidade
             this.codigoProduto = entrada.produtoCodigo
             this.GetProdutoCodigo(this.codigoProduto)
-
             this.GetSomaEntradaTotal()
+            return entrada
         })
         .catch((erro : any)=>{
             console.log(erro)
+            return erro
         })
     }
 
@@ -50,12 +49,16 @@ export class EntradaService{
 
            if(entradaSaidaTotal.length === 0 ){
                 let entradaSaida : EntradaSaidaTotal = new EntradaSaidaTotal(this.entradaTotal)
-                this.PostEntradaTotal(entradaSaida)             
+                return this.PostEntradaTotal(entradaSaida)             
            }else{
               this.entradaAtual =  entradaSaidaTotal[0].entradaValor + this.entradaTotal
               let entradaNova : EntradaSaidaTotal = new EntradaSaidaTotal(this.entradaAtual)
-              this.PutEntradaTotal(entradaNova)
+              return this.PutEntradaTotal(entradaNova)
            }       
+        })
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
         })
     }
 
@@ -63,7 +66,11 @@ export class EntradaService{
     async PostEntradaTotal(valorEntrada : EntradaSaidaTotal){
         return await this.http.post<EntradaSaidaTotal>(`${apiEntradaSaidaTotal}`, valorEntrada).toPromise()
         .then((entradaTotal : EntradaSaidaTotal)=>{
-            console.log(entradaTotal)
+            return entradaTotal
+        })
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
         })
     }
 
@@ -71,41 +78,60 @@ export class EntradaService{
     async PutEntradaTotal(valorNovaEntrada : EntradaSaidaTotal){
         return await this.http.put<EntradaSaidaTotal>(`${apiEntradaSaidaTotal}/${1}`, valorNovaEntrada).toPromise()
         .then((valorAtualEntrada : EntradaSaidaTotal)=>{
-            console.log(valorAtualEntrada)
-           
+            return valorAtualEntrada
+        })
+        .catch((erro)=>{
+            console.log(erro)
+            return erro
         })
     }
 
     async GetEntradaTotal(){
         return await this.http.get<Array< EntradaSaidaTotal>>(`${apiEntradaSaidaTotal}`, httpOption).toPromise()
         .then((entradaListar : Array< EntradaSaidaTotal>)=>{
-            console.log(entradaListar)
             return entradaListar
+        })
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
         })
     }
 
     async GetProdutoCodigo(codigo : string){
         return await this.http.get<Produto>(`${apiProduto}?codigo=${codigo}`).toPromise()
-        .then((produtoCodigo : Produto)=>{
-            
+        .then((produtoCodigo : Produto)=>{    
             produtoCodigo[0].estoque = produtoCodigo[0].estoque + this.qtd 
-            
-        
             let id = produtoCodigo[0].id
             let produtoAtual : Produto = new Produto(produtoCodigo[0].nome, produtoCodigo[0].codigo, produtoCodigo[0].preco,
                 produtoCodigo[0].estoque)
-
             produtoAtual.id = id
-            console.log(produtoAtual)
-
-            this.PutEstoqueProduto(produtoAtual)
+            return this.PutEstoqueProduto(produtoAtual)
         })  
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
+        })
     }
 
     async PutEstoqueProduto(novoEstoqueProduto){
         return await this.http.put<Produto>(`${apiProduto}/${novoEstoqueProduto.id}`, novoEstoqueProduto).toPromise()
         .then((novoProdutoEstoque : Produto)=>{
-            console.log(novoProdutoEstoque)
+            return novoProdutoEstoque
+        })
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
+        })
+    }
+
+    async GetEntradaProduto(){
+        return await this.http.get<EntradaProduto>(`${apiEntrada}`, httpOption).toPromise()
+        .then((entradaLista : EntradaProduto)=>{
+            return entradaLista
+        })
+        .catch((erro : any)=>{
+            console.log(erro)
+            return erro
         })
 
     }

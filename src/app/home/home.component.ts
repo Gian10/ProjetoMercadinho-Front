@@ -28,7 +28,7 @@ export class HomeComponent implements OnInit {
         this.entradaValor = entradaListar[0].entradaValor
       }
     })
-    .catch((e : any)=>{
+    .catch((erro : any)=>{
       console.log("Erro na chamada do método GetEntradaTotal()")
     })
   }

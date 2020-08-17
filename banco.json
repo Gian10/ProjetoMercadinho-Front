@@ -11,13 +11,20 @@
       "nome": "ARROZ",
       "codigo": "11111",
       "preco": 7,
-      "estoque": 24,
+      "estoque": 84,
       "id": 1
+    },
+    {
+      "nome": "MACARRÃO",
+      "codigo": "0000",
+      "preco": 8,
+      "estoque": 26,
+      "id": 2
     }
   ],
   "entradaProduto": [
     {
-      "dataVenda": "14/08/2020 21:56",
+      "dataVenda": "17/08/2020 15:41",
       "produtoCodigo": "11111",
       "produtoNome": "ARROZ",
       "valorProduto": 7,
@@ -26,18 +33,18 @@
       "id": 1
     },
     {
-      "dataVenda": "14/08/2020 21:57",
-      "produtoCodigo": "11111",
-      "produtoNome": "ARROZ",
-      "valorProduto": 7,
+      "dataVenda": "17/08/2020 15:54",
+      "produtoCodigo": "0000",
+      "produtoNome": "MACARRÃO",
+      "valorProduto": 8,
       "quantidade": 2,
-      "total": 14,
+      "total": 16,
       "id": 2
     }
   ],
   "entradaSaidaTotal": [
     {
-      "entradaValor": 28,
+      "entradaValor": 30,
       "id": 1
     }
   ]

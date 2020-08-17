@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProdutoService} from '../services/produto-service'
 import { Produto } from '../model/produto-model';
-import { Subject, Observable, of } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
 
 @Component({
   selector: 'app-editar-produto',
@@ -14,8 +12,6 @@ export class EditarProdutoComponent implements OnInit  {
 
   public produto : Array<Produto>
   public produtoPesquisa : string = ''
-
-  public subjectPesquisa : Subject<string> = new Subject<string>()
 
   public tamanhoProduto : number
 
@@ -37,12 +33,13 @@ export class EditarProdutoComponent implements OnInit  {
       nextLabel: 'Próximo',
   };
 
+
   constructor(private serviceProduto : ProdutoService) { }
+
 
   ngOnInit() {
     this.listarProduto(this.produtoPesquisa) 
   }
-
 
 
   public listarProduto(pesquisa : string): void{
@@ -50,17 +47,16 @@ export class EditarProdutoComponent implements OnInit  {
       this.serviceProduto.pesquisa(pesquisa)
       .then((pesquisaProduto: Array<Produto>)=>{
         this.produto = pesquisaProduto
-        //console.log(pesquisaProduto)
       })
     }else{
       this.serviceProduto.GetProduto()
       .then((produto : Array<Produto>)=>{
         this.produto = produto
-        this.tamanhoProduto = this.produto.length
-      //console.log(this.tamanhoProduto)    
+        this.tamanhoProduto = this.produto.length   
       })
     } 
   }
+
 
   // método de evento ao clique da pagina
   public onPageChange(event){
@@ -77,17 +73,19 @@ export class EditarProdutoComponent implements OnInit  {
         this.refreshPage()      
       }
     })
-
   }
+
 
 // método de atualização da pagina
   public refreshPage() {
     location.reload()
   }
 
+
 // pesquisa
   public pesquisar(pesquisa : string) : void{
     this.produtoPesquisa = pesquisa
+    console.log(pesquisa)
     this.listarProduto(this.produtoPesquisa.trim())
   }
 }

@@ -1,0 +1,51 @@
+<app-tela-principal></app-tela-principal>
+
+
+<div class="container">
+    <h5>LISTA DE ENTRADAS</h5>
+    <hr />
+      <div class="pesquisar">
+        <div class="input-group">
+          <input type="date" 
+          id="pesquisar"
+          class="form-control"  
+          placeholder="Pesquisar entrada"
+          #variavelPesquisa  
+         
+          >
+          <span class="input-group-addon">
+            <button class="fa fa-search" style="background:transparent;border:none"></button>
+          </span>
+        </div>
+      </div>
+    <br>
+    <table  id="produtoTable">
+      <tr>
+        <th>Data da Venda</th>
+        <th>Produto Código</th>
+        <th>Produto Nome</th>
+        <th>Valor de Produto</th> 
+        <th>Quantidade</th> 
+        <th>Total</th>    
+        
+      </tr>
+      <tr *ngFor="let listaEntrada of entradaLista | paginate: produtoPaginacao"  >  
+        <td>{{listaEntrada.dataVenda}}</td>
+        <td>{{listaEntrada.produtoCodigo}}</td>
+        <td>{{listaEntrada.produtoNome}}</td>  
+        <td>{{listaEntrada.valorProduto | currency: 'R$'}}</td>
+        <td>{{listaEntrada.quantidade}}</td>
+        <td>{{listaEntrada.total | currency: 'R$'}}</td>
+      </tr>
+    </table>
+    <!--  Personalizar vários elementos na paginação -->
+    <pagination-controls 
+                         [maxSize]="maxSize"
+                         [directionLinks]="directionLinks"
+                         [autoHide]="autoHide"
+                         [responsive]="responsive"
+                         [previousLabel]="labels.previousLabel"
+                         [nextLabel]="labels.nextLabel"
+                         (pageChange)="onPageChange($event)">
+    </pagination-controls>
+ </div>
