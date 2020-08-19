@@ -10,7 +10,7 @@ import {EntradaSaidaTotal} from '../model/entrada-saida-total'
 })
 export class HomeComponent implements OnInit {
 
-  public entradaValor : number
+  public entradaValor : number = 10
   public saidaValor : number = 10
 
   public entradaTotal : EntradaSaidaTotal
@@ -19,18 +19,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.entradaService.GetEntradaTotal()
-    .then((entradaListar : Array<EntradaSaidaTotal>)=>{
-
-      if(entradaListar.length === 0){
-          this.entradaValor = 0
-      }else{
-        this.entradaValor = entradaListar[0].entradaValor
-      }
-    })
-    .catch((erro : any)=>{
-      console.log("Erro na chamada do método GetEntradaTotal()")
-    })
   }
 
 }
