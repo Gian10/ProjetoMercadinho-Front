@@ -58,7 +58,7 @@ export class EntradaProdutoComponent implements OnInit {
 
 
   // método de cadastro
-  public cadastrarEntrada(): void{
+  public async cadastrarEntrada(){
 
     let entrada : EntradaProduto = new EntradaProduto(
       this.entradaProduto.value.data,
@@ -69,12 +69,16 @@ export class EntradaProdutoComponent implements OnInit {
       this.totalProduto
     )
 
-    this.entradaService.PostEntrada(entrada)
-    .then((entrada : EntradaProduto)=>{
-      setTimeout(()=>{
-        this.redirect.navigate(["/editar-produto"])
-      },50)
-    }) 
+    let res = await this.entradaService.postEntrada(entrada)
+
+    let produtoAtual = await this.entradaService.getProdutoCodigo(res.produtoCodigo)
+
+    let estoqueAtual = produtoAtual[0].estoque + res.quantidade
+    let produtoEstoqueNovo : Produto = new Produto(produtoAtual[0].nome, produtoAtual[0].codigo, produtoAtual[0].preco, estoqueAtual)
+      produtoEstoqueNovo.id = produtoAtual[0].id
+
+    await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
+    this.redirect.navigate(["/editar-produto"])
   }
 
 
