@@ -13,7 +13,8 @@
                         type="text" 
                         class="form-control"                 
                         autocomplete="off" 
-                        formControlName=nomeProduto              
+                        formControlName=nomeProduto       
+                        oninput="this.value = this.value.toUpperCase()"            
                         >                 
                       <small *ngIf="!cadProduto.get('nomeProduto').valid && cadProduto.get('nomeProduto').touched" class="form-text text-danger">CAMPO INVÁLIDO</small>
                     </div>

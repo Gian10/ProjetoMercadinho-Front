@@ -20,8 +20,8 @@ export class EntradaService{
     constructor(private http : HttpClient){}
 
 
-    async postEntrada(entradaProduto : EntradaProduto) : Promise<EntradaProduto>{
-        let entrada : EntradaProduto = await this.http.post<EntradaProduto>(`${apiEntrada}`, entradaProduto).toPromise();
+    postEntrada(entradaProduto : EntradaProduto) : Promise<EntradaProduto>{
+        let entrada =  this.http.post<EntradaProduto>(`${apiEntrada}`, entradaProduto).toPromise();
         return entrada
     }
 

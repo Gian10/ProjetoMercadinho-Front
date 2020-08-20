@@ -18,56 +18,33 @@ export class ProdutoService{
 
     constructor(private http : HttpClient){}
 
-    async PostProduto(produto : Produto){
-        return await this.http.post<Produto>(`${apiProduto}`, produto).toPromise()
-        .then((prod : Produto)=>{
-            return prod
-        })      
-        
+    postProduto(produto : Produto) : Promise<Produto>{
+        let response = this.http.post<Produto>(`${apiProduto}`, produto).toPromise() 
+        return response
     }
 
-    async GetProduto(){
-        return await this.http.get<Array<Produto>>(`${apiProduto}`, httpOption).toPromise()
-        .then((listaProduto : Array<Produto>)=>{
-            return listaProduto
-        })
+    getProduto() : Promise<Array<Produto>>{
+        let response = this.http.get<Array<Produto>>(`${apiProduto}`, httpOption).toPromise()
+        return response
     }
 
-    async GetProdutoId(id : number){
-        return await this.http.get<Produto>(`${apiProduto}?id=${id}`).toPromise()
-        .then((produto : Produto)=>{
-            return produto
-        })
+    getProdutoId(id : number) : Promise<Produto>{
+        let response = this.http.get<Produto>(`${apiProduto}?id=${id}`).toPromise()
+        return response
     }
 
-    async PutProdutoId(putProduto : Produto){
-        return await this.http.put<Produto>(`${apiProduto}/${putProduto.id}`, putProduto, httpOption).toPromise()
-        .then((produtoAtualizado : Produto)=>{
-            return true
-        })
-        .catch((erro : any)=>{
-            return false
-        })
+    putProdutoId(putProduto : Produto) : Promise<Produto>{
+        let response = this.http.put<Produto>(`${apiProduto}/${putProduto.id}`, putProduto, httpOption).toPromise()
+        return response
     }
 
-    async DeleleProduto(id : number){
-        return await this.http.delete<Produto>(`${apiProduto}/${id}`, httpOption).toPromise()
-        .then((ok : any)=>{
-            return true
-        })
-        .catch((erro : any)=>{
-            return false
-        })
+    deleleProduto(id : number): Promise<Produto>{
+        let response = this.http.delete<Produto>(`${apiProduto}/${id}`, httpOption).toPromise()
+        return response
     }
 
-    async pesquisa(texto : string) : Promise<Array<Produto>>{
-        return await this.http.get<Array<Produto>>(`${apiProduto}/?nome_like=${texto}`).toPromise()
-        .then((pesquisaProdutos : Array<Produto>)=>{
-            console.log(pesquisaProdutos)
-            return pesquisaProdutos
-        })
-        
-    }
-    
-    
+    pesquisaProduto(texto : string) : Promise<Array<Produto>>{
+        let response =  this.http.get<Array<Produto>>(`${apiProduto}/?nome_like=${texto}`).toPromise()
+        return response    
+    }    
 }

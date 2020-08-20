@@ -29,7 +29,7 @@ export class CadastroProdutoComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  public cadastrarProduto() : void{
+  public async cadastrarProduto(){
     if(this.cadProduto.status === "INVALID"){
 
       this.cadProduto.get('nomeProduto').markAsTouched()
@@ -43,10 +43,7 @@ export class CadastroProdutoComponent implements OnInit {
         this.cadProduto.value.preco,
         this.cadProduto.value.estoque)
 
-      this.serviceProduto.PostProduto(cadastroProduto)
-        .then((produto : Produto)=>{
-         console.log(produto)
-        })
+      await this.serviceProduto.postProduto(cadastroProduto)
       this.limparCampos()        
     }
   }

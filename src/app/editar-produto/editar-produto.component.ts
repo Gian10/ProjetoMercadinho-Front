@@ -42,21 +42,17 @@ export class EditarProdutoComponent implements OnInit  {
   }
 
 
-  public listarProduto(pesquisa : string): void{
+  public async listarProduto(pesquisa : string){
     if(pesquisa !== ''){
-      this.serviceProduto.pesquisa(pesquisa)
-      .then((pesquisaProduto: Array<Produto>)=>{
-        this.produto = pesquisaProduto
-      })
+      let response = await this.serviceProduto.pesquisaProduto(pesquisa)
+      this.produto = response
+      this.tamanhoProduto = response.length
     }else{
-      this.serviceProduto.GetProduto()
-      .then((produto : Array<Produto>)=>{
-        this.produto = produto
-        this.tamanhoProduto = this.produto.length   
-      })
+      let response = await this.serviceProduto.getProduto()
+      this.produto = response
+      this.tamanhoProduto = response.length
     } 
   }
-
 
   // método de evento ao clique da pagina
   public onPageChange(event){
@@ -64,23 +60,16 @@ export class EditarProdutoComponent implements OnInit  {
     this.produtoPaginacao.currentPage = event;
   }
 
-
 // método deletar
-  public deletePost(id : number){
-    this.serviceProduto.DeleleProduto(id)
-    .then((response : boolean)=>{
-      if(response){
-        this.refreshPage()      
-      }
-    })
+  public async deletePost(id : number){
+    await this.serviceProduto.deleleProduto(id) 
+    this.refreshPage()       
   }
-
 
 // método de atualização da pagina
   public refreshPage() {
     location.reload()
   }
-
 
 // pesquisa
   public pesquisar(pesquisa : string) : void{
