@@ -38,11 +38,11 @@ export class EntradaProdutoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let dataHoje = this.dataAtual.toLocaleDateString()+ " "+ this.dataAtual.getHours()+":"+ this.dataAtual.getMinutes()
+    let dataHoje = this.dataAtual.toLocaleDateString()+ " "+ this.dataAtual.getHours()+":"+  (this.dataAtual.getMinutes() < 10 ?'0':'') +this.dataAtual.getMinutes()
    
 
     this.router.params.subscribe((parametro : Params)=>{
-      this.produtoService.GetProdutoId(parametro.id)
+      this.produtoService.getProdutoId(parametro.id)
       .then((produtoId : Produto)=>{
         this.entradaProduto.get('data').setValue(dataHoje)
         this.entradaProduto.get('codigo').setValue(produtoId[0].codigo)
@@ -73,6 +73,7 @@ export class EntradaProdutoComponent implements OnInit {
 
     let produtoAtual = await this.entradaService.getProdutoCodigo(res.produtoCodigo)
 
+    // Essa logica vai ser feita na api
     let estoqueAtual = produtoAtual[0].estoque + res.quantidade
     let produtoEstoqueNovo : Produto = new Produto(produtoAtual[0].nome, produtoAtual[0].codigo, produtoAtual[0].preco, estoqueAtual)
       produtoEstoqueNovo.id = produtoAtual[0].id

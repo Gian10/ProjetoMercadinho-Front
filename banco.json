@@ -8,18 +8,18 @@
   ],
   "produto": [
     {
-      "nome": "ARROZ",
-      "codigo": "11111",
-      "preco": 7,
-      "estoque": 24,
-      "id": 1
-    },
-    {
       "nome": "MACARRÃO",
       "codigo": "0000",
       "preco": 8,
-      "estoque": 24,
+      "estoque": 25,
       "id": 2
+    },
+    {
+      "nome": "COCA",
+      "codigo": "5555",
+      "preco": 8,
+      "estoque": 30,
+      "id": 4
     }
   ],
   "entradaProduto": [
@@ -49,6 +49,15 @@
       "quantidade": 2,
       "total": 16,
       "id": 3
+    },
+    {
+      "dataVenda": "20/08/2020 11:06",
+      "produtoCodigo": "5555",
+      "produtoNome": "COCA",
+      "valorProduto": 8,
+      "quantidade": 10,
+      "total": 80,
+      "id": 4
     }
   ]
 }

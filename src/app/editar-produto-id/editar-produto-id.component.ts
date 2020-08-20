@@ -29,7 +29,7 @@ export class EditarProdutoIdComponent implements OnInit {
   ngOnInit(): void {
     
     this.route.params.subscribe((paramentro : Params)=>{
-      this.produtoServiceId.GetProdutoId(paramentro.id)
+      this.produtoServiceId.getProdutoId(paramentro.id)
       .then((produtoId : Produto)=>{
         this.produtoId = produtoId
         this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome)
@@ -43,7 +43,7 @@ export class EditarProdutoIdComponent implements OnInit {
   }
 
 
-  public AtualizarProduto() : void{
+  public async AtualizarProduto(){
     if(this.cadProduto.status === "INVALID"){
       this.cadProduto.get('nomeProduto').markAsTouched()
       this.cadProduto.get('codigo').markAsTouched()
@@ -57,14 +57,8 @@ export class EditarProdutoIdComponent implements OnInit {
         this.cadProduto.value.estoque)
         cadastroProduto.id = this.proId
         
-      this.produtoServiceId.PutProdutoId(cadastroProduto)
-        .then((produto : boolean)=>{
-         if(produto){
-          this.router.navigate(["/editar-produto"])
-         }else{
-          this.router.navigate(["/editar-produto-id"])
-         }
-        }) 
+      await this.produtoServiceId.putProdutoId(cadastroProduto)
+      this.router.navigate(["/editar-produto"])
     }
   }
 
