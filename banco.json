@@ -8,56 +8,25 @@
   ],
   "produto": [
     {
-      "nome": "MACARRÃO",
+      "nome": "COCA COLA",
       "codigo": "0000",
-      "preco": 8,
-      "estoque": 25,
-      "id": 2
-    },
-    {
-      "nome": "COCA",
-      "codigo": "5555",
-      "preco": 8,
-      "estoque": 30,
-      "id": 4
+      "precoCusto": 5,
+      "precoVenda": 6,
+      "estoque": 24,
+      "id": 1
     }
   ],
   "entradaProduto": [
     {
-      "dataVenda": "18/08/2020 22:24",
-      "produtoCodigo": "11111",
-      "produtoNome": "ARROZ",
-      "valorProduto": 7,
+      "dataVenda": "20/08/2020 19:44",
+      "produtoCodigo": "0000",
+      "produtoNome": "COCA COLA",
+      "precoCusto": 5,
+      "precoVenda": 6,
       "quantidade": 2,
-      "total": 14,
+      "total": 10,
       "id": 1
-    },
-    {
-      "dataVenda": "18/08/2020 22:24",
-      "produtoCodigo": "0000",
-      "produtoNome": "MACARRÃO",
-      "valorProduto": 8,
-      "quantidade": 2,
-      "total": 16,
-      "id": 2
-    },
-    {
-      "dataVenda": "18/08/2020 22:26",
-      "produtoCodigo": "0000",
-      "produtoNome": "MACARRÃO",
-      "valorProduto": 8,
-      "quantidade": 2,
-      "total": 16,
-      "id": 3
-    },
-    {
-      "dataVenda": "20/08/2020 11:06",
-      "produtoCodigo": "5555",
-      "produtoNome": "COCA",
-      "valorProduto": 8,
-      "quantidade": 10,
-      "total": 80,
-      "id": 4
     }
-  ]
+  ],
+  "saidaProduto": []
 }

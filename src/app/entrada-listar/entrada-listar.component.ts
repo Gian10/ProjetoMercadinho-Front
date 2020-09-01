@@ -41,7 +41,6 @@ export class EntradaListarComponent implements OnInit {
 
   ngOnInit(): void {
     this.listarEntrada(this.pesquisaEntrada)
-    console.log("teste")
   }
 
 

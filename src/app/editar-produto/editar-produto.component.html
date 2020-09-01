@@ -23,7 +23,8 @@
       <tr>
         <th>Código</th>
         <th>Nome do Produto</th>
-        <th>Preço do Produto</th>
+        <th>Preço Custo</th>
+        <th>Preço Venda</th>
         <th>Quantidade</th>    
         <th width="200px">Ação</th>
         <th width="200px">Entrada e Saída</th>
@@ -31,7 +32,8 @@
       <tr *ngFor="let listaProduto of produto | paginate: produtoPaginacao"  >  
         <td>{{listaProduto.codigo}}</td>
         <td>{{listaProduto.nome}}</td>    
-        <td>{{listaProduto.preco | currency: 'R$'}}</td>
+        <td>{{listaProduto.precoCusto | currency: 'R$'}}</td>
+        <td>{{listaProduto.precoVenda | currency: 'R$'}}</td>
         <td>{{listaProduto.estoque}}</td>
         <td>       
           <a [routerLink]="['/editar-produto', listaProduto.id]"  class="btn btn-primary">Editar</a>
@@ -39,7 +41,7 @@
         </td>
         <td>       
           <a [routerLink]="['/entrada-produto', listaProduto.id]" class="btn btn-primary">Entrada</a> 
-          <button style="margin:10px;" type="button" class="btn btn-success">Saída</button>
+          <button [routerLink]="['/saida-produto', listaProduto.id]" style="margin:10px;" type="button" class="btn btn-success">Saída</button>
         </td>
       </tr>
     </table>

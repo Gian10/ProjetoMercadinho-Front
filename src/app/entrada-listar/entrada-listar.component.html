@@ -25,7 +25,8 @@
         <th>Data da Venda</th>
         <th>Produto Código</th>
         <th>Produto Nome</th>
-        <th>Valor de Produto</th> 
+        <th>Preço Custo</th> 
+        <th>Preço Venda</th>
         <th>Quantidade</th> 
         <th>Total</th>    
         
@@ -34,7 +35,8 @@
         <td>{{listaEntrada.dataVenda}}</td>
         <td>{{listaEntrada.produtoCodigo}}</td>
         <td>{{listaEntrada.produtoNome}}</td>  
-        <td>{{listaEntrada.valorProduto | currency: 'R$'}}</td>
+        <td>{{listaEntrada.precoCusto | currency: 'R$'}}</td>
+        <td>{{listaEntrada.precoVenda | currency: 'R$'}}</td>
         <td>{{listaEntrada.quantidade}}</td>
         <td>{{listaEntrada.total | currency: 'R$'}}</td>
       </tr>
