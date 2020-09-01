@@ -1,5 +1,4 @@
 import {EntradaProduto} from '../model/entrada-produto'
-import {EntradaSaidaTotal} from '../model/entrada-saida-total'
 import {Produto} from '../model/produto-model'
 
 import {apiEntrada} from '../../app-api'
@@ -30,7 +29,7 @@ export class EntradaService{
         return produtoCodigo
     }
 
-    putEstoqueProduto(novoEstoqueProduto) : Promise<Produto>{
+    putEstoqueProduto(novoEstoqueProduto : Produto) : Promise<Produto>{
         let novoProdutoEstoque =  this.http.put<Produto>(`${apiProduto}/${novoEstoqueProduto.id}`, novoEstoqueProduto).toPromise()
         return novoProdutoEstoque
     }

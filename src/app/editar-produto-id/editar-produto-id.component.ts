@@ -17,7 +17,8 @@ export class EditarProdutoIdComponent implements OnInit {
    public cadProduto : FormGroup = new FormGroup({
         "nomeProduto" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
         "codigo" : new FormControl(null, [Validators.required, Validators.minLength(3), Validators.maxLength(40)]),
-        "preco" : new FormControl(null, [Validators.required]),
+        "precoCusto" : new FormControl(null, [Validators.required]),
+        "precoVenda" : new FormControl(null, [Validators.required]),
         "estoque" : new FormControl(null, [Validators.required, Validators.minLength(1), Validators.maxLength(40)])
       });
 
@@ -34,7 +35,8 @@ export class EditarProdutoIdComponent implements OnInit {
         this.produtoId = produtoId
         this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome)
         this.cadProduto.get('codigo').setValue(this.produtoId[0].codigo)
-        this.cadProduto.get('preco').setValue(this.produtoId[0].preco)
+        this.cadProduto.get('precoCusto').setValue(this.produtoId[0].precoCusto)
+        this.cadProduto.get('precoVenda').setValue(this.produtoId[0].precoVenda)
         this.cadProduto.get('estoque').setValue(this.produtoId[0].estoque)
       })
       // inserindo o id nesta variavel
@@ -47,13 +49,15 @@ export class EditarProdutoIdComponent implements OnInit {
     if(this.cadProduto.status === "INVALID"){
       this.cadProduto.get('nomeProduto').markAsTouched()
       this.cadProduto.get('codigo').markAsTouched()
-      this.cadProduto.get('preco').markAsTouched()
+      this.cadProduto.get('precoCusto').markAsTouched()
+      this.cadProduto.get('precoVenda').markAsTouched()
       this.cadProduto.get('estoque').markAsTouched()
     }else{
       let cadastroProduto : Produto = new Produto(
         this.cadProduto.value.nomeProduto,
         this.cadProduto.value.codigo,
-        this.cadProduto.value.preco,
+        this.cadProduto.value.precoCusto,
+        this.cadProduto.value.precoVenda,
         this.cadProduto.value.estoque)
         cadastroProduto.id = this.proId
         

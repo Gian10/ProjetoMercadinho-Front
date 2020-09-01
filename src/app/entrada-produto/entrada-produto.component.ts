@@ -19,7 +19,8 @@ export class EntradaProdutoComponent implements OnInit {
     "data" : new FormControl(),
     "codigo" : new FormControl(null),
     "nomeProduto" : new FormControl(null),
-    "preco" : new FormControl(null),
+    "precoCusto" : new FormControl(null),
+    "precoVenda" : new FormControl(null),
     "quantidade" : new FormControl(null),
     "total" : new FormControl(null)
   })
@@ -38,7 +39,7 @@ export class EntradaProdutoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let dataHoje = this.dataAtual.toLocaleDateString()+ " "+ this.dataAtual.getHours()+":"+  (this.dataAtual.getMinutes() < 10 ?'0':'') +this.dataAtual.getMinutes()
+    let dataHoje = this.dataAtual.toLocaleDateString() + " "+ this.dataAtual.getHours()+":"+  (this.dataAtual.getMinutes() < 10 ?'0':'') +this.dataAtual.getMinutes()
    
 
     this.router.params.subscribe((parametro : Params)=>{
@@ -47,10 +48,11 @@ export class EntradaProdutoComponent implements OnInit {
         this.entradaProduto.get('data').setValue(dataHoje)
         this.entradaProduto.get('codigo').setValue(produtoId[0].codigo)
         this.entradaProduto.get('nomeProduto').setValue(produtoId[0].nome)
-        this.entradaProduto.get('preco').setValue(produtoId[0].preco)
+        this.entradaProduto.get('precoCusto').setValue(produtoId[0].precoCusto)
+        this.entradaProduto.get('precoVenda').setValue(produtoId[0].precoVenda)
         this.entradaProduto.get('quantidade').setValue(1)
 
-        this.valorProduto = produtoId[0].preco
+        this.valorProduto = produtoId[0].precoCusto
         this.totalProduto = this.valorProduto * this.qtd          
       })
     })
@@ -64,7 +66,8 @@ export class EntradaProdutoComponent implements OnInit {
       this.entradaProduto.value.data,
       this.entradaProduto.value.codigo,
       this.entradaProduto.value.nomeProduto,
-      this.entradaProduto.value.preco,
+      this.entradaProduto.value.precoCusto,
+      this.entradaProduto.value.precoVenda,
       this.entradaProduto.value.quantidade,
       this.totalProduto
     )
@@ -75,7 +78,13 @@ export class EntradaProdutoComponent implements OnInit {
 
     // Essa logica vai ser feita na api
     let estoqueAtual = produtoAtual[0].estoque + res.quantidade
-    let produtoEstoqueNovo : Produto = new Produto(produtoAtual[0].nome, produtoAtual[0].codigo, produtoAtual[0].preco, estoqueAtual)
+    let produtoEstoqueNovo : Produto = new Produto
+    (produtoAtual[0].nome, 
+      produtoAtual[0].codigo, 
+      produtoAtual[0].precoCusto, 
+      produtoAtual[0].precoVenda, 
+      estoqueAtual)
+
       produtoEstoqueNovo.id = produtoAtual[0].id
 
     await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
@@ -86,6 +95,7 @@ export class EntradaProdutoComponent implements OnInit {
   // método de clique no campo quantidade para calcular o valor total da entrada
   public onChange($event){
    this.qtd = this.entradaProduto.value.quantidade
+   
    if(this.qtd == 0){
       this.entradaProduto.get('quantidade').setValue(1) 
       this.qtd = 1
