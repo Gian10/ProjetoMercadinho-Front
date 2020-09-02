@@ -69,19 +69,28 @@ export class SaidaProdutoComponent implements OnInit {
       this.cadSaidaProduto.value.precoCusto,
       this.cadSaidaProduto.value.precoVenda,
       this.cadSaidaProduto.value.quantidade,
-      this.totalProduto
-    ) 
-    let response = await this.saidaService.postSaidaProduto(saidaProduto)
-    
-    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produtoCodigo)
-   
+      this.totalProduto) 
 
+    let response = await this.saidaService.postSaidaProduto(saidaProduto)
+    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produtoCodigo)
+
+    let estoqueAtual = responseProdutoCodigo[0].estoque - response.quantidade
+
+    let produtoSaida : Produto = new Produto(responseProdutoCodigo[0].nome,
+       responseProdutoCodigo[0].codigo, responseProdutoCodigo[0].precoCusto, responseProdutoCodigo[0].precoVenda, estoqueAtual)
+       produtoSaida.id = responseProdutoCodigo[0].id
+
+    this.produtoService.putProdutoId(produtoSaida)
+    this.redirect.navigate(["/editar-produto"])
   }
+
+
 
   public voltar(): void{
     this.redirect.navigate(["/editar-produto"])
   }
 
+  
   public onChange($event){
     this.qtd = this.cadSaidaProduto.value.quantidade
     if(this.qtd == 0){

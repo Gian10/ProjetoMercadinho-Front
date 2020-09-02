@@ -26,6 +26,7 @@ export class SaidaService {
         return this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
     }
 
-
-
+    getSaidaProduto() : Promise<SaidaProduto>{
+        return this.http.get<SaidaProduto>(`${apiSaida}`, httpOption).toPromise()
+    }
 }
