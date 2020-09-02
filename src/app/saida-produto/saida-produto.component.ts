@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {SaidaService} from '../services/saida-service'
 import {ProdutoService} from '../services/produto-service'
 
+import {SaidaProduto} from '../model/saida-produto'
+
+
+
 import {ActivatedRoute, Params, Router} from '@angular/router'
 
 import {FormGroup, FormControl, Validators} from '@angular/forms'
@@ -40,7 +44,7 @@ export class SaidaProdutoComponent implements OnInit {
 
   ngOnInit(): void {
 
-    let dataSaida = this.dataAtual.toLocaleDateString() + " " + this.dataAtual.getHours() + ":" + this.dataAtual.getMinutes()
+    let dataSaida = this.dataAtual.toLocaleDateString() + " " + this.dataAtual.getHours() + ":" + (this.dataAtual.getMinutes() < 10 ? "0" : "") + this.dataAtual.getMinutes()
 
     this.route.params.subscribe((parametro : Params)=>{
       this.produtoService.getProdutoId(parametro.id)
@@ -55,14 +59,22 @@ export class SaidaProdutoComponent implements OnInit {
         this.totalProduto = this.valorProduto * this.qtd
       })
     })
-
-
-    
-
-
   }
 
-  public cadastroSaidaProduto(){
+  public async cadastroSaidaProduto(){
+    let saidaProduto : SaidaProduto = new SaidaProduto(
+      this.cadSaidaProduto.value.data,
+      this.cadSaidaProduto.value.codigo,
+      this.cadSaidaProduto.value.nomeProduto,
+      this.cadSaidaProduto.value.precoCusto,
+      this.cadSaidaProduto.value.precoVenda,
+      this.cadSaidaProduto.value.quantidade,
+      this.totalProduto
+    ) 
+    let response = await this.saidaService.postSaidaProduto(saidaProduto)
+    
+    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produtoCodigo)
+   
 
   }
 

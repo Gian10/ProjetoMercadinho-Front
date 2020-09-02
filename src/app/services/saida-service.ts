@@ -1,10 +1,11 @@
 import {SaidaProduto} from '../model/saida-produto'
 
-import {apiSaida} from '../../app-api'
+import {apiSaida, apiProduto} from '../../app-api'
 
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 import {Injectable} from '@angular/core'
+import { Produto } from '../model/produto-model'
 
 const httpOption={
     headers : new HttpHeaders({
@@ -19,6 +20,10 @@ export class SaidaService {
 
     postSaidaProduto(saida : SaidaProduto) : Promise<SaidaProduto>{
         return this.http.post<SaidaProduto>(`${apiSaida}`, saida, httpOption).toPromise()
+    }
+
+    getProdutoCodigo(codigo : string) : Promise<Produto>{
+        return this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
     }
 
 
