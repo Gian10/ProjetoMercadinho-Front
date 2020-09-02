@@ -12,13 +12,13 @@
       "codigo": "0000",
       "precoCusto": 5,
       "precoVenda": 6,
-      "estoque": 24,
+      "estoque": 26,
       "id": 1
     }
   ],
   "entradaProduto": [
     {
-      "dataVenda": "20/08/2020 19:44",
+      "dataEntrada": "31/08/2020 23:00",
       "produtoCodigo": "0000",
       "produtoNome": "COCA COLA",
       "precoCusto": 5,
@@ -28,5 +28,16 @@
       "id": 1
     }
   ],
-  "saidaProduto": []
+  "saidaProduto": [
+    {
+      "dataSaida": "31/08/2020 23:10",
+      "produtoCodigo": "0000",
+      "produtoNome": "COCA COLA",
+      "precoCusto": 5,
+      "precoVenda": 6,
+      "quantidade": 2,
+      "total": 12,
+      "id": 1
+    }
+  ]
 }

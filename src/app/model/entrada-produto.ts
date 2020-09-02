@@ -1,7 +1,7 @@
 export class EntradaProduto{
     public entradaId : number
     constructor(
-        public dataVenda : number, 
+        public dataEntrada : number, 
         public produtoCodigo : string,
         public produtoNome : string,
         public precoCusto : number,
