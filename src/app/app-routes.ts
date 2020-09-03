@@ -11,17 +11,19 @@ import {EditarProdutoIdComponent} from './editar-produto-id/editar-produto-id.co
 import {EntradaProdutoComponent} from './entrada-produto/entrada-produto.component'
 import {EntradaListarComponent} from './entrada-listar/entrada-listar.component'
 import {SaidaProdutoComponent} from './saida-produto/saida-produto.component'
+import {SaidaListarComponent} from './saida-listar/saida-listar.component'
 
 export const ROUTES : Routes = [
 
     // verifica se a rota vazia esta autorizada
     {path : "" , component : HomeComponent, canActivate:[AuthGuard] },
     {path : "cadastro-produto" , component : CadastroProdutoComponent, canActivate:[AuthGuard]},
-    {path: "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
+    {path : "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
     {path : "editar-produto/:id", component: EditarProdutoIdComponent, canActivate: [AuthGuard]},
     {path : "entrada-produto/:id", component: EntradaProdutoComponent, canActivate: [AuthGuard]},
     {path : "entrada-listar", component: EntradaListarComponent, canActivate: [AuthGuard]},
     {path : "saida-produto/:id", component: SaidaProdutoComponent, canActivate: [AuthGuard]},
+    {path : "saida-listar", component: SaidaListarComponent, canActivate: [AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [

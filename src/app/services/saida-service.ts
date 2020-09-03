@@ -26,7 +26,11 @@ export class SaidaService {
         return this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
     }
 
-    getSaidaProduto() : Promise<SaidaProduto>{
-        return this.http.get<SaidaProduto>(`${apiSaida}`, httpOption).toPromise()
+    getSaidaProduto() : Promise<Array<SaidaProduto>>{
+        return this.http.get<Array<SaidaProduto>>(`${apiSaida}`, httpOption).toPromise()
+    }
+
+    getPesquisaSaidaProduto(pesquisa : string): Promise<Array<SaidaProduto>> {
+        return this.http.get<Array<SaidaProduto>>(`${apiSaida}/?dataVenda=${pesquisa}`).toPromise();
     }
 }
