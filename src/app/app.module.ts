@@ -36,6 +36,7 @@ import { EditarProdutoIdComponent } from './editar-produto-id/editar-produto-id.
 import { EntradaProdutoComponent } from './entrada-produto/entrada-produto.component';
 import { EntradaListarComponent } from './entrada-listar/entrada-listar.component';
 import { SaidaProdutoComponent } from './saida-produto/saida-produto.component';
+import { SaidaListarComponent } from './saida-listar/saida-listar.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { SaidaProdutoComponent } from './saida-produto/saida-produto.component';
     EditarProdutoIdComponent,
     EntradaProdutoComponent,
     EntradaListarComponent,
-    SaidaProdutoComponent
+    SaidaProdutoComponent,
+    SaidaListarComponent
   ],
   imports: [
     BrowserModule,
