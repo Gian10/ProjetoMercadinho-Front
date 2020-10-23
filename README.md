@@ -1,11 +1,11 @@
-# App
+# App FrontEnd
 
 Projeto de Mercadinho com a funcionalidade de entrada e saída de produto
 
 # Tecnologias
 * **FrameWork-Front** : Angular 9
-* **FrameWork-Back** : NodeJs
-* **Database**: NoSql - MongoDB
+* **FrameWork-Back** : Api Fake - NODEJS
+
 
 # EndPoints
 * Usuario.
