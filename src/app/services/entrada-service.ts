@@ -4,12 +4,15 @@ import {Produto} from '../model/produto-model'
 import {apiEntrada} from '../../app-api'
 import {apiProduto} from '../../app-api'
 
+import {environment} from '../../environments/environment'
+
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
 const httpOption={
     headers : new HttpHeaders({
-        "Content-Type" : "application/json"
+        "Content-Type" : "application/json",
+        "Authorization" : ""
     })
 }
 
@@ -35,7 +38,8 @@ export class EntradaService{
     }
 
     getEntradaProduto(): Promise<Array<EntradaProduto>>{
-        let res = this.http.get<Array<EntradaProduto>>(`${apiEntrada}`, httpOption).toPromise()
+        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input`).toPromise()
+        console.log(res)
         return res
     }
 

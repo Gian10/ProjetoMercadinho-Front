@@ -32,11 +32,11 @@
         
       </tr>
       <tr *ngFor="let listaEntrada of entradaLista | paginate: produtoPaginacao"  >  
-        <td>{{listaEntrada.dataEntrada}}</td>
-        <td>{{listaEntrada.produtoCodigo}}</td>
-        <td>{{listaEntrada.produtoNome}}</td>  
-        <td>{{listaEntrada.precoCusto | currency: 'R$'}}</td>
-        <td>{{listaEntrada.precoVenda | currency: 'R$'}}</td>
+        <td>{{listaEntrada.data_entrada}}</td>
+        <td>{{listaEntrada.produto_codigo}}</td>
+        <td>{{listaEntrada.produto_nome}}</td>  
+        <td>{{listaEntrada.preco_custo | currency: 'R$'}}</td>
+        <td>{{listaEntrada.preco_venda | currency: 'R$'}}</td>
         <td>{{listaEntrada.quantidade}}</td>
         <td>{{listaEntrada.total | currency: 'R$'}}</td>
       </tr>

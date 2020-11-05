@@ -38,6 +38,8 @@ import { EntradaListarComponent } from './entrada-listar/entrada-listar.componen
 import { SaidaProdutoComponent } from './saida-produto/saida-produto.component';
 import { SaidaListarComponent } from './saida-listar/saida-listar.component';
 
+import { httpInterceptorProviders} from './../http-interceptors';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -64,7 +66,7 @@ import { SaidaListarComponent } from './saida-listar/saida-listar.component';
     CurrencyMaskModule,
     NgxPaginationModule,
   ],
-  providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}],
+  providers: [{provide: LOCALE_ID, useValue: 'pt-Br'}, httpInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
