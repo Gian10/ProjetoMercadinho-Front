@@ -1,4 +1,4 @@
-export const api = " http://localhost:3000/usuario"
+export const api = "http://localhost:3000/login"
 
 export const apiProduto = "http://localhost:3000/produto"
 

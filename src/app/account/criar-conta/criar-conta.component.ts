@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import {Service} from '../../services/login-service'
+import {LoginService} from '../../services/login-service'
 import { Router } from '@angular/router';
 import {NgForm} from '@angular/forms'
 
@@ -12,7 +12,7 @@ import { Usuario } from 'src/app/model/usuario-model';
   selector: 'app-criar-conta',
   templateUrl: './criar-conta.component.html',
   styleUrls: ['./criar-conta.component.css'],
-  providers: [Service]
+  providers: [LoginService]
 })
 export class CriarContaComponent implements OnInit {
   
@@ -21,7 +21,7 @@ export class CriarContaComponent implements OnInit {
   public alerta : boolean
   public usuario : Usuario;
 
-  constructor(private serviceLogin : Service, private router : Router ) { }
+  constructor(private serviceLogin : LoginService, private router : Router ) { }
 
 
   ngOnInit(): void {

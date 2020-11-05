@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-tela-principal',
@@ -7,9 +7,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TelaPrincipalComponent implements OnInit {
 
+  public nameUser : string
   constructor() { }
 
   ngOnInit(): void {
+    this.nameUser = window.localStorage.getItem('nameUser')
   }
+
+  public logout(){
+    window.localStorage.removeItem('idUser')
+    window.localStorage.removeItem('nameUser')
+    window.localStorage.removeItem('token')
+    location.reload()
+  }
+
+   
 
 }

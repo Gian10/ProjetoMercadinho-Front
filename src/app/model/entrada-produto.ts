@@ -1,11 +1,11 @@
 export class EntradaProduto{
     public entradaId : number
     constructor(
-        public dataEntrada : number, 
-        public produtoCodigo : string,
-        public produtoNome : string,
-        public precoCusto : number,
-        public precoVenda : number,
+        public data_entrada : number, 
+        public produto_codigo : string,
+        public produto_nome : string,
+        public preco_custo : number,
+        public preco_venda : number,
         public quantidade : number,
         public total : number
         ){}

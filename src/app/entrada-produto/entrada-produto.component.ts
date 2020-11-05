@@ -74,7 +74,7 @@ export class EntradaProdutoComponent implements OnInit {
 
     let res = await this.entradaService.postEntrada(entrada)
 
-    let produtoAtual = await this.entradaService.getProdutoCodigo(res.produtoCodigo)
+    let produtoAtual = await this.entradaService.getProdutoCodigo(res.produto_codigo)
 
     // Essa logica vai ser feita na api
     let estoqueAtual = produtoAtual[0].estoque + res.quantidade
