@@ -12,6 +12,7 @@ import {EntradaProdutoComponent} from './entrada-produto/entrada-produto.compone
 import {EntradaListarComponent} from './entrada-listar/entrada-listar.component'
 import {SaidaProdutoComponent} from './saida-produto/saida-produto.component'
 import {SaidaListarComponent} from './saida-listar/saida-listar.component'
+import {EditarUsuarioComponent} from './editar-usuario/editar-usuario.component'
 
 export const ROUTES : Routes = [
 
@@ -24,6 +25,7 @@ export const ROUTES : Routes = [
     {path : "entrada-listar", component: EntradaListarComponent, canActivate: [AuthGuard]},
     {path : "saida-produto/:id", component: SaidaProdutoComponent, canActivate: [AuthGuard]},
     {path : "saida-listar", component: SaidaListarComponent, canActivate: [AuthGuard]},
+    {path : 'editar-usuario/:id', component: EditarUsuarioComponent, canActivate: [AuthGuard]},
 
     // se não tiver autorizada entra aqui
    // children : [

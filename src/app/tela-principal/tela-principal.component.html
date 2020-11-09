@@ -27,7 +27,7 @@
                                 {{nameUser}}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown" >
-                                <a class="dropdown-item"  href="#" ><i class="fas fa-user-edit"></i> Editar Perfil </a >
+                                <a [routerLink]="['/editar-usuario', idUser]" class="dropdown-item"  href="#" ><i class="fas fa-user-edit"></i> Editar Perfil </a >
                                 <div class="dropdown-divider"></div>
                                 <a (click)="logout()" class="dropdown-item" href="#"><i class="fas fa-sign-out-alt"></i> Sair</a>
                             </div>
@@ -42,4 +42,7 @@
 <div class="banner">
     <img src="/assets/images/mercadinho.png" />
 </div>
+
+
+<!-- [routerLink]="['/editar-usuario', {{}}]" -->
 

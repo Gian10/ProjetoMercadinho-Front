@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-tela-principal',
@@ -8,9 +8,12 @@ import { Component, OnInit, Input } from '@angular/core';
 export class TelaPrincipalComponent implements OnInit {
 
   public nameUser : string
+  public idUser : number
   constructor() { }
 
   ngOnInit(): void {
+    let id = window.localStorage.getItem('idUser')
+    this.idUser = Number(id)
     this.nameUser = window.localStorage.getItem('nameUser')
   }
 

@@ -39,6 +39,7 @@ import { SaidaProdutoComponent } from './saida-produto/saida-produto.component';
 import { SaidaListarComponent } from './saida-listar/saida-listar.component';
 
 import { httpInterceptorProviders} from './../http-interceptors';
+import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { httpInterceptorProviders} from './../http-interceptors';
     EntradaProdutoComponent,
     EntradaListarComponent,
     SaidaProdutoComponent,
-    SaidaListarComponent
+    SaidaListarComponent,
+    EditarUsuarioComponent
   ],
   imports: [
     BrowserModule,

@@ -7,11 +7,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 import { Observable, pipe } from 'rxjs'
 
-const httpOption ={
-    headers : new HttpHeaders({
-        "Content-Type" : "application/json"
-    })
-}
+
 
 @Injectable()
 export class ProdutoService{
@@ -24,7 +20,7 @@ export class ProdutoService{
     }
 
     getProduto() : Promise<Array<Produto>>{
-        let response = this.http.get<Array<Produto>>(`${apiProduto}`, httpOption).toPromise()
+        let response = this.http.get<Array<Produto>>(`${apiProduto}`).toPromise()
         return response
     }
 
@@ -34,12 +30,12 @@ export class ProdutoService{
     }
 
     putProdutoId(putProduto : Produto) : Promise<Produto>{
-        let response = this.http.put<Produto>(`${apiProduto}/${putProduto.id}`, putProduto, httpOption).toPromise()
+        let response = this.http.put<Produto>(`${apiProduto}/${putProduto.id}`, putProduto).toPromise()
         return response
     }
 
     deleleProduto(id : number): Promise<Produto>{
-        let response = this.http.delete<Produto>(`${apiProduto}/${id}`, httpOption).toPromise()
+        let response = this.http.delete<Produto>(`${apiProduto}/${id}`).toPromise()
         return response
     }
 
