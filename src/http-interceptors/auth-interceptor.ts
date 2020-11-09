@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import {Router} from '@angular/router'
 import {LoginService } from '../app/services/login-service';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpErrorResponse } from '@angular/common/http';
 import { throwError } from 'rxjs';
@@ -8,7 +9,7 @@ import { catchError } from 'rxjs/operators';
 export class AuthInterceptor implements HttpInterceptor {
 
   constructor(
-    private loginService: LoginService) { }
+    private loginService: LoginService, private router : Router) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler) {
 
@@ -36,10 +37,11 @@ export class AuthInterceptor implements HttpInterceptor {
       // Erro de client-side ou de rede
       console.error('Ocorreu um erro:', error.error.message);
     } else {
+        if(error.status == 401){
+          window.localStorage.removeItem('token')
+        }
       // Erro retornando pelo backend
-      console.error(
-        `Código do erro ${error.status}, ` +
-        `Erro: ${JSON.stringify(error.error)}`);
+      console.error(`Código do erro ${error.status}, ` + `Erro: ${JSON.stringify(error.error)}`);
     }
     // retornar um observable com uma mensagem amigavel.
     return throwError('Ocorreu um erro, tente novamente');

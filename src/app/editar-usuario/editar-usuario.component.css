@@ -1,0 +1,31 @@
+h5{
+    text-align: center;
+}
+
+input.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+select.ng-invalid.ng-touched{
+    border: 1px solid red;
+}
+
+input.ng-valid.ng-touched{
+    border: 1px solid green;
+}
+
+select.ng-valid.ng-touched{
+    border: 1px solid green;
+}
+
+.editarUsuario{
+    margin-top: 10px;
+    margin-bottom: 40px;
+}
+button{   
+    width:250px;
+}
+
+a{
+    width:250px;
+}
