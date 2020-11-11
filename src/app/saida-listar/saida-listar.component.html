@@ -31,11 +31,11 @@
         
       </tr>
       <tr *ngFor="let listaSaida of saidaLista | paginate: produtoPaginacao"  >  
-        <td>{{listaSaida.dataSaida}}</td>
-        <td>{{listaSaida.produtoCodigo}}</td>
-        <td>{{listaSaida.produtoNome}}</td>  
-        <td>{{listaSaida.precoCusto | currency: 'R$'}}</td>
-        <td>{{listaSaida.precoVenda | currency: 'R$'}}</td>
+        <td>{{listaSaida.data_saida}}</td>
+        <td>{{listaSaida.produto_codigo}}</td>
+        <td>{{listaSaida.produto_nome}}</td>  
+        <td>{{listaSaida.preco_custo | currency: 'R$'}}</td>
+        <td>{{listaSaida.preco_venda | currency: 'R$'}}</td>
         <td>{{listaSaida.quantidade}}</td>
         <td>{{listaSaida.total | currency: 'R$'}}</td>
       </tr>

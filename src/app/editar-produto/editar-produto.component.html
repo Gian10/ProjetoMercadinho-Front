@@ -30,18 +30,18 @@
         <th width="200px">Entrada e Saída</th>
       </tr>
       <tr *ngFor="let listaProduto of produto | paginate: produtoPaginacao"  >  
-        <td>{{listaProduto.codigo}}</td>
-        <td>{{listaProduto.nome}}</td>    
-        <td>{{listaProduto.precoCusto | currency: 'R$'}}</td>
-        <td>{{listaProduto.precoVenda | currency: 'R$'}}</td>
+        <td>{{listaProduto.codigo_produto}}</td>
+        <td>{{listaProduto.nome_produto}}</td>    
+        <td>{{listaProduto.preco_custo | currency: 'R$'}}</td>
+        <td>{{listaProduto.preco_venda | currency: 'R$'}}</td>
         <td>{{listaProduto.estoque}}</td>
         <td>       
-          <a [routerLink]="['/editar-produto', listaProduto.id]"  class="btn btn-primary">Editar</a>
-          <button style="margin:10px;" type="button" (click)="deletePost(listaProduto.id)" class="btn btn-danger">Deletar</button>
+          <a [routerLink]="['/editar-produto', listaProduto.produto_id]"  class="btn btn-primary">Editar</a>
+          <button style="margin:10px;" type="button" (click)="deletePost(listaProduto.produto_id)" class="btn btn-danger">Deletar</button>
         </td>
         <td>       
-          <a [routerLink]="['/entrada-produto', listaProduto.id]" class="btn btn-primary">Entrada</a> 
-          <button [routerLink]="['/saida-produto', listaProduto.id]" style="margin:10px;" type="button" class="btn btn-success">Saída</button>
+          <a [routerLink]="['/entrada-produto', listaProduto.produto_id]" class="btn btn-primary">Entrada</a> 
+          <button [routerLink]="['/saida-produto', listaProduto.produto_id]" style="margin:10px;" type="button" class="btn btn-success">Saída</button>
         </td>
       </tr>
     </table>

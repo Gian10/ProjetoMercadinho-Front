@@ -23,17 +23,12 @@ export class EntradaService{
 
 
     postEntrada(entradaProduto : EntradaProduto) : Promise<EntradaProduto>{
-        let entrada =  this.http.post<EntradaProduto>(`${apiEntrada}`, entradaProduto).toPromise();
+        let entrada =  this.http.post<EntradaProduto>(`${environment.api}/input`, entradaProduto).toPromise();
         return entrada
     }
 
-    getProdutoCodigo(codigo : string) : Promise<Produto>{
-        let produtoCodigo =  this.http.get<Produto>(`${apiProduto}?codigo=${codigo}`).toPromise() 
-        return produtoCodigo
-    }
-
     putEstoqueProduto(novoEstoqueProduto : Produto) : Promise<Produto>{
-        let novoProdutoEstoque =  this.http.put<Produto>(`${apiProduto}/${novoEstoqueProduto.id}`, novoEstoqueProduto).toPromise()
+        let novoProdutoEstoque =  this.http.put<Produto>(`${environment.api}/products/${novoEstoqueProduto.produto_id}`, novoEstoqueProduto).toPromise()
         return novoProdutoEstoque
     }
 

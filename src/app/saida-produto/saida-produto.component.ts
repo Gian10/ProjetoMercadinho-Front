@@ -72,13 +72,13 @@ export class SaidaProdutoComponent implements OnInit {
       this.totalProduto) 
 
     let response = await this.saidaService.postSaidaProduto(saidaProduto)
-    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produtoCodigo)
+    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produto_codigo)
 
     let estoqueAtual = responseProdutoCodigo[0].estoque - response.quantidade
 
     let produtoSaida : Produto = new Produto(responseProdutoCodigo[0].nome,
        responseProdutoCodigo[0].codigo, responseProdutoCodigo[0].precoCusto, responseProdutoCodigo[0].precoVenda, estoqueAtual)
-       produtoSaida.id = responseProdutoCodigo[0].id
+       produtoSaida.produto_id = responseProdutoCodigo[0].id
 
     this.produtoService.putProdutoId(produtoSaida)
     this.redirect.navigate(["/editar-produto"])

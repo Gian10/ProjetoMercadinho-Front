@@ -2,6 +2,8 @@ import {SaidaProduto} from '../model/saida-produto'
 
 import {apiSaida, apiProduto} from '../../app-api'
 
+import {environment} from '../../environments/environment'
+
 import {HttpClient, HttpHeaders} from '@angular/common/http'
 
 import {Injectable} from '@angular/core'
@@ -27,7 +29,7 @@ export class SaidaService {
     }
 
     getSaidaProduto() : Promise<Array<SaidaProduto>>{
-        return this.http.get<Array<SaidaProduto>>(`${apiSaida}`, httpOption).toPromise()
+        return this.http.get<Array<SaidaProduto>>(`${environment.api}/output`).toPromise()
     }
 
     getPesquisaSaidaProduto(pesquisa : string): Promise<Array<SaidaProduto>> {

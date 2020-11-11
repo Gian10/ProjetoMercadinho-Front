@@ -46,13 +46,13 @@ export class EntradaProdutoComponent implements OnInit {
       this.produtoService.getProdutoId(parametro.id)
       .then((produtoId : Produto)=>{
         this.entradaProduto.get('data').setValue(dataHoje)
-        this.entradaProduto.get('codigo').setValue(produtoId[0].codigo)
-        this.entradaProduto.get('nomeProduto').setValue(produtoId[0].nome)
-        this.entradaProduto.get('precoCusto').setValue(produtoId[0].precoCusto)
-        this.entradaProduto.get('precoVenda').setValue(produtoId[0].precoVenda)
+        this.entradaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
+        this.entradaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
+        this.entradaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
+        this.entradaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
         this.entradaProduto.get('quantidade').setValue(1)
 
-        this.valorProduto = produtoId[0].precoCusto
+        this.valorProduto = produtoId[0].preco_custo
         this.totalProduto = this.valorProduto * this.qtd          
       })
     })
@@ -72,23 +72,24 @@ export class EntradaProdutoComponent implements OnInit {
       this.totalProduto
     )
 
-    let res = await this.entradaService.postEntrada(entrada)
+    let response = await this.entradaService.postEntrada(entrada)
+    // pegar produto da entrada
+    //let produtoAtual = await this.entradaService.getProdutoCodigo(response.codigo_produto)
+    console.log(response)
 
-    let produtoAtual = await this.entradaService.getProdutoCodigo(res.produto_codigo)
+    // calcular o estoque atual
+    //let estoqueAtual = produtoAtual[0].estoque + response.quantidade
 
-    // Essa logica vai ser feita na api
-    let estoqueAtual = produtoAtual[0].estoque + res.quantidade
-    let produtoEstoqueNovo : Produto = new Produto
-    (produtoAtual[0].nome, 
-      produtoAtual[0].codigo, 
-      produtoAtual[0].precoCusto, 
-      produtoAtual[0].precoVenda, 
-      estoqueAtual)
+    // let produtoEstoqueNovo : Produto = new Produto
+    // (produtoAtual[0].nome_produto, produtoAtual[0].codigo_produto, produtoAtual[0].preco_custo, 
+    //   produtoAtual[0].preco_venda, estoqueAtual)
+    // produtoEstoqueNovo.produto_id = produtoAtual[0].produto_id
 
-      produtoEstoqueNovo.id = produtoAtual[0].id
+    //console.log(produtoEstoqueNovo)
 
-    await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
-    this.redirect.navigate(["/editar-produto"])
+    //await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
+
+    //this.voltar()
   }
 
 
