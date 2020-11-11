@@ -33,13 +33,12 @@ export class EditarProdutoIdComponent implements OnInit {
       this.produtoServiceId.getProdutoId(paramentro.id)
       .then((produtoId : Produto)=>{
         this.produtoId = produtoId
-        this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome)
-        this.cadProduto.get('codigo').setValue(this.produtoId[0].codigo)
-        this.cadProduto.get('precoCusto').setValue(this.produtoId[0].precoCusto)
-        this.cadProduto.get('precoVenda').setValue(this.produtoId[0].precoVenda)
+        this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome_produto)
+        this.cadProduto.get('codigo').setValue(this.produtoId[0].codigo_produto)
+        this.cadProduto.get('precoCusto').setValue(this.produtoId[0].preco_custo)
+        this.cadProduto.get('precoVenda').setValue(this.produtoId[0].preco_venda)
         this.cadProduto.get('estoque').setValue(this.produtoId[0].estoque)
       })
-      // inserindo o id nesta variavel
       this.proId = paramentro.id
     })
   }
@@ -59,7 +58,7 @@ export class EditarProdutoIdComponent implements OnInit {
         this.cadProduto.value.precoCusto,
         this.cadProduto.value.precoVenda,
         this.cadProduto.value.estoque)
-        cadastroProduto.id = this.proId
+        cadastroProduto.produto_id = this.proId
         
       await this.produtoServiceId.putProdutoId(cadastroProduto)
       this.router.navigate(["/editar-produto"])

@@ -17,7 +17,6 @@ export class EditarUsuarioComponent implements OnInit {
     "confirmaNovaSenha" : new FormControl(null,[Validators.required] )
   })
 
-  //public nomeUsuario : string
   public senha : string
   public confSenha : string
 

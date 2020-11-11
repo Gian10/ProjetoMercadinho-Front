@@ -1,11 +1,11 @@
 export class SaidaProduto{
-    public saidaId : number
+    public saida_id : number
     constructor(
-        public dataSaida : number,
-        public produtoCodigo : string,
-        public produtoNome : string,
-        public precoCusto : number,
-        public precoVenda : number,
+        public data_saida : number,
+        public produto_codigo : string,
+        public produto_nome : string,
+        public preco_custo : number,
+        public preco_venda : number,
         public quantidade : number,
         public total : number
         ){}
