@@ -21,11 +21,7 @@ export class SaidaService {
     constructor(private http : HttpClient){}
 
     postSaidaProduto(saida : SaidaProduto) : Promise<SaidaProduto>{
-        return this.http.post<SaidaProduto>(`${apiSaida}`, saida, httpOption).toPromise()
-    }
-
-    getProdutoCodigo(codigo : string) : Promise<Produto>{
-        return this.http.get<Produto>(`${apiProduto}`, httpOption).toPromise()
+        return this.http.post<SaidaProduto>(`${environment.api}/output`, saida, httpOption).toPromise()
     }
 
     getSaidaProduto() : Promise<Array<SaidaProduto>>{

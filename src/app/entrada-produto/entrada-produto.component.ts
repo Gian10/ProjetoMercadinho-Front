@@ -30,6 +30,7 @@ export class EntradaProdutoComponent implements OnInit {
   public qtd : number = 1
   public totalProduto : number = 0
   public valorProduto : number
+  public produto_id : number
 
 
   constructor(private produtoService : ProdutoService, 
@@ -53,7 +54,8 @@ export class EntradaProdutoComponent implements OnInit {
         this.entradaProduto.get('quantidade').setValue(1)
 
         this.valorProduto = produtoId[0].preco_custo
-        this.totalProduto = this.valorProduto * this.qtd          
+        this.totalProduto = this.valorProduto * this.qtd 
+        this.produto_id = parametro.id         
       })
     })
   }
@@ -61,35 +63,37 @@ export class EntradaProdutoComponent implements OnInit {
 
   // método de cadastro
   public async cadastrarEntrada(){
+    try{
+      let entrada : EntradaProduto = new EntradaProduto(
+        this.entradaProduto.value.data,
+        this.entradaProduto.value.codigo,
+        this.entradaProduto.value.nomeProduto,
+        this.entradaProduto.value.precoCusto,
+        this.entradaProduto.value.precoVenda,
+        this.entradaProduto.value.quantidade,
+        this.totalProduto
+      )
+  
+      let response = await this.entradaService.postEntrada(entrada)
+      // pegar produto da entrada
+      let produtoAtual = await this.produtoService.getProdutoId(this.produto_id)
+    
+  
+      // calcular o estoque atual
+      let estoqueAtual = produtoAtual[0].estoque + entrada.quantidade
+      
+  
+       let produtoEstoqueNovo : Produto = new Produto
+       (produtoAtual[0].nome_produto, produtoAtual[0].codigo_produto, produtoAtual[0].preco_custo, 
+         produtoAtual[0].preco_venda, estoqueAtual)
+       produtoEstoqueNovo.produto_id = this.produto_id
+       
+      let res = await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
+      this.voltar()
 
-    let entrada : EntradaProduto = new EntradaProduto(
-      this.entradaProduto.value.data,
-      this.entradaProduto.value.codigo,
-      this.entradaProduto.value.nomeProduto,
-      this.entradaProduto.value.precoCusto,
-      this.entradaProduto.value.precoVenda,
-      this.entradaProduto.value.quantidade,
-      this.totalProduto
-    )
-
-    let response = await this.entradaService.postEntrada(entrada)
-    // pegar produto da entrada
-    //let produtoAtual = await this.entradaService.getProdutoCodigo(response.codigo_produto)
-    console.log(response)
-
-    // calcular o estoque atual
-    //let estoqueAtual = produtoAtual[0].estoque + response.quantidade
-
-    // let produtoEstoqueNovo : Produto = new Produto
-    // (produtoAtual[0].nome_produto, produtoAtual[0].codigo_produto, produtoAtual[0].preco_custo, 
-    //   produtoAtual[0].preco_venda, estoqueAtual)
-    // produtoEstoqueNovo.produto_id = produtoAtual[0].produto_id
-
-    //console.log(produtoEstoqueNovo)
-
-    //await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
-
-    //this.voltar()
+    }catch(erro){
+      alert('ERRO AO SALVAR ENTRADA')
+    }    
   }
 
 
