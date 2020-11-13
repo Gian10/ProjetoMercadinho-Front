@@ -33,6 +33,7 @@ export class SaidaProdutoComponent implements OnInit {
   public qtd : number = 1
   public totalProduto : number = 0
   public valorProduto : number
+  public produto_id : number
 
 
 
@@ -50,38 +51,44 @@ export class SaidaProdutoComponent implements OnInit {
       this.produtoService.getProdutoId(parametro.id)
       .then((produtoId : Produto)=>{
         this.cadSaidaProduto.get('data').setValue(dataSaida)  
-        this.cadSaidaProduto.get('codigo').setValue(produtoId[0].codigo)
-        this.cadSaidaProduto.get('nomeProduto').setValue(produtoId[0].nome)
-        this.cadSaidaProduto.get('precoCusto').setValue(produtoId[0].precoCusto)
-        this.cadSaidaProduto.get('precoVenda').setValue(produtoId[0].precoVenda)
+        this.cadSaidaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
+        this.cadSaidaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
+        this.cadSaidaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
+        this.cadSaidaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
         this.cadSaidaProduto.get('quantidade').setValue(1)
-        this.valorProduto = produtoId[0].precoVenda
+        this.valorProduto = produtoId[0].preco_venda
         this.totalProduto = this.valorProduto * this.qtd
+        this.produto_id = parametro.id
       })
     })
   }
 
   public async cadastroSaidaProduto(){
-    let saidaProduto : SaidaProduto = new SaidaProduto(
-      this.cadSaidaProduto.value.data,
-      this.cadSaidaProduto.value.codigo,
-      this.cadSaidaProduto.value.nomeProduto,
-      this.cadSaidaProduto.value.precoCusto,
-      this.cadSaidaProduto.value.precoVenda,
-      this.cadSaidaProduto.value.quantidade,
-      this.totalProduto) 
-
-    let response = await this.saidaService.postSaidaProduto(saidaProduto)
-    let responseProdutoCodigo = await this.saidaService.getProdutoCodigo(response.produto_codigo)
-
-    let estoqueAtual = responseProdutoCodigo[0].estoque - response.quantidade
-
-    let produtoSaida : Produto = new Produto(responseProdutoCodigo[0].nome,
-       responseProdutoCodigo[0].codigo, responseProdutoCodigo[0].precoCusto, responseProdutoCodigo[0].precoVenda, estoqueAtual)
-       produtoSaida.produto_id = responseProdutoCodigo[0].id
-
-    this.produtoService.putProdutoId(produtoSaida)
-    this.redirect.navigate(["/editar-produto"])
+    try{
+      let saidaProduto : SaidaProduto = new SaidaProduto(
+        this.cadSaidaProduto.value.data,
+        this.cadSaidaProduto.value.codigo,
+        this.cadSaidaProduto.value.nomeProduto,
+        this.cadSaidaProduto.value.precoCusto,
+        this.cadSaidaProduto.value.precoVenda,
+        this.cadSaidaProduto.value.quantidade,
+        this.totalProduto) 
+  
+      await this.saidaService.postSaidaProduto(saidaProduto)
+      
+      let responseProdutoCodigo = await this.produtoService.getProdutoId(this.produto_id)
+  
+      let estoqueAtual = responseProdutoCodigo[0].estoque - saidaProduto.quantidade
+  
+      let produtoSaida : Produto = new Produto(responseProdutoCodigo[0].nome_produto,
+        responseProdutoCodigo[0].codigo_produto, responseProdutoCodigo[0].preco_custo, responseProdutoCodigo[0].preco_venda, estoqueAtual)
+        produtoSaida.produto_id = this.produto_id
+  
+      await this.produtoService.putProdutoId(produtoSaida)
+      this.redirect.navigate(["/editar-produto"])
+    }catch(erro){
+      alert('ERRO AO SALVAR SAÁDA')
+    }
   }
 
 
