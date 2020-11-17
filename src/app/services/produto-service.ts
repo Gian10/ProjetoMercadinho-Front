@@ -40,7 +40,7 @@ export class ProdutoService{
     }
 
     pesquisaProduto(texto : string) : Promise<Array<Produto>>{
-        let response =  this.http.get<Array<Produto>>(`${apiProduto}/?nome_like=${texto}`).toPromise()
+        let response =  this.http.get<Array<Produto>>(`${environment.api}/products/search?product=${texto}`).toPromise()
         return response    
     }    
 }

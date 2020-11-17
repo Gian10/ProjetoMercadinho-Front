@@ -11,11 +11,13 @@ import {ProdutoService} from '../services/produto-service'
 })
 export class EntradaListarComponent implements OnInit {
 
-  public entradaLista : Array<EntradaProduto>
+
+  public entradaLista : Array<EntradaProduto> = []
 
   public tamanhoEntrada : number
   public pesquisaEntrada : string = ''
-
+  public dataHoje : Date = new Date(Date.now())
+  public dataAjustada : string
 
   // objeto de paginação
   produtoPaginacao : any = {
@@ -36,10 +38,12 @@ export class EntradaListarComponent implements OnInit {
   };
 
 
-  constructor(private entradaService : EntradaService, private produtoService : ProdutoService) { }
+  constructor(private entradaService : EntradaService, 
+    private produtoService : ProdutoService) { }
 
 
   ngOnInit(): void {
+    this.dataAjustada = this.dataHoje.toISOString().split('T')[0]
     this.listarEntrada(this.pesquisaEntrada)
   }
 
@@ -64,6 +68,10 @@ export class EntradaListarComponent implements OnInit {
   public pesquisa(pesquisa : string) : void{
     this.pesquisaEntrada = pesquisa.replace(/(\d*)-(\d*)-(\d*).*/, '$3-$2-$1')
     this.listarEntrada(this.pesquisaEntrada.replace("-","/").replace("-","/"))
+  }
+
+  public limparPesquisa(){
+    location.reload()
   }
 
 }

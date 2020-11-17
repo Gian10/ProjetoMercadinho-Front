@@ -10,7 +10,7 @@ import {SaidaService} from '../services/saida-service'
 })
 export class SaidaListarComponent implements OnInit {
 
-  public saidaLista : Array<SaidaProduto>
+  public saidaLista : Array<SaidaProduto> = []
 
   public tamanhoSaida : number
   public pesquisaSaida : string = ''
