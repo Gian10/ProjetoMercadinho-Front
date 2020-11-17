@@ -34,11 +34,10 @@ export class EntradaService{
 
     getEntradaProduto(): Promise<Array<EntradaProduto>>{
         let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input`).toPromise()
-        console.log(res)
         return res
     }
 
     getPesquisaEntradaProduto(pesquisa : string): Promise<Array<EntradaProduto>> {
-        return this.http.get<Array<EntradaProduto>>(`${apiEntrada}/?dataVenda=${pesquisa}`).toPromise();
+        return this.http.get<Array<EntradaProduto>>(`${environment.api}/input/search?date=${pesquisa}`).toPromise();
     }
 }

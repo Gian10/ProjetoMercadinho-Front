@@ -10,7 +10,7 @@ import { Produto } from '../model/produto-model';
 })
 export class EditarProdutoComponent implements OnInit  {
 
-  public produto : Array<Produto>
+  public produto : Array<Produto> = []
   public produtoPesquisa : string = ''
 
   public tamanhoProduto : number
@@ -44,6 +44,7 @@ export class EditarProdutoComponent implements OnInit  {
 
   public async listarProduto(pesquisa : string){
     if(pesquisa !== ''){
+      console.log(pesquisa)
       let response = await this.serviceProduto.pesquisaProduto(pesquisa)
       this.produto = response
       this.tamanhoProduto = response.length
@@ -74,7 +75,6 @@ export class EditarProdutoComponent implements OnInit  {
 // pesquisa
   public pesquisar(pesquisa : string) : void{
     this.produtoPesquisa = pesquisa
-    console.log(pesquisa)
     this.listarProduto(this.produtoPesquisa.trim())
   }
 }

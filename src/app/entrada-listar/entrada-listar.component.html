@@ -1,24 +1,27 @@
 <app-tela-principal></app-tela-principal>
 
-
+<!-- (input)="pesquisa(variavelPesquisa.value)"  -->
 <div class="container">
     <h5>LISTA DE ENTRADAS</h5>
     <hr />
       <div class="pesquisar">
         <div class="input-group">
-          <input type="date" 
+          <input  style="font-size: 1rem" 
+          type="date"
           id="pesquisar"
           class="form-control"  
           placeholder="Pesquisar entrada"
-          #variavelPesquisa  
-          (input)="pesquisa(variavelPesquisa.value)"
-         
+          #variavelPesquisa
+          value="{{dataAjustada}}"
           >
           <span class="input-group-addon">
-            <button class="fa fa-search" style="background:transparent;border:none"></button>
+            <button class="fa fa-search fa-2x" (click)="pesquisa(variavelPesquisa.value)" style="background:transparent;border:none"></button>
           </span>
         </div>
+        <br>
+        <button class="btn btn-info" (click)="limparPesquisa()">LIMPAR PESQUISA</button>
       </div>
+
     <br>
     <table  id="produtoTable">
       <tr>
