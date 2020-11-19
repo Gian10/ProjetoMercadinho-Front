@@ -61,7 +61,6 @@ export class EntradaListarComponent implements OnInit {
 
    // método de evento ao clique da pagina
    public onPageChange(event){
-    //console.log(event)
     this.produtoPaginacao.currentPage = event;
   }
 

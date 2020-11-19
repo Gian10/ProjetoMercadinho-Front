@@ -14,6 +14,8 @@ export class SaidaListarComponent implements OnInit {
 
   public tamanhoSaida : number
   public pesquisaSaida : string = ''
+  public dataHoje : Date = new Date(Date.now())
+  public dataAjustada : string
 
 
   // objeto de paginação
@@ -37,15 +39,15 @@ export class SaidaListarComponent implements OnInit {
   constructor(private saidaService : SaidaService) { }
 
   ngOnInit():  void {
-
+    this.dataAjustada = this.dataHoje.toISOString().split('T')[0]
     this.listarSaida(this.pesquisaSaida)
-    
   }
 
   public async listarSaida(pesquisa : string){
     if(pesquisa !== ''){
       let res: Array<SaidaProduto> = await this.saidaService.getPesquisaSaidaProduto(pesquisa);
       this.saidaLista = res
+      console.log(res)
     } else{
       let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto()
       this.saidaLista = res
@@ -61,6 +63,10 @@ export class SaidaListarComponent implements OnInit {
   public pesquisa(pesquisa : string) : void{
     this.pesquisaSaida = pesquisa.replace(/(\d*)-(\d*)-(\d*).*/, '$3-$2-$1')
     this.listarSaida(this.pesquisaSaida.replace("-","/").replace("-","/"))
+  }
+
+  public limparPesquisa(){
+    location.reload()
   }
 
 }
