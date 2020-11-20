@@ -1,3 +1,0 @@
-function helo(){
-    alert("giiiiaaaannn")
-}

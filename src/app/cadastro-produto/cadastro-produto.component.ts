@@ -31,24 +31,27 @@ export class CadastroProdutoComponent implements OnInit {
   }
 
   public async cadastrarProduto(){
-    if(this.cadProduto.status === "INVALID"){
-
-      this.cadProduto.get('nomeProduto').markAsTouched()
-      this.cadProduto.get('codigo').markAsTouched()
-      this.cadProduto.get('precoCusto').markAsTouched()
-      this.cadProduto.get('precoVenda').markAsTouched()
-      this.cadProduto.get('estoque').markAsTouched()
-    }else{
-      let cadastroProduto : Produto = new Produto(
-        this.cadProduto.value.nomeProduto,
-        this.cadProduto.value.codigo,
-        this.cadProduto.value.precoCusto,
-        this.cadProduto.value.precoVenda,
-        this.cadProduto.value.estoque)
-
-      await this.serviceProduto.postProduto(cadastroProduto)
-      this.limparCampos()        
-    }
+      if(this.cadProduto.status === "INVALID"){
+        this.cadProduto.get('nomeProduto').markAsTouched()
+        this.cadProduto.get('codigo').markAsTouched()
+        this.cadProduto.get('precoCusto').markAsTouched()
+        this.cadProduto.get('precoVenda').markAsTouched()
+        this.cadProduto.get('estoque').markAsTouched()
+      }
+      else{
+        let cadastroProduto : Produto = new Produto(
+          this.cadProduto.value.nomeProduto,
+          this.cadProduto.value.codigo,
+          this.cadProduto.value.precoCusto,
+          this.cadProduto.value.precoVenda,
+          this.cadProduto.value.estoque)
+        try{
+          await this.serviceProduto.postProduto(cadastroProduto)
+          this.limparCampos()        
+        }catch(erro){
+          alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+        }
+      }
   }
 
 

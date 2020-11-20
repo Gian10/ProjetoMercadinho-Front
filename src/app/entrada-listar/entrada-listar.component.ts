@@ -49,13 +49,17 @@ export class EntradaListarComponent implements OnInit {
 
 
   public async listarEntrada(pesquisa : string){
-    if(pesquisa !== ''){
-      let res: Array<EntradaProduto> = await this.entradaService.getPesquisaEntradaProduto(pesquisa);
-      this.entradaLista = res
-    } else{
-      let res : Array<EntradaProduto> = await this.entradaService.getEntradaProduto()
-      this.entradaLista = res
-      this.tamanhoEntrada = res.length
+    try{
+      if(pesquisa !== ''){
+        let res: Array<EntradaProduto> = await this.entradaService.getPesquisaEntradaProduto(pesquisa);
+        this.entradaLista = res
+      } else{
+        let res : Array<EntradaProduto> = await this.entradaService.getEntradaProduto()
+        this.entradaLista = res
+        this.tamanhoEntrada = res.length
+      }
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
     }
   }
 

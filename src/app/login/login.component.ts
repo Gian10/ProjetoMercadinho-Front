@@ -4,6 +4,7 @@ import {Usuario} from '../model/usuario-model'
 import {LoginService} from '../services/login-service'
 import { Router } from '@angular/router';
 import { EventEmitter } from 'protractor';
+import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 @Component({
   selector: 'app-login',
@@ -25,16 +26,16 @@ export class LoginComponent implements OnInit {
   }
 
   async verificar(){
-    let user : Usuario = new Usuario(this.login.value.login, this.login.value.senha) 
-   
-   
-    let resultado = await this.loginService.login(user)
- 
-
-    if(resultado){
-      this.router.navigate([""])
-    }else{
-      this.alerta = false
+    try{
+      let user : Usuario = new Usuario(this.login.value.login, this.login.value.senha) 
+      let resultado = await this.loginService.login(user)
+      if(resultado){
+        this.router.navigate([""])
+      }else{
+        this.alerta = false
+      }
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
     }
   }
 }

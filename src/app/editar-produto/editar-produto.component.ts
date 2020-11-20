@@ -43,21 +43,23 @@ export class EditarProdutoComponent implements OnInit  {
 
 
   public async listarProduto(pesquisa : string){
-    if(pesquisa !== ''){
-      console.log(pesquisa)
-      let response = await this.serviceProduto.pesquisaProduto(pesquisa)
-      this.produto = response
-      this.tamanhoProduto = response.length
-    }else{
-      let response = await this.serviceProduto.getProduto()
-      this.produto = response
-      this.tamanhoProduto = response.length
-    } 
+    try{
+      if(pesquisa !== ''){
+        let response = await this.serviceProduto.pesquisaProduto(pesquisa)
+        this.produto = response
+        this.tamanhoProduto = response.length
+      }else{
+        let response = await this.serviceProduto.getProduto()
+        this.produto = response
+        this.tamanhoProduto = response.length
+      } 
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+    }
   }
 
   // método de evento ao clique da pagina
   public onPageChange(event){
-    //console.log(event)
     this.produtoPaginacao.currentPage = event;
   }
 

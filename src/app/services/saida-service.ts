@@ -3,6 +3,10 @@ import {environment} from '../../environments/environment'
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
+interface SaidaTotal{
+    totalsaida : number
+}
+
 @Injectable()
 export class SaidaService {
 
@@ -18,5 +22,10 @@ export class SaidaService {
 
     getPesquisaSaidaProduto(pesquisa : string): Promise<Array<SaidaProduto>> {
         return this.http.get<Array<SaidaProduto>>(`${environment.api}/output/search?date=${pesquisa}`).toPromise();
+    }
+
+    async getTotalSaida() : Promise<number> {
+       let res = await this.http.get<SaidaTotal>(`${environment.api}/sumTotalOutput`).toPromise() 
+       return res.totalsaida
     }
 }
