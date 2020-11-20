@@ -28,19 +28,22 @@ export class EditarProdutoIdComponent implements OnInit {
   constructor(private produtoServiceId : ProdutoService, private route : ActivatedRoute, private router : Router) { }
 
   ngOnInit(): void {
-    
-    this.route.params.subscribe((paramentro : Params)=>{
-      this.produtoServiceId.getProdutoId(paramentro.id)
-      .then((produtoId : Produto)=>{
-        this.produtoId = produtoId
-        this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome_produto)
-        this.cadProduto.get('codigo').setValue(this.produtoId[0].codigo_produto)
-        this.cadProduto.get('precoCusto').setValue(this.produtoId[0].preco_custo)
-        this.cadProduto.get('precoVenda').setValue(this.produtoId[0].preco_venda)
-        this.cadProduto.get('estoque').setValue(this.produtoId[0].estoque)
+    try{
+      this.route.params.subscribe((paramentro : Params)=>{
+        this.produtoServiceId.getProdutoId(paramentro.id)
+        .then((produtoId : Produto)=>{
+          this.produtoId = produtoId
+          this.cadProduto.get('nomeProduto').setValue(this.produtoId[0].nome_produto)
+          this.cadProduto.get('codigo').setValue(this.produtoId[0].codigo_produto)
+          this.cadProduto.get('precoCusto').setValue(this.produtoId[0].preco_custo)
+          this.cadProduto.get('precoVenda').setValue(this.produtoId[0].preco_venda)
+          this.cadProduto.get('estoque').setValue(this.produtoId[0].estoque)
+        })
+        this.proId = paramentro.id
       })
-      this.proId = paramentro.id
-    })
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+    }
   }
 
 
@@ -59,9 +62,12 @@ export class EditarProdutoIdComponent implements OnInit {
         this.cadProduto.value.precoVenda,
         this.cadProduto.value.estoque)
         cadastroProduto.produto_id = this.proId
-        
-      await this.produtoServiceId.putProdutoId(cadastroProduto)
-      this.router.navigate(["/editar-produto"])
+      try{
+        await this.produtoServiceId.putProdutoId(cadastroProduto)
+        this.router.navigate(["/editar-produto"])
+      }catch(erro){
+        alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+      }
     }
   }
 

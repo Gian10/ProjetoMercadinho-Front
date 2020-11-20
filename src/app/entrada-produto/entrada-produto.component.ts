@@ -42,22 +42,25 @@ export class EntradaProdutoComponent implements OnInit {
 
     let dataHoje = this.dataAtual.toLocaleDateString() + " "+ this.dataAtual.getHours()+":"+  (this.dataAtual.getMinutes() < 10 ?'0':'') +this.dataAtual.getMinutes()
    
-
-    this.router.params.subscribe((parametro : Params)=>{
-      this.produtoService.getProdutoId(parametro.id)
-      .then((produtoId : Produto)=>{
-        this.entradaProduto.get('data').setValue(dataHoje)
-        this.entradaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
-        this.entradaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
-        this.entradaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
-        this.entradaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
-        this.entradaProduto.get('quantidade').setValue(1)
-
-        this.valorProduto = produtoId[0].preco_custo
-        this.totalProduto = this.valorProduto * this.qtd 
-        this.produto_id = parametro.id         
+    try{
+      this.router.params.subscribe((parametro : Params)=>{
+        this.produtoService.getProdutoId(parametro.id)
+        .then((produtoId : Produto)=>{
+          this.entradaProduto.get('data').setValue(dataHoje)
+          this.entradaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
+          this.entradaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
+          this.entradaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
+          this.entradaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
+          this.entradaProduto.get('quantidade').setValue(1)
+  
+          this.valorProduto = produtoId[0].preco_custo
+          this.totalProduto = this.valorProduto * this.qtd 
+          this.produto_id = parametro.id         
+        })
       })
-    })
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+    }
   }
 
 
@@ -76,13 +79,10 @@ export class EntradaProdutoComponent implements OnInit {
   
       let response = await this.entradaService.postEntrada(entrada)
       // pegar produto da entrada
-      let produtoAtual = await this.produtoService.getProdutoId(this.produto_id)
-    
-  
+      let produtoAtual = await this.produtoService.getProdutoId(this.produto_id)   
       // calcular o estoque atual
       let estoqueAtual = produtoAtual[0].estoque + entrada.quantidade
-      
-  
+
        let produtoEstoqueNovo : Produto = new Produto
        (produtoAtual[0].nome_produto, produtoAtual[0].codigo_produto, produtoAtual[0].preco_custo, 
          produtoAtual[0].preco_venda, estoqueAtual)

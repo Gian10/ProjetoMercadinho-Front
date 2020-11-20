@@ -44,14 +44,18 @@ export class SaidaListarComponent implements OnInit {
   }
 
   public async listarSaida(pesquisa : string){
-    if(pesquisa !== ''){
-      let res: Array<SaidaProduto> = await this.saidaService.getPesquisaSaidaProduto(pesquisa);
-      this.saidaLista = res
-      console.log(res)
-    } else{
-      let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto()
-      this.saidaLista = res
-      this.tamanhoSaida = res.length
+    try{
+      if(pesquisa !== ''){
+        let res: Array<SaidaProduto> = await this.saidaService.getPesquisaSaidaProduto(pesquisa);
+        this.saidaLista = res
+        console.log(res)
+      } else{
+        let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto()
+        this.saidaLista = res
+        this.tamanhoSaida = res.length
+      }
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
     }
   }
 

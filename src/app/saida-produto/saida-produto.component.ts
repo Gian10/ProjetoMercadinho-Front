@@ -35,8 +35,6 @@ export class SaidaProdutoComponent implements OnInit {
   public valorProduto : number
   public produto_id : number
 
-
-
   constructor(private route : ActivatedRoute, 
     private saidaService : SaidaService,
     private produtoService : ProdutoService,
@@ -44,24 +42,27 @@ export class SaidaProdutoComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     let dataSaida = this.dataAtual.toLocaleDateString() + " " + this.dataAtual.getHours() + ":" + (this.dataAtual.getMinutes() < 10 ? "0" : "") + this.dataAtual.getMinutes()
-
-    this.route.params.subscribe((parametro : Params)=>{
-      this.produtoService.getProdutoId(parametro.id)
-      .then((produtoId : Produto)=>{
-        this.cadSaidaProduto.get('data').setValue(dataSaida)  
-        this.cadSaidaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
-        this.cadSaidaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
-        this.cadSaidaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
-        this.cadSaidaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
-        this.cadSaidaProduto.get('quantidade').setValue(1)
-        this.valorProduto = produtoId[0].preco_venda
-        this.totalProduto = this.valorProduto * this.qtd
-        this.produto_id = parametro.id
+    try{
+      this.route.params.subscribe((parametro : Params)=>{
+        this.produtoService.getProdutoId(parametro.id)
+        .then((produtoId : Produto)=>{
+          this.cadSaidaProduto.get('data').setValue(dataSaida)  
+          this.cadSaidaProduto.get('codigo').setValue(produtoId[0].codigo_produto)
+          this.cadSaidaProduto.get('nomeProduto').setValue(produtoId[0].nome_produto)
+          this.cadSaidaProduto.get('precoCusto').setValue(produtoId[0].preco_custo)
+          this.cadSaidaProduto.get('precoVenda').setValue(produtoId[0].preco_venda)
+          this.cadSaidaProduto.get('quantidade').setValue(1)
+          this.valorProduto = produtoId[0].preco_venda
+          this.totalProduto = this.valorProduto * this.qtd
+          this.produto_id = parametro.id
+        })
       })
-    })
+    }catch(erro){
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+    }
   }
+
 
   public async cadastroSaidaProduto(){
     try{
@@ -87,10 +88,9 @@ export class SaidaProdutoComponent implements OnInit {
       await this.produtoService.putProdutoId(produtoSaida)
       this.redirect.navigate(["/editar-produto"])
     }catch(erro){
-      alert('ERRO AO SALVAR SAÁDA')
+      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
     }
   }
-
 
 
   public voltar(): void{
