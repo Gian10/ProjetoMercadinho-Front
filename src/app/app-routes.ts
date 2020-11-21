@@ -17,7 +17,7 @@ import {EditarUsuarioComponent} from './editar-usuario/editar-usuario.component'
 export const ROUTES : Routes = [
 
     // verifica se a rota vazia esta autorizada
-    {path : "" , component : HomeComponent, canActivate:[AuthGuard] },
+    {path : "home" , component : HomeComponent, canActivate:[AuthGuard] },
     {path : "cadastro-produto" , component : CadastroProdutoComponent, canActivate:[AuthGuard]},
     {path : "editar-produto", component: EditarProdutoComponent, canActivate: [AuthGuard]},
     {path : "editar-produto/:id", component: EditarProdutoIdComponent, canActivate: [AuthGuard]},

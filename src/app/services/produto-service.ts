@@ -1,10 +1,6 @@
 import {Produto} from '../model/produto-model'
-
-import {apiProduto} from '../../app-api'
 import {environment} from '../../environments/environment'
-
 import {HttpClient} from '@angular/common/http'
-
 import {Injectable} from '@angular/core'
 
 

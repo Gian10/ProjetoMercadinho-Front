@@ -14,6 +14,7 @@ export class EditarProdutoComponent implements OnInit  {
   public produtoPesquisa : string = ''
 
   public tamanhoProduto : number
+  public alert : boolean = true
 
   // objeto de paginação
   produtoPaginacao : any = {
@@ -54,7 +55,7 @@ export class EditarProdutoComponent implements OnInit  {
         this.tamanhoProduto = response.length
       } 
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+      this.alert = false
     }
   }
 

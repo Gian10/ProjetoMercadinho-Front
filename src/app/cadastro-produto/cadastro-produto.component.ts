@@ -24,6 +24,7 @@ export class CadastroProdutoComponent implements OnInit {
   })
 
   public produto : Produto
+  public alert : boolean = true
 
   constructor(private serviceProduto : ProdutoService, private redirect : Router) { }
 
@@ -49,7 +50,7 @@ export class CadastroProdutoComponent implements OnInit {
           await this.serviceProduto.postProduto(cadastroProduto)
           this.limparCampos()        
         }catch(erro){
-          alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+         this.alert = false
         }
       }
   }
@@ -61,6 +62,6 @@ export class CadastroProdutoComponent implements OnInit {
 
 
   public voltar() : void{
-    this.redirect.navigate(["/"])
+    this.redirect.navigate(["/home"])
   }
 }

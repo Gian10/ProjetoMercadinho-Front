@@ -1,5 +1,12 @@
 <app-tela-principal></app-tela-principal>
 
+<div class="text-center" *ngIf="!alert">
+  <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR PEGAR DADOS. 
+  </div>
+</div>
+
 <div class="container">
     <h5>LISTA DE PRODUTOS</h5>
     <hr />
@@ -13,9 +20,6 @@
           oninput="this.value = this.value.toUpperCase()" 
           (input)="pesquisar(variavelPesquisa.value)" 
           >
-          <!-- <span class="input-group-addon">
-            <button class="fa fa-search" style="background:transparent;border:none"></button>
-          </span> -->
         </div>
       </div>
     <br>

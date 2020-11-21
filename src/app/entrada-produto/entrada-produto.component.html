@@ -1,13 +1,16 @@
 <app-tela-principal></app-tela-principal>
 
+<div class="text-center" *ngIf="!alert">
+  <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR REALIZAR AÇÃO. 
+  </div>
+</div>
+
 <div class="container">
     <h5>CONFIRMAR COMPRA DE PRODUTO</h5>
     <hr />
     <form [formGroup]="entradaProduto" novalidate (ngSubmit)="cadastrarEntrada()" >
-
-      
-        <!-- pegar data e inserir pipe [value]="entradaProduto.get('data').value | date: 'short'" -->
-
         <div class="form-row">     
             <div class="col-md-2 mb-3">
                 <strong><label>Data</label></strong>

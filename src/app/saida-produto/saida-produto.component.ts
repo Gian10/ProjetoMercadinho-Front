@@ -1,13 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {SaidaService} from '../services/saida-service'
 import {ProdutoService} from '../services/produto-service'
-
 import {SaidaProduto} from '../model/saida-produto'
-
-
-
 import {ActivatedRoute, Params, Router} from '@angular/router'
-
 import {FormGroup, FormControl, Validators} from '@angular/forms'
 import { Produto } from '../model/produto-model';
 
@@ -34,6 +29,7 @@ export class SaidaProdutoComponent implements OnInit {
   public totalProduto : number = 0
   public valorProduto : number
   public produto_id : number
+  public alert : boolean = true
 
   constructor(private route : ActivatedRoute, 
     private saidaService : SaidaService,
@@ -59,7 +55,7 @@ export class SaidaProdutoComponent implements OnInit {
         })
       })
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+      this.alert = false
     }
   }
 
@@ -88,7 +84,7 @@ export class SaidaProdutoComponent implements OnInit {
       await this.produtoService.putProdutoId(produtoSaida)
       this.redirect.navigate(["/editar-produto"])
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+     this.alert = false
     }
   }
 

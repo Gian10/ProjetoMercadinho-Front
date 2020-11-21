@@ -1,19 +1,11 @@
 import {EntradaProduto} from '../model/entrada-produto'
 import {Produto} from '../model/produto-model'
-
-import {apiEntrada} from '../../app-api'
-import {apiProduto} from '../../app-api'
-
 import {environment} from '../../environments/environment'
-
-import {HttpClient, HttpHeaders} from '@angular/common/http'
+import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
-const httpOption={
-    headers : new HttpHeaders({
-        "Content-Type" : "application/json",
-        "Authorization" : ""
-    })
+interface EntradaTotal{
+    totalentrada : number
 }
 
 @Injectable()
@@ -39,5 +31,10 @@ export class EntradaService{
 
     getPesquisaEntradaProduto(pesquisa : string): Promise<Array<EntradaProduto>> {
         return this.http.get<Array<EntradaProduto>>(`${environment.api}/input/search?date=${pesquisa}`).toPromise();
+    }
+
+    async getTotalEntrada(): Promise<number>{
+        let res = await this.http.get<EntradaTotal>(`${environment.api}/sumTotalInput`).toPromise()
+        return res.totalentrada
     }
 }

@@ -1,5 +1,12 @@
 <app-tela-principal></app-tela-principal>
 
+<div class="text-center" *ngIf="!alert">
+  <div class="alert alert-danger alert-dismissible">
+      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+      <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR REALIZAR AÇÃO. 
+  </div>
+</div>
+
 <div class="container">
     <h5>CONFIRMAR SAÍDA DE PRODUTO</h5>
     <hr />

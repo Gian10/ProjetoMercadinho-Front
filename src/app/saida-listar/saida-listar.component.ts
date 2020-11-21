@@ -8,17 +8,20 @@ import {SaidaService} from '../services/saida-service'
   styleUrls: ['./saida-listar.component.css'],
   providers:[SaidaService]
 })
+
+
 export class SaidaListarComponent implements OnInit {
 
-  public saidaLista : Array<SaidaProduto> = []
+  public saidaLista : Array<SaidaProduto>
 
   public tamanhoSaida : number
   public pesquisaSaida : string = ''
   public dataHoje : Date = new Date(Date.now())
   public dataAjustada : string
+  public alert : boolean = true
 
 
-  // objeto de paginação
+  //objeto de paginação
   produtoPaginacao : any = {
     itemsPerPage: 10,
     currentPage: 1,
@@ -41,6 +44,7 @@ export class SaidaListarComponent implements OnInit {
   ngOnInit():  void {
     this.dataAjustada = this.dataHoje.toISOString().split('T')[0]
     this.listarSaida(this.pesquisaSaida)
+    
   }
 
   public async listarSaida(pesquisa : string){
@@ -48,14 +52,14 @@ export class SaidaListarComponent implements OnInit {
       if(pesquisa !== ''){
         let res: Array<SaidaProduto> = await this.saidaService.getPesquisaSaidaProduto(pesquisa);
         this.saidaLista = res
-        console.log(res)
       } else{
         let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto()
         this.saidaLista = res
         this.tamanhoSaida = res.length
       }
+      
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+     this.alert = false
     }
   }
 
