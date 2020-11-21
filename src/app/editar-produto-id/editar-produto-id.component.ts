@@ -24,6 +24,7 @@ export class EditarProdutoIdComponent implements OnInit {
 
   public produtoId : Produto
   public proId : number
+  public alert : boolean = true
 
   constructor(private produtoServiceId : ProdutoService, private route : ActivatedRoute, private router : Router) { }
 
@@ -42,7 +43,7 @@ export class EditarProdutoIdComponent implements OnInit {
         this.proId = paramentro.id
       })
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+      this.alert = false
     }
   }
 
@@ -66,7 +67,7 @@ export class EditarProdutoIdComponent implements OnInit {
         await this.produtoServiceId.putProdutoId(cadastroProduto)
         this.router.navigate(["/editar-produto"])
       }catch(erro){
-        alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+       this.alert = false
       }
     }
   }

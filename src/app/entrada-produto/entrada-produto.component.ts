@@ -31,6 +31,7 @@ export class EntradaProdutoComponent implements OnInit {
   public totalProduto : number = 0
   public valorProduto : number
   public produto_id : number
+  public alert : boolean = true
 
 
   constructor(private produtoService : ProdutoService, 
@@ -59,7 +60,7 @@ export class EntradaProdutoComponent implements OnInit {
         })
       })
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+     this.alert = false
     }
   }
 
@@ -92,7 +93,7 @@ export class EntradaProdutoComponent implements OnInit {
       this.voltar()
 
     }catch(erro){
-      alert('ERRO AO SALVAR ENTRADA')
+      this.alert = false
     }    
   }
 

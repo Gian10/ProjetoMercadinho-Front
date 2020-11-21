@@ -1,10 +1,8 @@
-import { Component, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {NgForm} from '@angular/forms'
 import {Usuario} from '../model/usuario-model'
 import {LoginService} from '../services/login-service'
 import { Router } from '@angular/router';
-import { EventEmitter } from 'protractor';
-import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_parser/binding_parser';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +12,7 @@ import { calcPossibleSecurityContexts } from '@angular/compiler/src/template_par
 })
 export class LoginComponent implements OnInit {
  
-  @ViewChild("login")   public login : NgForm
+  @ViewChild("login") public login : NgForm
 
   public alerta : boolean
   public usuario : Usuario 
@@ -29,13 +27,9 @@ export class LoginComponent implements OnInit {
     try{
       let user : Usuario = new Usuario(this.login.value.login, this.login.value.senha) 
       let resultado = await this.loginService.login(user)
-      if(resultado){
-        this.router.navigate([""])
-      }else{
-        this.alerta = false
-      }
+      this.router.navigate([""])
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+      alert("ERRO DO SERVIDOR. TENTE NOVAMENTO MAIS TARDE!")
     }
   }
 }

@@ -19,6 +19,7 @@ export class EditarUsuarioComponent implements OnInit {
 
   public senha : string
   public confSenha : string
+  public alert : boolean = true
 
   public idUser : string = window.localStorage.getItem('idUser')
 
@@ -28,7 +29,7 @@ export class EditarUsuarioComponent implements OnInit {
     this.userService.getUsuarioId(Number(this.idUser))
     .then((usuarioId : Usuario)=>{
       this.editUsuario.get('nomeUsuario').setValue(usuarioId[0].nome)})
-    .catch(_ => alert("ERRO AO EXIBIR DADOS"))
+    .catch(_ => this.alert = false)
   }
 
 
@@ -45,13 +46,13 @@ export class EditarUsuarioComponent implements OnInit {
           let res = await this.userService.putUsuario(usuario)
           this.voltar()  
         }catch(e){
-          alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+         this.alert = false
         }
     }
   }
 
   public voltar() : void{
-    this.redirect.navigate(["/"])
+    this.redirect.navigate(["/home"])
   }
 
   public verificarNovaSenha(): void{

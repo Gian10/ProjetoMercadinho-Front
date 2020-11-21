@@ -11,7 +11,8 @@
                 class="form-control"      
                 name="login"
                 ngModel
-                #inputNome="ngModel"      
+                #inputNome="ngModel"  
+                oninput="this.value = this.value.toUpperCase()"     
                 >	  
                 <small *ngIf="inputNome.valid && inputNome.touched" class="form-text text-success">Ok</small>
                 <small *ngIf="!inputNome.valid && inputNome.touched" class="form-text text-danger">Nome inválido</small>

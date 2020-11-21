@@ -18,6 +18,7 @@ export class EntradaListarComponent implements OnInit {
   public pesquisaEntrada : string = ''
   public dataHoje : Date = new Date(Date.now())
   public dataAjustada : string
+  public alert : boolean = true
 
   // objeto de paginação
   produtoPaginacao : any = {
@@ -59,7 +60,7 @@ export class EntradaListarComponent implements OnInit {
         this.tamanhoEntrada = res.length
       }
     }catch(erro){
-      alert("ERRO DO SERVIDOR. TESTE NOVAMENTO MAIS TARDE!")
+     this.alert = false
     }
   }
 

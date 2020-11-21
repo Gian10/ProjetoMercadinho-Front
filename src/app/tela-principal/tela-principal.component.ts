@@ -9,6 +9,7 @@ export class TelaPrincipalComponent implements OnInit {
 
   public nameUser : string
   public idUser : number
+
   constructor() { }
 
   ngOnInit(): void {

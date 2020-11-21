@@ -1,40 +1,38 @@
 import { Usuario } from '../model/usuario-model'
-import {api} from '../../app-api'
-import {environment} from '../../environments/environment'
+import { environment } from '../../environments/environment'
+import { HttpClient } from '@angular/common/http'
+import { Injectable } from '@angular/core'
 
-import {HttpClient, HttpHeaders, HttpErrorResponse} from '@angular/common/http'
-import {Injectable} from '@angular/core'
-
+interface Login {
+    id: string,
+    name: string,
+    iat: number,
+    exp: number,
+    token: string
+}
 
 @Injectable({
     providedIn: 'root'
-  })
-export class LoginService{
+})
+export class LoginService {
 
-    constructor(public http : HttpClient){}
+    constructor(public http: HttpClient) { }
 
-    async login(user : Usuario) { 
-
-        try{
-            let result = await this.http.post<any>(`${environment.api}/login`, user).toPromise()      
-            window.localStorage.setItem('idUser', result.id)
-            window.localStorage.setItem('nameUser', result.name)
-            window.localStorage.setItem("token", result.token)
-            return result
-        }catch(erro){
-            return false
-        }
-        
+    async login(user: Usuario): Promise<Login> {
+        let result = await this.http.post<Login>(`${environment.api}/login`, user).toPromise()
+        window.localStorage.setItem('idUser', result.id)
+        window.localStorage.setItem('nameUser', result.name)
+        window.localStorage.setItem("token", result.token)
+        return result
     }
 
-    async criarConta(conta: any) {
-        const result = await this.http.post<any>(`${api}`, conta).toPromise();
-        console.log(result)
+    async criarConta(conta: Usuario) {
+        let result = await this.http.post(`${environment.api}/login/cadastroUser`, conta).toPromise();
         return result;
-      }
+    }
 
-      getAuthorizationToken(){
-          const token = window.localStorage.getItem('token');
-          return token;
-      }
+    getAuthorizationToken() {
+        const token = window.localStorage.getItem('token');
+        return token;
+    }
 }
