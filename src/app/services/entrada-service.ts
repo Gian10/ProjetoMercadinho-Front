@@ -7,6 +7,15 @@ import {Injectable} from '@angular/core'
 interface EntradaTotal{
     totalentrada : number
 }
+interface QtdEntrada{
+    qtdentrada : number
+}
+
+interface EntradaProdutoQtd{
+    nRecords : number,
+    searchInputProducts : Array<EntradaProduto>
+}
+
 
 @Injectable()
 export class EntradaService{
@@ -24,13 +33,19 @@ export class EntradaService{
         return novoProdutoEstoque
     }
 
-    getEntradaProduto(): Promise<Array<EntradaProduto>>{
-        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input`).toPromise()
+    async getCountInput(): Promise<number>{
+        let res = await this.http.get<QtdEntrada>(`${environment.api}/input/count`).toPromise()
+        return res.qtdentrada   
+    }
+
+    getInputPage(page: number): Promise<Array<EntradaProduto>>{
+        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input?page=${page}`).toPromise()
         return res
     }
 
-    getPesquisaEntradaProduto(pesquisa : string): Promise<Array<EntradaProduto>> {
-        return this.http.get<Array<EntradaProduto>>(`${environment.api}/input/search?date=${pesquisa}`).toPromise();
+    getPesquisaEntradaProduto(pesquisa : string, page : number): Promise<EntradaProdutoQtd> {
+        let res = this.http.get<EntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${page}`).toPromise();
+        return res
     }
 
     async getTotalEntrada(): Promise<number>{

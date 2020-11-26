@@ -27,7 +27,7 @@ export class LoginComponent implements OnInit {
     try{
       let user : Usuario = new Usuario(this.login.value.login, this.login.value.senha) 
       let resultado = await this.loginService.login(user)
-      this.router.navigate([""])
+      this.router.navigate(["/home"])
     }catch(erro){
       alert("ERRO DO SERVIDOR. TENTE NOVAMENTO MAIS TARDE!")
     }

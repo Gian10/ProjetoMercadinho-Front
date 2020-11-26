@@ -24,8 +24,7 @@ export class SaidaListarComponent implements OnInit {
   //objeto de paginação
   produtoPaginacao : any = {
     itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: this.saidaLista
+    currentPage: 1
   };
 
 
