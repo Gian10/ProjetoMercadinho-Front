@@ -2,62 +2,53 @@
 
 <div class="text-center" *ngIf="!alert">
   <div class="alert alert-danger alert-dismissible">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR PEGAR DADOS. 
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR PEGAR DADOS.
   </div>
 </div>
 
 <div class="container">
-    <h5>LISTA DE ENTRADAS</h5>
-    <hr />
-      <div class="pesquisar">
-        <div class="input-group">
-          <input style="font-size: 1rem" 
-          type="date"
-          id="pesquisar"
-          class="form-control"  
-          placeholder="Pesquisar entrada"
-          #variavelPesquisa
-          value="{{dataAjustada}}"
-          >
-          <span class="input-group-addon">
-            <button class="fa fa-search fa-2x" (click)="pesquisa(variavelPesquisa.value)" style="background:transparent;border:none"></button>
-          </span>
-        </div>
-        <br>
-        <button class="btn btn-info" (click)="limparPesquisa()">LIMPAR PESQUISA</button>
-      </div>
-
-    <br>
-    <table  id="produtoTable">
+  <h5>LISTA DE ENTRADAS</h5>
+  <hr />
+  <div class="form-group row">
+    <div class="col-4">
+      <input class="form-control" type="date" id="pesquisar" #variavelPesquisa
+        value="{{dataAjustada}}">
+    </div>
+    <span class="input-group-addon">
+      <button class="fa fa-search fa-2x" (click)="pesquisa(variavelPesquisa.value)"
+        style="background:transparent;border:none"></button>
+    </span>
+  </div>
+  <button class="btn btn-info" (click)="limparPesquisa()">LIMPAR PESQUISA</button>
+  <br>
+  <br>
+  <div class="table-responsive-sm">
+    <table class="table table-bordered" id="produtoTable">
       <tr>
         <th>Data da Entrada</th>
         <th>Produto Código</th>
         <th>Produto Nome</th>
-        <th>Preço Custo</th> 
+        <th>Preço Custo</th>
         <th>Preço Venda</th>
-        <th>Quantidade</th> 
-        <th>Total</th>    
-        
+        <th>Quantidade</th>
+        <th>Total</th>
       </tr>
-      <tr *ngFor="let listaEntrada of entradaLista | paginate: produtoPaginacao"  >  
+      <tr
+        *ngFor="let listaEntrada of entradaLista | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">
         <td>{{listaEntrada.data_entrada}}</td>
         <td>{{listaEntrada.codigo_produto}}</td>
-        <td>{{listaEntrada.nome_produto}}</td>  
+        <td>{{listaEntrada.nome_produto}}</td>
         <td>{{listaEntrada.preco_custo | currency: 'R$'}}</td>
         <td>{{listaEntrada.preco_venda | currency: 'R$'}}</td>
         <td>{{listaEntrada.quantidade}}</td>
         <td>{{listaEntrada.total | currency: 'R$'}}</td>
       </tr>
     </table>
-    <!--  Personalizar vários elementos na paginação -->
-    <pagination-controls 
-                         [maxSize]="maxSize"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [responsive]="responsive"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         (pageChange)="onPageChange($event)">
+  </div>
+  <div class="pagination pagination-sm m-0 float-right">
+    <pagination-controls (pageChange)="getPage($event)" previousLabel="Anterior" nextLabel="Próximo">
     </pagination-controls>
- </div>
+  </div>
+
+</div>
