@@ -14,62 +14,54 @@ export class SaidaListarComponent implements OnInit {
 
   public saidaLista : Array<SaidaProduto>
 
-  public tamanhoSaida : number
   public pesquisaSaida : string = ''
   public dataHoje : Date = new Date(Date.now())
   public dataAjustada : string
   public alert : boolean = true
 
+  public page : number = 1
+  public total : number
+  
 
-  //objeto de paginação
-  produtoPaginacao : any = {
-    itemsPerPage: 10,
-    currentPage: 1
-  };
-
-
-  // montar a personalização da paginação
-  public maxSize: number = 1000
-  public directionLinks: boolean = true;
-  public autoHide: boolean = false;
-  public responsive: boolean = true;
-  public labels: any = {
-      previousLabel: 'Anterior',
-      nextLabel: 'Próximo',
-  };
+  
 
   constructor(private saidaService : SaidaService) { }
 
   ngOnInit():  void {
     this.dataAjustada = this.dataHoje.toISOString().split('T')[0]
-    this.listarSaida(this.pesquisaSaida)
-    
+    this.listarSaida(this.pesquisaSaida, this.page)
   }
 
-  public async listarSaida(pesquisa : string){
+  public async listarSaida(pesquisa : string, pagina : number){
     try{
       if(pesquisa !== ''){
-        let res: Array<SaidaProduto> = await this.saidaService.getPesquisaSaidaProduto(pesquisa);
-        this.saidaLista = res
+        let res = await this.saidaService.getPesquisaSaidaProduto(pesquisa, pagina);
+        this.saidaLista = res.searchOutputDate
+        this.total = res.count
       } else{
-        let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto()
+        let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto(pagina)
         this.saidaLista = res
-        this.tamanhoSaida = res.length
+
+        this.saidaService.getQtdSaidaProduto()
+        .then((total : number)=>{
+         this.total = total
+        })
       }
-      
     }catch(erro){
      this.alert = false
     }
   }
 
 
-  public onPageChange(event){
-    this.produtoPaginacao.currentPage = event;
-  }
+  public getPage(event){
+    this.page = event
+    this.listarSaida(this.pesquisaSaida.replace("-","/").replace("-","/"), this.page)
+   }
+ 
 
   public pesquisa(pesquisa : string) : void{
     this.pesquisaSaida = pesquisa.replace(/(\d*)-(\d*)-(\d*).*/, '$3-$2-$1')
-    this.listarSaida(this.pesquisaSaida.replace("-","/").replace("-","/"))
+    this.listarSaida(this.pesquisaSaida.replace("-","/").replace("-","/"), this.page)
   }
 
   public limparPesquisa(){

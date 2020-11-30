@@ -11,7 +11,7 @@ interface QtdEntrada{
     qtdentrada : number
 }
 
-interface EntradaProdutoQtd{
+interface PesquisaEntradaProdutoQtd{
     nRecords : number,
     searchInputProducts : Array<EntradaProduto>
 }
@@ -43,8 +43,8 @@ export class EntradaService{
         return res
     }
 
-    getPesquisaEntradaProduto(pesquisa : string, page : number): Promise<EntradaProdutoQtd> {
-        let res = this.http.get<EntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${page}`).toPromise();
+    getPesquisaEntradaProduto(pesquisa : string, page : number): Promise<PesquisaEntradaProdutoQtd> {
+        let res = this.http.get<PesquisaEntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${page}`).toPromise();
         return res
     }
 

@@ -3,6 +3,10 @@ import {environment} from '../../environments/environment'
 import {HttpClient} from '@angular/common/http'
 import {Injectable} from '@angular/core'
 
+interface ProdutoTamanho{
+    countProducts : number,
+    products : Array<Produto>
+}
 
 
 @Injectable()
@@ -15,8 +19,8 @@ export class ProdutoService{
         return response
     }
 
-    getProduto() : Promise<Array<Produto>>{
-        let response = this.http.get<Array<Produto>>(`${environment.api}/products`).toPromise()
+    getProduto(page : number) : Promise<ProdutoTamanho>{
+        let response = this.http.get<ProdutoTamanho>(`${environment.api}/products?page=${page}`).toPromise()
         return response
     }
 

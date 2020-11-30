@@ -11,25 +11,21 @@
 <div class="container">
     <h5>LISTA DE SAÍDAS</h5>
     <hr />
-      <div class="pesquisar">
-        <div class="input-group">
-          <input style="font-size: 1rem"
-          type="date" 
-          id="pesquisar"
-          class="form-control"  
-          placeholder="Pesquisar entrada"
-          #variavelPesquisa  
-          value="{{dataAjustada}}"
-          >
-          <span class="input-group-addon">
-            <button class="fa fa-search fa-2x" (click)="pesquisa(variavelPesquisa.value)" style="background:transparent;border:none"></button>
-          </span>
-        </div>
-        <br>
-        <button class="btn btn-info" (click)="limparPesquisa()">LIMPAR PESQUISA</button>
+    <div class="form-group row">
+      <div class="col-4">
+        <input class="form-control" type="date" id="pesquisar" #variavelPesquisa
+          value="{{dataAjustada}}">
       </div>
+      <span class="input-group-addon">
+        <button class="fa fa-search fa-2x" (click)="pesquisa(variavelPesquisa.value)"
+          style="background:transparent;border:none"></button>
+      </span>
+    </div>
+    <button class="btn btn-info" (click)="limparPesquisa()">LIMPAR PESQUISA</button>
+  <br>
     <br>
-    <table  id="produtoTable">
+    <div class="table-responsive-sm">
+      <table class="table table-bordered" id="produtoTable">
       <tr>
         <th>Data da Saída</th>
         <th>Produto Código</th>
@@ -40,25 +36,20 @@
         <th>Total</th>    
         
       </tr>
-      <tr *ngFor="let listaSaida of saidaLista | paginate: produtoPaginacao"  >  
+      <tr *ngFor="let listaSaida of saidaLista | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total }">  
         <td>{{listaSaida.data_saida}}</td>
-        <td>{{listaSaida.produto_codigo}}</td>
-        <td>{{listaSaida.produto_nome}}</td>  
+        <td>{{listaSaida.codigo_produto}}</td>
+        <td>{{listaSaida.nome_produto}}</td>  
         <td>{{listaSaida.preco_custo | currency: 'R$'}}</td>
         <td>{{listaSaida.preco_venda | currency: 'R$'}}</td>
         <td>{{listaSaida.quantidade}}</td>
         <td>{{listaSaida.total | currency: 'R$'}}</td>
       </tr>
     </table>
-    <!--  Personalizar vários elementos na paginação -->
-    <pagination-controls 
-                         [maxSize]="maxSize"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [responsive]="responsive"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         (pageChange)="onPageChange($event)">
-    </pagination-controls>
+    </div>
+    <div class="pagination pagination-sm m-0 float-right">
+      <pagination-controls (pageChange)="getPage($event)" previousLabel="Anterior" nextLabel="Próximo">
+      </pagination-controls>
+    </div>
  </div>
 

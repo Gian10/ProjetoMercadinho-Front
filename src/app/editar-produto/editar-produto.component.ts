@@ -16,43 +16,28 @@ export class EditarProdutoComponent implements OnInit  {
   public tamanhoProduto : number
   public alert : boolean = true
 
-  // objeto de paginação
-  produtoPaginacao : any = {
-    itemsPerPage: 10,
-    currentPage: 1,
-    totalItems: this.produto
-  };
-
-
-// montar a personalização da paginação
-  public maxSize: number = 1000
-  public directionLinks: boolean = true;
-  public autoHide: boolean = false;
-  public responsive: boolean = true;
-  public labels: any = {
-      previousLabel: 'Anterior',
-      nextLabel: 'Próximo',
-  };
+  public page : number = 1
+  public total : number
 
 
   constructor(private serviceProduto : ProdutoService) { }
 
 
   ngOnInit() {
-    this.listarProduto(this.produtoPesquisa) 
+    this.listarProduto(this.produtoPesquisa, this.page) 
   }
 
 
-  public async listarProduto(pesquisa : string){
+  public async listarProduto(pesquisa : string, pagina : number){
     try{
       if(pesquisa !== ''){
         let response = await this.serviceProduto.pesquisaProduto(pesquisa)
         this.produto = response
-        this.tamanhoProduto = response.length
+       
       }else{
-        let response = await this.serviceProduto.getProduto()
-        this.produto = response
-        this.tamanhoProduto = response.length
+        let response = await this.serviceProduto.getProduto(pagina)
+        this.produto = response.products
+        this.total = response.countProducts
       } 
     }catch(erro){
       this.alert = false
@@ -60,8 +45,10 @@ export class EditarProdutoComponent implements OnInit  {
   }
 
   // método de evento ao clique da pagina
-  public onPageChange(event){
-    this.produtoPaginacao.currentPage = event;
+  public getPage(event){
+    this.page = event
+    this.listarProduto(this.produtoPesquisa.trim(), this.page)
+   
   }
 
 // método deletar
@@ -78,6 +65,6 @@ export class EditarProdutoComponent implements OnInit  {
 // pesquisa
   public pesquisar(pesquisa : string) : void{
     this.produtoPesquisa = pesquisa
-    this.listarProduto(this.produtoPesquisa.trim())
+    this.listarProduto(this.produtoPesquisa.trim(), this.page)
   }
 }

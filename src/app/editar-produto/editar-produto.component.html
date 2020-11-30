@@ -2,61 +2,53 @@
 
 <div class="text-center" *ngIf="!alert">
   <div class="alert alert-danger alert-dismissible">
-      <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-      <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR PEGAR DADOS. 
+    <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+    <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR PEGAR DADOS.
   </div>
 </div>
 
 <div class="container">
-    <h5>LISTA DE PRODUTOS</h5>
-    <hr />
-      <div class="pesquisar">
-        <div class="input-group">
-          <input type="text" 
-          id="pesquisar"
-          class="form-control"  
-          placeholder="Pesquisar Produto"
-          #variavelPesquisa  
-          oninput="this.value = this.value.toUpperCase()" 
-          (input)="pesquisar(variavelPesquisa.value)" 
-          >
-        </div>
-      </div>
-    <br>
-    <table  id="produtoTable">
+  <h5>LISTA DE PRODUTOS</h5>
+  <hr />
+  <div class="pesquisar">
+    <div class="input-group">
+      <input type="text" id="pesquisar" class="form-control" placeholder="Pesquisar Produto" #variavelPesquisa
+        oninput="this.value = this.value.toUpperCase()" (input)="pesquisar(variavelPesquisa.value)">
+    </div>
+  </div>
+  <br>
+  <div class="table-responsive-sm">
+    <table class="table table-bordered" id="produtoTable">
       <tr>
         <th>Código</th>
         <th>Nome do Produto</th>
         <th>Preço Custo</th>
         <th>Preço Venda</th>
-        <th>Quantidade</th>    
+        <th>Quantidade</th>
         <th width="200px">Ação</th>
         <th width="200px">Entrada e Saída</th>
       </tr>
-      <tr *ngFor="let listaProduto of produto | paginate: produtoPaginacao"  >  
+      <tr *ngFor="let listaProduto of produto | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}">
         <td>{{listaProduto.codigo_produto}}</td>
-        <td>{{listaProduto.nome_produto}}</td>    
+        <td>{{listaProduto.nome_produto}}</td>
         <td>{{listaProduto.preco_custo | currency: 'R$'}}</td>
         <td>{{listaProduto.preco_venda | currency: 'R$'}}</td>
         <td>{{listaProduto.estoque}}</td>
-        <td>       
-          <a [routerLink]="['/editar-produto', listaProduto.produto_id]"  class="btn btn-primary">Editar</a>
-          <button style="margin:10px;" type="button" (click)="deletePost(listaProduto.produto_id)" class="btn btn-danger">Deletar</button>
+        <td>
+          <a [routerLink]="['/editar-produto', listaProduto.produto_id]" class="btn btn-primary">Editar</a>
+          <button style="margin:10px;" type="button" (click)="deletePost(listaProduto.produto_id)"
+            class="btn btn-danger">Deletar</button>
         </td>
-        <td>       
-          <a [routerLink]="['/entrada-produto', listaProduto.produto_id]" class="btn btn-primary">Entrada</a> 
-          <button [routerLink]="['/saida-produto', listaProduto.produto_id]" style="margin:10px;" type="button" class="btn btn-success">Saída</button>
+        <td>
+          <a [routerLink]="['/entrada-produto', listaProduto.produto_id]" class="btn btn-primary">Entrada</a>
+          <button [routerLink]="['/saida-produto', listaProduto.produto_id]" style="margin:10px;" type="button"
+            class="btn btn-success">Saída</button>
         </td>
       </tr>
     </table>
-    <!--  Personalizar vários elementos na paginação -->
-    <pagination-controls 
-                         [maxSize]="maxSize"
-                         [directionLinks]="directionLinks"
-                         [autoHide]="autoHide"
-                         [responsive]="responsive"
-                         [previousLabel]="labels.previousLabel"
-                         [nextLabel]="labels.nextLabel"
-                         (pageChange)="onPageChange($event)">
+  </div>
+  <div class="pagination pagination-sm m-0 float-right">
+    <pagination-controls (pageChange)="getPage($event)" previousLabel="Anterior" nextLabel="Próximo">
     </pagination-controls>
- </div>
+  </div>
+</div>
