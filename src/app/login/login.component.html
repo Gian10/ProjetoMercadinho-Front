@@ -4,26 +4,26 @@
 		<div class="iconLogin">
 			<i class="fas fa-user"></i>		
 		</div>
-        <form novalidate class="login-form"  #login="ngForm" (ngSubmit)="verificar()" >            
+        <form novalidate class="login-form" [formGroup]="login"  (ngSubmit)="verificar()" >            
           	<div class="form-group">
                 <input type="text"  
                 placeholder="Usuário" 
                 class="form-control"      
-                name="login"
-                ngModel
-                #inputLogin="ngModel"  
+                autocomplete="off" 
+                formControlName=loginUsuario 
                 oninput="this.value = this.value.toUpperCase()"     
-                >	               
+                >	
+                <small *ngIf="!login.get('loginUsuario').valid && login.get('loginUsuario').touched" class="form-text text-danger">NOME DE USUÁRIO INVÁLIDO</small>               
             </div>
                 
             <div class="form-group">
                 <input type="password" 
                 placeholder="Senha"  
                 class="form-control"
-                name="senha"
-                ngModel
-                #inputSenha="ngModel"
-                >                         
+                autocomplete="off" 
+                formControlName=loginSenha
+                >   
+                <small *ngIf="!login.get('loginSenha').valid && login.get('loginSenha').touched" class="form-text text-danger">SENHA DE USUÁRIO INVÁLIDA</small>                                     
             </div>
             <br />
             <button 

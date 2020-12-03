@@ -10,8 +10,8 @@ import {SaidaService} from '../services/saida-service'
 })
 export class HomeComponent implements OnInit {
 
-  public entradaValor : number
-  public saidaValor : number
+  public entradaValor : number = 0
+  public saidaValor : number = 0
   public alert : boolean = true
 
 
@@ -26,11 +26,13 @@ export class HomeComponent implements OnInit {
     try{
       await this.saidaService.getTotalSaida()
       .then((saidaTotal : number)=>{
-        this.saidaValor = saidaTotal
+        if(saidaTotal !== null)
+          this.saidaValor = saidaTotal
     })  
       await this.entradaService.getTotalEntrada()
       .then((entradaTotal: number)=>{
-        this.entradaValor = entradaTotal
+        if(entradaTotal !== null)
+          this.entradaValor = entradaTotal
     })
     }catch(erro){
       this.alert = false

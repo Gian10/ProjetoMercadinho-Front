@@ -7,7 +7,6 @@ import {environment} from '../../environments/environment'
 @Injectable()
 export class UsuarioService{
 
-
     constructor(private http: HttpClient){}
 
     putUsuario(usuario: Usuario){

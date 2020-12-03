@@ -29,6 +29,8 @@
         <th width="200px">Entrada e Saída</th>
       </tr>
       <tr *ngFor="let listaProduto of produto | paginate: { itemsPerPage: 10, currentPage: page, totalItems: total}">
+        
+        
         <td>{{listaProduto.codigo_produto}}</td>
         <td>{{listaProduto.nome_produto}}</td>
         <td>{{listaProduto.preco_custo | currency: 'R$'}}</td>
@@ -46,6 +48,9 @@
         </td>
       </tr>
     </table>
+    <div *ngIf="produto.length == 0">
+      <h5>{{msgTabelaVazia}}</h5>
+    </div>
   </div>
   <div class="pagination pagination-sm m-0 float-right">
     <pagination-controls (pageChange)="getPage($event)" previousLabel="Anterior" nextLabel="Próximo">
