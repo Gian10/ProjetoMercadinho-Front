@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LoginService } from '../../services/login-service'
 import { Router } from '@angular/router';
-import { NgForm } from '@angular/forms'
+import {FormControl, FormGroup, Validators} from '@angular/forms'
 import { Usuario } from 'src/app/model/usuario-model';
 
 @Component({
@@ -11,11 +11,16 @@ import { Usuario } from 'src/app/model/usuario-model';
   providers: [LoginService]
 })
 export class CriarContaComponent implements OnInit {
+  public cadUsuario : FormGroup = new FormGroup({
+    "nomeUsuario": new FormControl(null,[Validators.required, Validators.minLength(4), Validators.maxLength(40)]) ,
+    "senhaUsuario": new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(40)]) ,
+  })
 
-  @ViewChild("criarConta") public criarConta: NgForm
+
 
   public alerta: boolean
   public usuario: Usuario;
+  public alert : boolean = true
 
   constructor(private serviceLogin: LoginService, private router: Router) { }
 
@@ -23,17 +28,23 @@ export class CriarContaComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  async onSubmit() {
-    try {
-      let usuarios: Usuario = new Usuario(
-        this.criarConta.value.login,
-        this.criarConta.value.senha)
-        
-      await this.serviceLogin.criarConta(usuarios);
-      this.alerta = true
-      this.router.navigate([""])
-    }catch (error) {
-     alert('ERRO DO SERVIDOR. TENTE NOVAMENTE MAIS TARDE!')
+  async cadastrarUsuario() {
+
+    if(this.cadUsuario.status === "INVALID"){
+      this.cadUsuario.get('nomeUsuario').markAsTouched()
+      this.cadUsuario.get('senhaUsuario').markAsTouched()
     }
-  }
+    else{
+      let usuario : Usuario = new Usuario(
+        this.cadUsuario.value.nomeUsuario,
+        this.cadUsuario.value.senhaUsuario)
+      try{
+        await this.serviceLogin.criarConta(usuario);
+        this.alerta = true
+        this.router.navigate([""])
+      }catch(erro){
+       this.alert = false
+      }
+    }
+   }
 }

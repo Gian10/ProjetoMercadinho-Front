@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {NgForm} from '@angular/forms'
 import {Produto} from '../model/produto-model'
 import {ProdutoService} from '../services/produto-service'
 
@@ -46,6 +45,7 @@ export class CadastroProdutoComponent implements OnInit {
           this.cadProduto.value.precoCusto,
           this.cadProduto.value.precoVenda,
           this.cadProduto.value.estoque)
+          cadastroProduto.usuario_id = Number(window.localStorage.getItem('idUser'))
         try{
           await this.serviceProduto.postProduto(cadastroProduto)
           this.limparCampos()        

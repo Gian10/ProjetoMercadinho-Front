@@ -1,35 +1,34 @@
+
 <div class="conta">
     <div class="conta-user">
-    	<h2 class="text-center">CRIAR MINHA CONTA</h2>
-        <br>
-        <form novalidate class="conta-form"  #criarConta="ngForm" (ngSubmit)="onSubmit()" >            
+        <h2 class="text-center">CRIAR MINHA CONTA</h2>
+        <div class="text-center" *ngIf="!alert">
+            <div class="alert alert-danger alert-dismissible">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                <strong>ERRO DO SERVIDOR!</strong> ERRO AO TENTAR CADASTRAR USUÁRIO. 
+            </div>
+          </div>
+        <br>   
+        <form [formGroup]="cadUsuario" novalidate class="conta-form" (ngSubmit)="cadastrarUsuario()" >            
             <div class="form-group">
                 <input type="text"  
                 placeholder="Usuário" 
-                required
-                minlength="5"
-                class="form-control"      
-                name="login"
-                ngModel
-                #inputNome="ngModel"  
+                class="form-control"  
+                autocomplete="off" 
+                formControlName=nomeUsuario 
                 oninput="this.value = this.value.toUpperCase()"     
                 >	  
-                <small *ngIf="inputNome.valid && inputNome.touched" class="form-text text-success">Ok</small>
-                <small *ngIf="!inputNome.valid && inputNome.touched" class="form-text text-danger">Nome inválido</small>
+                <small *ngIf="!cadUsuario.get('nomeUsuario').valid && cadUsuario.get('nomeUsuario').touched" class="form-text text-danger">NOME INVÁLIDO</small>
             </div>
                 
             <div class="form-group">
                 <input type="password" 
                 placeholder="Senha"  
-                required
-                minlength="5"
                 class="form-control"
-                name="senha"
-                ngModel
-                #inputSenha="ngModel"
-                >    
-                <small *ngIf="inputSenha.valid && inputSenha.touched" class="form-text text-success">Ok</small>
-                <small *ngIf="!inputSenha.valid && inputSenha.touched" class="form-text text-danger">Senha inválido</small>                            
+                autocomplete="off" 
+                formControlName=senhaUsuario 
+                > 
+                <small *ngIf="!cadUsuario.get('senhaUsuario').valid && cadUsuario.get('senhaUsuario').touched" class="form-text text-danger">SENHA INVÁLIDA</small>
             </div>
             <br />
             <button 

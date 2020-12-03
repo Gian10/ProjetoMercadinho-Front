@@ -38,13 +38,13 @@ export class EntradaService{
         return res.qtdentrada   
     }
 
-    getInputPage(page: number): Promise<Array<EntradaProduto>>{
-        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input?page=${page}`).toPromise()
+    getInputPage(pagina: number): Promise<Array<EntradaProduto>>{
+        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input?page=${pagina}`).toPromise()
         return res
     }
 
-    getPesquisaEntradaProduto(pesquisa : string, page : number): Promise<PesquisaEntradaProdutoQtd> {
-        let res = this.http.get<PesquisaEntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${page}`).toPromise();
+    getPesquisaEntradaProduto(pesquisa : string, pagina : number): Promise<PesquisaEntradaProdutoQtd> {
+        let res = this.http.get<PesquisaEntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${pagina}`).toPromise();
         return res
     }
 

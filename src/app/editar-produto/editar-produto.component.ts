@@ -10,7 +10,7 @@ import { Produto } from '../model/produto-model';
 })
 export class EditarProdutoComponent implements OnInit  {
 
-  public produto : Array<Produto> = []
+  public produto : Array<Produto>
   public produtoPesquisa : string = ''
 
   public tamanhoProduto : number
@@ -18,6 +18,7 @@ export class EditarProdutoComponent implements OnInit  {
 
   public page : number = 1
   public total : number
+  public msgTabelaVazia : string
 
 
   constructor(private serviceProduto : ProdutoService) { }
@@ -31,13 +32,16 @@ export class EditarProdutoComponent implements OnInit  {
   public async listarProduto(pesquisa : string, pagina : number){
     try{
       if(pesquisa !== ''){
-        let response = await this.serviceProduto.pesquisaProduto(pesquisa)
-        this.produto = response
-       
+        let response = await this.serviceProduto.pesquisaProduto(pesquisa, pagina)
+        this.produto = response.products
+        this.total = response.countProducts
       }else{
         let response = await this.serviceProduto.getProduto(pagina)
         this.produto = response.products
         this.total = response.countProducts
+        if(response.countProducts == 0 || response.products.length == 0){
+          this.msgTabelaVazia = "SEM DADOS DE PRODUTOS "
+        }
       } 
     }catch(erro){
       this.alert = false

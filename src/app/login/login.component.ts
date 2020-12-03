@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import {NgForm} from '@angular/forms'
+import { Component, OnInit } from '@angular/core';
+import {FormControl, FormGroup, Validators} from '@angular/forms'
 import {Usuario} from '../model/usuario-model'
 import {LoginService} from '../services/login-service'
 import { Router } from '@angular/router';
@@ -11,8 +11,12 @@ import { Router } from '@angular/router';
   providers: [LoginService]
 })
 export class LoginComponent implements OnInit {
+  public login : FormGroup = new FormGroup({
+    "loginUsuario": new FormControl(null,[Validators.required, Validators.minLength(4), Validators.maxLength(40)]) ,
+    "loginSenha": new FormControl(null, [Validators.required, Validators.minLength(4), Validators.maxLength(40)]) ,
+  })
  
-  @ViewChild("login") public login : NgForm
+  
 
   public alerta : boolean
   public usuario : Usuario 
@@ -24,12 +28,19 @@ export class LoginComponent implements OnInit {
   }
 
   async verificar(){
-    try{
-      let user : Usuario = new Usuario(this.login.value.login, this.login.value.senha) 
-      let resultado = await this.loginService.login(user)
-      this.router.navigate(["/home"])
-    }catch(erro){
-      alert("ERRO DO SERVIDOR. TENTE NOVAMENTO MAIS TARDE!")
+
+    if(this.login.status === "INVALID"){
+      this.login.get('loginUsuario').markAsTouched()
+      this.login.get('loginSenha').markAsTouched()
+    }
+    else{
+      let verificaLogin : Usuario = new Usuario(this.login.value.loginUsuario,this.login.value.loginSenha)
+      try{
+        let resultado = await this.loginService.login(verificaLogin)
+        this.router.navigate(["/home"])      
+      }catch(erro){
+       this.alerta = false
+      }
     }
   }
 }

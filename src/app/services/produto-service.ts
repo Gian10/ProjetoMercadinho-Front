@@ -19,8 +19,8 @@ export class ProdutoService{
         return response
     }
 
-    getProduto(page : number) : Promise<ProdutoTamanho>{
-        let response = this.http.get<ProdutoTamanho>(`${environment.api}/products?page=${page}`).toPromise()
+    getProduto(pagina : number) : Promise<ProdutoTamanho>{
+        let response = this.http.get<ProdutoTamanho>(`${environment.api}/products?page=${pagina}`).toPromise()
         return response
     }
 
@@ -39,8 +39,8 @@ export class ProdutoService{
         return response
     }
 
-    pesquisaProduto(texto : string) : Promise<Array<Produto>>{
-        let response =  this.http.get<Array<Produto>>(`${environment.api}/products/search?product=${texto}`).toPromise()
-        return response    
+    pesquisaProduto(texto : string, pagina : number) : Promise<ProdutoTamanho>{
+        let response =  this.http.get<ProdutoTamanho>(`${environment.api}/products/search?product=${texto}&page=${pagina}`).toPromise()
+        return response
     }    
 }
