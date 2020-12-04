@@ -46,6 +46,10 @@
         <td>{{listaSaida.total | currency: 'R$'}}</td>
       </tr>
     </table>
+    <div *ngIf="saidaLista.length == 0">
+      <h5>{{msgTabelaVazia}}</h5>
+
+    </div>
     </div>
     <div class="pagination pagination-sm m-0 float-right">
       <pagination-controls (pageChange)="getPage($event)" previousLabel="Anterior" nextLabel="Próximo">

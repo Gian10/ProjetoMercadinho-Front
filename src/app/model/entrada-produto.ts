@@ -1,5 +1,6 @@
 export class EntradaProduto{
     public entrada_id : number
+    public usuario_id : number
     constructor(
         public data_entrada : number, 
         public codigo_produto : string,

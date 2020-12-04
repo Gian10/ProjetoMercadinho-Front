@@ -12,12 +12,13 @@ import {SaidaService} from '../services/saida-service'
 
 export class SaidaListarComponent implements OnInit {
 
-  public saidaLista : Array<SaidaProduto>
+  public saidaLista : Array<SaidaProduto> = []
 
   public pesquisaSaida : string = ''
   public dataHoje : Date = new Date(Date.now())
   public dataAjustada : string
   public alert : boolean = true
+  public msgTabelaVazia : string
 
   public page : number = 1
   public total : number
@@ -36,12 +37,17 @@ export class SaidaListarComponent implements OnInit {
     try{
       if(pesquisa !== ''){
         let res = await this.saidaService.getPesquisaSaidaProduto(pesquisa, pagina);
+        if(res.count == 0 || res.searchOutputDate.length == 0)
+          this.msgTabelaVazia = "SEM DADOS DE SAÍDA"
+          
         this.saidaLista = res.searchOutputDate
         this.total = res.count
       } else{
         let res : Array<SaidaProduto> = await this.saidaService.getSaidaProduto(pagina)
         this.saidaLista = res
-
+        if(res.length == 0)
+          this.msgTabelaVazia = "SEM DADOS DE SAÍDA"
+        
         this.saidaService.getQtdSaidaProduto()
         .then((total : number)=>{
          this.total = total
