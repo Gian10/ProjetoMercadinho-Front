@@ -75,21 +75,22 @@ export class EntradaProdutoComponent implements OnInit {
         this.entradaProduto.value.precoCusto,
         this.entradaProduto.value.precoVenda,
         this.entradaProduto.value.quantidade,
-        this.totalProduto
-      )
+        this.totalProduto)
+        entrada.usuario_id = Number(window.localStorage.getItem('idUser'))
   
-      let response = await this.entradaService.postEntrada(entrada)
+      await this.entradaService.postEntrada(entrada)
+
       // pegar produto da entrada
-      let produtoAtual = await this.produtoService.getProdutoId(this.produto_id)   
+      let resProduto = await this.produtoService.getProdutoId(this.produto_id) 
+
       // calcular o estoque atual
-      let estoqueAtual = produtoAtual[0].estoque + entrada.quantidade
+      let estoqueAtual = resProduto[0].estoque + entrada.quantidade
 
        let produtoEstoqueNovo : Produto = new Produto
-       (produtoAtual[0].nome_produto, produtoAtual[0].codigo_produto, produtoAtual[0].preco_custo, 
-         produtoAtual[0].preco_venda, estoqueAtual)
+        (resProduto[0].nome_produto, resProduto[0].codigo_produto, resProduto[0].preco_custo, resProduto[0].preco_venda, estoqueAtual)
        produtoEstoqueNovo.produto_id = this.produto_id
        
-      let res = await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
+      await this.entradaService.putEstoqueProduto(produtoEstoqueNovo)
       this.voltar()
 
     }catch(erro){

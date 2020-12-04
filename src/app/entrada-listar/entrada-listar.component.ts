@@ -12,13 +12,14 @@ import {ProdutoService} from '../services/produto-service'
 export class EntradaListarComponent implements OnInit {
 
 
-  public entradaLista : Array<EntradaProduto>
+  public entradaLista : Array<EntradaProduto> = []
 
 
   public pesquisaEntrada : string = ''
   public dataHoje : Date = new Date(Date.now())
   public dataAjustada : string
   public alert : boolean = true
+  public msgTabelaVazia : string
 
   public page : number = 1
   public total : number
@@ -37,11 +38,17 @@ export class EntradaListarComponent implements OnInit {
     try{
       if(pesquisa !== ''){
         let res = await this.entradaService.getPesquisaEntradaProduto(pesquisa, pagina);
+        if(res.nRecords == 0 || res.searchInputProducts)
+          this.msgTabelaVazia = "SEM DADOS DE ENTRADA"
+        
         this.entradaLista = res.searchInputProducts
         this.total = res.nRecords       
       } else{
         let res = await this.entradaService.getInputPage(pagina)
         this.entradaLista = res
+        if(res.length == 0)
+          this.msgTabelaVazia = "SEM DADOS DE ENTRADA"
+        
         this.entradaService.getCountInput()
         .then((total : number)=>{
           this.total = total

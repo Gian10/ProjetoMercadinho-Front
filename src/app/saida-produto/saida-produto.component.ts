@@ -70,16 +70,21 @@ export class SaidaProdutoComponent implements OnInit {
         this.cadSaidaProduto.value.precoVenda,
         this.cadSaidaProduto.value.quantidade,
         this.totalProduto) 
+      saidaProduto.usuario_id = Number(window.localStorage.getItem('idUser'))
+      console.log(saidaProduto)
   
       await this.saidaService.postSaidaProduto(saidaProduto)
-      
-      let responseProdutoCodigo = await this.produtoService.getProdutoId(this.produto_id)
+
+       // pegar produto da saída
+      let resProduto = await this.produtoService.getProdutoId(this.produto_id)
+
+      // calcular o estoque atual
+      let estoqueAtual = resProduto[0].estoque - saidaProduto.quantidade
   
-      let estoqueAtual = responseProdutoCodigo[0].estoque - saidaProduto.quantidade
-  
-      let produtoSaida : Produto = new Produto(responseProdutoCodigo[0].nome_produto,
-        responseProdutoCodigo[0].codigo_produto, responseProdutoCodigo[0].preco_custo, responseProdutoCodigo[0].preco_venda, estoqueAtual)
-        produtoSaida.produto_id = this.produto_id
+      let produtoSaida : Produto = new Produto(resProduto[0].nome_produto,
+        resProduto[0].codigo_produto, resProduto[0].preco_custo, resProduto[0].preco_venda, estoqueAtual)
+      produtoSaida.produto_id = this.produto_id
+      produtoSaida.usuario_id = Number(window.localStorage.getItem('idUser'))
   
       await this.produtoService.putProdutoId(produtoSaida)
       this.redirect.navigate(["/editar-produto"])
