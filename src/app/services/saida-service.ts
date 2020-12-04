@@ -16,6 +16,8 @@ interface PesquisaSaidaProdutoQtd{
 @Injectable()
 export class SaidaService {
 
+    public idUser : number = Number(window.localStorage.getItem('idUser'))
+
     constructor(private http : HttpClient){}
 
     postSaidaProduto(saida : SaidaProduto) : Promise<SaidaProduto>{
@@ -23,21 +25,21 @@ export class SaidaService {
     }
 
     getSaidaProduto(pagina : number) : Promise<Array<SaidaProduto>>{
-        return this.http.get<Array<SaidaProduto>>(`${environment.api}/output?page=${pagina}`).toPromise()
+        return this.http.get<Array<SaidaProduto>>(`${environment.api}/output?page=${pagina}&usuario_id=${this.idUser}`).toPromise()
     }
 
     async getQtdSaidaProduto() : Promise<number>{
-        let res = await this.http.get<number>(`${environment.api}/output/count`).toPromise()
+        let res = await this.http.get<number>(`${environment.api}/output/count?usuario_id=${this.idUser}`).toPromise()
         return res
     }
 
     getPesquisaSaidaProduto(pesquisa : string, pagina : number): Promise<PesquisaSaidaProdutoQtd> {
-        let res = this.http.get<PesquisaSaidaProdutoQtd>(`${environment.api}/output/search?date=${pesquisa}&page=${pagina}`).toPromise();
+        let res = this.http.get<PesquisaSaidaProdutoQtd>(`${environment.api}/output/search?date=${pesquisa}&page=${pagina}&usuario_id=${this.idUser}`).toPromise();
         return res
     }
 
     async getTotalSaida() : Promise<number> {
-       let res = await this.http.get<SaidaTotal>(`${environment.api}/sumTotalOutput`).toPromise() 
+       let res = await this.http.get<SaidaTotal>(`${environment.api}/sumTotalOutput?usuario_id=${this.idUser}`).toPromise() 
        return res.totalsaida
     }
 }
