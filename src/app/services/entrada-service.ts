@@ -20,6 +20,8 @@ interface PesquisaEntradaProdutoQtd{
 @Injectable()
 export class EntradaService{
 
+    public idUser : number = Number(window.localStorage.getItem('idUser'))
+
     constructor(private http : HttpClient){}
 
 
@@ -34,22 +36,22 @@ export class EntradaService{
     }
 
     async getCountInput(): Promise<number>{
-        let res = await this.http.get<QtdEntrada>(`${environment.api}/input/count`).toPromise()
+        let res = await this.http.get<QtdEntrada>(`${environment.api}/input/count?usuario_id=${this.idUser}`).toPromise()
         return res.qtdentrada   
     }
 
     getInputPage(pagina: number): Promise<Array<EntradaProduto>>{
-        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input?page=${pagina}`).toPromise()
+        let res = this.http.get<Array<EntradaProduto>>(`${environment.api}/input?page=${pagina}&usuario_id=${this.idUser}`).toPromise()
         return res
     }
 
     getPesquisaEntradaProduto(pesquisa : string, pagina : number): Promise<PesquisaEntradaProdutoQtd> {
-        let res = this.http.get<PesquisaEntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${pagina}`).toPromise();
+        let res = this.http.get<PesquisaEntradaProdutoQtd>(`${environment.api}/input/search?date=${pesquisa}&page=${pagina}&usuario_id=${this.idUser}`).toPromise();
         return res
     }
 
     async getTotalEntrada(): Promise<number>{
-        let res = await this.http.get<EntradaTotal>(`${environment.api}/sumTotalInput`).toPromise()
+        let res = await this.http.get<EntradaTotal>(`${environment.api}/sumTotalInput?usuario_id=${this.idUser}`).toPromise()
         return res.totalentrada
     }
 }

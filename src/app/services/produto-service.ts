@@ -12,6 +12,8 @@ interface ProdutoTamanho{
 @Injectable()
 export class ProdutoService{
 
+    public idUser : number = Number(window.localStorage.getItem('idUser'))
+
     constructor(private http : HttpClient){}
 
     postProduto(produto : Produto) : Promise<Produto>{
@@ -20,7 +22,7 @@ export class ProdutoService{
     }
 
     getProduto(pagina : number) : Promise<ProdutoTamanho>{
-        let response = this.http.get<ProdutoTamanho>(`${environment.api}/products?page=${pagina}`).toPromise()
+        let response = this.http.get<ProdutoTamanho>(`${environment.api}/products?page=${pagina}&usuario_id=${this.idUser}`).toPromise()
         return response
     }
 
@@ -40,7 +42,7 @@ export class ProdutoService{
     }
 
     pesquisaProduto(texto : string, pagina : number) : Promise<ProdutoTamanho>{
-        let response =  this.http.get<ProdutoTamanho>(`${environment.api}/products/search?product=${texto}&page=${pagina}`).toPromise()
+        let response =  this.http.get<ProdutoTamanho>(`${environment.api}/products/search?product=${texto}&page=${pagina}&usuario_id=${this.idUser}`).toPromise()
         return response
     }    
 }
