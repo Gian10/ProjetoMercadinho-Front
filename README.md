@@ -14,5 +14,7 @@ Projeto de Mercadinho com a funcionalidade de entrada e saída de produto
 * Entrada de Produto.
 * Saída de Produto.
 
+# Teste end-to-end
+* **Cypress
 
 ********
