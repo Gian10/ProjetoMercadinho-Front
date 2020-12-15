@@ -1,3 +1,4 @@
+
 Cypress.Commands.add('login', () => {
     cy.request("POST", "/login",{
           "nome": "GIAN",
@@ -10,3 +11,4 @@ Cypress.Commands.add('login', () => {
        window.localStorage.setItem('nameUser', body.name);
       })
   });
+

@@ -27,7 +27,7 @@ export class LoginService {
     }
 
     async criarConta(conta: Usuario) {
-        let result = await this.http.post(`${environment.api}/login/cadastroUser`, conta).toPromise();
+        let result = await this.http.post(`${environment.api}/users/create`, conta).toPromise();
         return result;
     }
 

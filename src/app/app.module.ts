@@ -55,7 +55,8 @@ import { EditarUsuarioComponent } from './editar-usuario/editar-usuario.componen
     EntradaListarComponent,
     SaidaProdutoComponent,
     SaidaListarComponent,
-    EditarUsuarioComponent
+    EditarUsuarioComponent,
+    
   ],
   imports: [
     BrowserModule,
