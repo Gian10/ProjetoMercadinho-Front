@@ -17,7 +17,7 @@ export class ProdutoService{
     constructor(private http : HttpClient){}
 
     postProduto(produto : Produto) : Promise<Produto>{
-        let response = this.http.post<Produto>(`${environment.api}/products`, produto).toPromise() 
+        let response = this.http.post<Produto>(`${environment.api}/products?usuario_id=${this.idUser}`, produto).toPromise() 
         return response
     }
 
@@ -27,12 +27,12 @@ export class ProdutoService{
     }
 
     getProdutoId(id : number) : Promise<Produto>{
-        let response = this.http.get<Produto>(`${environment.api}/products/${id}`).toPromise()
+        let response = this.http.get<Produto>(`${environment.api}/products/${id}?usuario_id=${this.idUser}`).toPromise()
         return response
     }
 
     putProdutoId(putProduto : Produto) : Promise<Produto>{
-        let response = this.http.put<Produto>(`${environment.api}/products/${putProduto.produto_id}`, putProduto).toPromise()
+        let response = this.http.put<Produto>(`${environment.api}/products/${putProduto.produto_id}?usuario_id=${this.idUser}`, putProduto).toPromise()
         return response
     }
 

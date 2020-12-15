@@ -26,7 +26,7 @@ export class EntradaService{
 
 
     postEntrada(entradaProduto : EntradaProduto) : Promise<EntradaProduto>{
-        let entrada =  this.http.post<EntradaProduto>(`${environment.api}/input`, entradaProduto).toPromise();
+        let entrada =  this.http.post<EntradaProduto>(`${environment.api}/input?usuario_id=${this.idUser}`, entradaProduto).toPromise();
         return entrada
     }
 

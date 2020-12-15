@@ -21,7 +21,7 @@ export class SaidaService {
     constructor(private http : HttpClient){}
 
     postSaidaProduto(saida : SaidaProduto) : Promise<SaidaProduto>{
-        return this.http.post<SaidaProduto>(`${environment.api}/output`, saida).toPromise()
+        return this.http.post<SaidaProduto>(`${environment.api}/output?usuario_id=${this.idUser}`, saida).toPromise()
     }
 
     getSaidaProduto(pagina : number) : Promise<Array<SaidaProduto>>{
