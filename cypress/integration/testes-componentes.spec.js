@@ -18,6 +18,7 @@ it("VISITAR PAGINA DE CADASTRO DE PRODUTO E REALIZAR O CADASTRO", ()=>{
   cy.get('.btn-primary').click();
   cy.wait(1000)
   cy.get('.btn-danger').click();
+  cy.wait(1000)
 })
 
 it("VISITAR TELA DE PRODUTOS E PESQUISA", ()=>{
@@ -27,6 +28,14 @@ it("VISITAR TELA DE PRODUTOS E PESQUISA", ()=>{
   cy.get('#pesquisar').type("CARNE DE")
   cy.scrollTo(0, 800, {duration: 1000})  
   cy.wait(1000)
+  cy.get('#pesquisar').clear()
+  cy.wait(1000)
+})
+
+it("VISITAR PAGINA DE EDITAR PRODUTO", ()=>{
+    cy.visit("http://localhost:4200/editar-produto/4")
+    cy.scrollTo(0, 800, {duration: 1000})
+    cy.wait(1000)
 })
 
 it("VISITAR A PAGINA DE LISTA DE ENTRADAS", ()=>{
@@ -47,6 +56,11 @@ it("VISITAR PAGINA DE LISTAR SAÍDAS", ()=>{
   cy.get('#search').click();
   cy.scrollTo(0, 800, {duration: 1000})
   cy.wait(1000)
+})
+
+it("VISITAR PAGINA DE USUÁRIO", ()=>{
+  cy.visit(`http://localhost:4200/editar-usuario/${window.localStorage.getItem('idUser')}`)
+  cy.scrollTo(0, 800, {duration: 1000})
 })
 
 

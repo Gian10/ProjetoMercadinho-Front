@@ -24,7 +24,9 @@ export class LoginComponent implements OnInit {
   constructor(private loginService : LoginService, private router : Router) { }
 
   ngOnInit(): void {
-    
+    if(window.localStorage.getItem('idUser')){
+      this.router.navigate(["/home"])
+    } 
   }
 
   async verificar(){
