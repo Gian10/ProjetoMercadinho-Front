@@ -3,9 +3,12 @@ beforeEach(() => {
   cy.login()
 })
 
-it('VISITAR PAGINA INICIAL', () => {
-  cy.visit("http://localhost:4200/home")
-  cy.wait(2000)
+it("VISITAR PAGINA DE CADASTRO DE USUÁRIO E CADASTRAR USUÁRIO", ()=>{
+  cy.visit("http://localhost:4200/criar-conta")
+  cy.get('[formcontrolname="nomeUsuario"]').type("usuario1");
+  cy.get('[formcontrolname="senhaUsuario"]').type("123456");
+  cy.get('.btn-primary').click();
+  cy.wait(3000)
 })
 
 it("VISITAR PAGINA DE CADASTRO DE PRODUTO E REALIZAR O CADASTRO", ()=>{
