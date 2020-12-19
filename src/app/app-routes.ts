@@ -2,9 +2,9 @@ import {Routes} from '@angular/router'
 
 
 import {LoginComponent} from '../app/login/login.component'
-import {CriarContaComponent} from './account/criar-conta/criar-conta.component'
+import {CriarContaComponent} from './conta-usuario/criar-conta/criar-conta.component'
 import {HomeComponent} from '././home/home.component'
-import { AuthGuard } from './account/shared/auth.guard'
+import { AuthGuard } from './conta-usuario/shared/auth.guard'
 import {CadastroProdutoComponent} from './cadastro-produto/cadastro-produto.component'
 import {EditarProdutoComponent} from './editar-produto/editar-produto.component'
 import {EditarProdutoIdComponent} from './editar-produto-id/editar-produto-id.component'
