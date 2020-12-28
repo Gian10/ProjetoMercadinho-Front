@@ -6,7 +6,7 @@ Projeto de Mercadinho com a funcionalidade de entrada e saída de produto
 
 # Tecnologias
 * **FrameWork-Front** : Angular 9
-* **FrameWork-Back** :  Api Fake - NodeJs
+* **FrameWork-Back** : NodeJs-Express
 
 # EndPoints
 * Usuario.
