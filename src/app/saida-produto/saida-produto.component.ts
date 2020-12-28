@@ -29,6 +29,8 @@ export class SaidaProdutoComponent implements OnInit {
   public totalProduto : number = 0
   public valorProduto : number
   public produto_id : number
+  public estoqueProduto : number
+  public controleQuantidadeEstoque : boolean = false
   public alert : boolean = true
 
   constructor(private route : ActivatedRoute, 
@@ -52,6 +54,7 @@ export class SaidaProdutoComponent implements OnInit {
           this.valorProduto = produtoId[0].preco_venda
           this.totalProduto = this.valorProduto * this.qtd
           this.produto_id = parametro.id
+         this.estoqueProduto = produtoId[0].estoque
         })
       })
     }catch(erro){
@@ -61,35 +64,38 @@ export class SaidaProdutoComponent implements OnInit {
 
 
   public async cadastroSaidaProduto(){
-    try{
-      let saidaProduto : SaidaProduto = new SaidaProduto(
-        this.cadSaidaProduto.value.data,
-        this.cadSaidaProduto.value.codigo,
-        this.cadSaidaProduto.value.nomeProduto,
-        this.cadSaidaProduto.value.precoCusto,
-        this.cadSaidaProduto.value.precoVenda,
-        this.cadSaidaProduto.value.quantidade,
-        this.totalProduto) 
-      saidaProduto.usuario_id = Number(window.localStorage.getItem('idUser'))
-      console.log(saidaProduto)
+    if(this.controleQuantidadeEstoque){
+      this.cadSaidaProduto.get('quantidade').markAsTouched()
+    }else{
+      try{
+        let saidaProduto : SaidaProduto = new SaidaProduto(
+          this.cadSaidaProduto.value.data,
+          this.cadSaidaProduto.value.codigo,
+          this.cadSaidaProduto.value.nomeProduto,
+          this.cadSaidaProduto.value.precoCusto,
+          this.cadSaidaProduto.value.precoVenda,
+          this.cadSaidaProduto.value.quantidade,
+          this.totalProduto) 
+        saidaProduto.usuario_id = Number(window.localStorage.getItem('idUser'))
+    
+        await this.saidaService.postSaidaProduto(saidaProduto)
   
-      await this.saidaService.postSaidaProduto(saidaProduto)
-
-       // pegar produto da saída
-      let resProduto = await this.produtoService.getProdutoId(this.produto_id)
-
-      // calcular o estoque atual
-      let estoqueAtual = resProduto[0].estoque - saidaProduto.quantidade
+         // pegar produto da saída
+        let resProduto = await this.produtoService.getProdutoId(this.produto_id)
   
-      let produtoSaida : Produto = new Produto(resProduto[0].nome_produto,
-        resProduto[0].codigo_produto, resProduto[0].preco_custo, resProduto[0].preco_venda, estoqueAtual)
-      produtoSaida.produto_id = this.produto_id
-      produtoSaida.usuario_id = Number(window.localStorage.getItem('idUser'))
-  
-      await this.produtoService.putProdutoId(produtoSaida)
-      this.redirect.navigate(["/editar-produto"])
-    }catch(erro){
-     this.alert = false
+        // calcular o estoque atual
+        let estoqueCalculoAtual = resProduto[0].estoque - saidaProduto.quantidade
+    
+        let produtoSaida : Produto = new Produto(resProduto[0].nome_produto,
+          resProduto[0].codigo_produto, resProduto[0].preco_custo, resProduto[0].preco_venda, estoqueCalculoAtual)
+        produtoSaida.produto_id = this.produto_id
+        produtoSaida.usuario_id = Number(window.localStorage.getItem('idUser'))
+    
+        await this.produtoService.putProdutoId(produtoSaida)
+        this.voltar()
+      }catch(erro){
+       this.alert = false
+      }
     }
   }
 
@@ -105,7 +111,12 @@ export class SaidaProdutoComponent implements OnInit {
       this.cadSaidaProduto.get('quantidade').setValue(1)
       this.qtd = 1
     }
+    //condição de controle de quantidade, pois quantidade não pode ser maior que o estoque do produto 
+    if(this.estoqueProduto < this.qtd){
+      this.controleQuantidadeEstoque = true
+    }else{
+      this.controleQuantidadeEstoque = false
+    }
     this.totalProduto = this.valorProduto * this.qtd
    }
-
 }

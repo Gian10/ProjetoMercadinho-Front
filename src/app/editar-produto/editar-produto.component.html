@@ -43,7 +43,7 @@
         </td>
         <td>
           <a [routerLink]="['/entrada-produto', listaProduto.produto_id]" class="btn btn-primary">Entrada</a>
-          <button [routerLink]="['/saida-produto', listaProduto.produto_id]" style="margin:10px;" type="button"
+          <button [disabled]="listaProduto.estoque === 0" [routerLink]="['/saida-produto', listaProduto.produto_id]" style="margin:10px;" type="button"
             class="btn btn-success">Saída</button>
         </td>
       </tr>

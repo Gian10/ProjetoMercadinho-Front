@@ -29,7 +29,7 @@ import { TelaPrincipalComponent } from './tela-principal/tela-principal.componen
 import {RouterModule} from '@angular/router'
 import {ROUTES} from './app-routes';
 import { HomeComponent } from './home/home.component';
-import { CriarContaComponent } from './conta-usuario/criar-conta/criar-conta.component';
+import { CriarContaComponent } from './account/criar-conta/criar-conta.component';
 import { CadastroProdutoComponent } from './cadastro-produto/cadastro-produto.component';
 import { EditarProdutoComponent } from './editar-produto/editar-produto.component';
 import { EditarProdutoIdComponent } from './editar-produto-id/editar-produto-id.component';
