@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   api: "http://appmercadinhoaraujo-env.eba-sjpfunpm.us-east-2.elasticbeanstalk.com"
+  //api: "http://localhost:8080"
 };
 
 /*

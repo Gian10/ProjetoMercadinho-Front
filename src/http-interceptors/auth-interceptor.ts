@@ -38,7 +38,9 @@ export class AuthInterceptor implements HttpInterceptor {
       console.error('Ocorreu um erro:', error.error.message);
     } else {
         if(error.status == 401){
+          console.log("erro de autorização ")
           window.localStorage.removeItem('token')
+          location.reload()
         }
       // Erro retornando pelo backend
       console.error(`Código do erro ${error.status}, ` + `Erro: ${JSON.stringify(error.error)}`);
